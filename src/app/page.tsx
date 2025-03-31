@@ -17,27 +17,19 @@ export default function Index() {
   return (
     <main>
       <Container>
-        <section id="intro">
-          <Intro />
-        </section>
-        <section id="about">
-          <AboutMeSection />
-        </section>
-        <section id="projects">
-          <ProjectsSection />
-        </section>
-        <section id="blog">
-          <IntroBlog />
-          <HeroPost
-            title={heroPost.title}
-            coverImage={heroPost.coverImage}
-            date={heroPost.date}
-            author={heroPost.author}
-            slug={heroPost.slug}
-            excerpt={heroPost.excerpt}
-          />
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-        </section>
+        <Intro />
+        <AboutMeSection />
+        <ProjectsSection />
+        <IntroBlog />
+        <HeroPost
+          title={heroPost.title}
+          coverImage={heroPost.coverImage}
+          date={heroPost.date}
+          author={heroPost.author}
+          slug={heroPost.slug}
+          excerpt={heroPost.excerpt}
+        />
+        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
       </Container>
     </main>
   );

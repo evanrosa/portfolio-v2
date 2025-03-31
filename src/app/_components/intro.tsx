@@ -5,6 +5,7 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { ArrowDownCircle, Database, ExternalLink, Github, Linkedin, Mail, Server } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export default function DataEngineerIntro() {
     const [mounted, setMounted] = useState(false)
@@ -12,6 +13,14 @@ export default function DataEngineerIntro() {
     useEffect(() => {
         setMounted(true)
     }, [])
+
+    const handleProjectsClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        const element = document.getElementById('projects')
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" })
+        }
+    }
 
     if (!mounted) return null
 
@@ -60,7 +69,11 @@ export default function DataEngineerIntro() {
                         </p>
 
                         <div className="mb-8 flex flex-wrap gap-4">
-                            <Button size="lg" className="rounded-full bg-blue-600 px-6 hover:bg-blue-700">
+                            <Button
+                                size="lg"
+                                className="rounded-full bg-blue-600 px-6 hover:bg-blue-700"
+                                onClick={handleProjectsClick}
+                            >
                                 View Projects
                                 <ExternalLink className="ml-2 h-4 w-4" />
                             </Button>
@@ -68,28 +81,33 @@ export default function DataEngineerIntro() {
                                 variant="outline"
                                 size="lg"
                                 className="rounded-full border-blue-600/20 px-6 text-blue-600 hover:bg-blue-50/50 hover:text-blue-700"
+                                asChild
                             >
-                                Download Resume
+                                <Link
+                                    href="https://drive.google.com/file/d/1eVJJDfaARY-l-4cmbPSjqzHHlEwo-pSb/view?usp=sharing" target="_blank">Download Resume</Link>
                             </Button>
                         </div>
 
                         <div className="flex items-center gap-6">
                             <a
-                                href="#"
+                                href="https://github.com/evanrosa"
+                                target="_blank"
                                 className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/50 transition-colors hover:border-blue-600 hover:text-blue-600"
                                 aria-label="GitHub"
                             >
                                 <Github className="h-5 w-5" />
                             </a>
                             <a
-                                href="#"
+                                href="https://www.linkedin.com/in/evan-rosa/"
+                                target="_blank"
                                 className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/50 transition-colors hover:border-blue-600 hover:text-blue-600"
                                 aria-label="LinkedIn"
                             >
                                 <Linkedin className="h-5 w-5" />
                             </a>
                             <a
-                                href="#"
+                                href="mailto:evandanrosa@gmail.com"
+                                target="_blank"
                                 className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/50 transition-colors hover:border-blue-600 hover:text-blue-600"
                                 aria-label="Email"
                             >
@@ -201,7 +219,18 @@ export default function DataEngineerIntro() {
                 transition={{ delay: 1.2, duration: 0.5 }}
             >
                 <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}>
-                    <ArrowDownCircle className="h-10 w-10 text-blue-600/70" />
+                    <button
+                        onClick={() => {
+                            const element = document.getElementById('about')
+                            if (element) {
+                                element.scrollIntoView({ behavior: "smooth" })
+                            }
+                        }}
+                        className="text-blue-600/70 hover:text-blue-600 transition-colors"
+                        aria-label="Scroll to About section"
+                    >
+                        <ArrowDownCircle className="h-10 w-10" />
+                    </button>
                 </motion.div>
             </motion.div>
         </section>

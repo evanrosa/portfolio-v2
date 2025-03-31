@@ -5,8 +5,8 @@ import { Inter } from "next/font/google";
 import cn from "classnames";
 
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
 import { SiteHeader } from "@/app/_components/header";
+import { Providers } from './providers'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -60,11 +60,11 @@ export default function RootLayout({
       <body
         className={cn(inter.className, "dark:bg-slate-900 dark:text-slate-400")}
       >
-        <ThemeProvider>
+        <Providers>
           <SiteHeader />
           <div className="min-h-screen">{children}</div>
           <Footer />
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
