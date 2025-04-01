@@ -67,15 +67,15 @@ export function SiteHeader() {
       className={cn(
         "fixed top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "bg-background/80 backdrop-blur-md shadow-sm border-b border-border/40"
-          : "bg-background"
+          ? "bg-background/80 backdrop-blur-md shadow-sm border-b border-border/40 dark:bg-slate-900/80 dark:border-slate-800/40"
+          : "bg-background dark:bg-slate-900"
       )}
     >
       <div className="container mx-auto max-w-6xl">
         <div className="flex h-16 items-center justify-between px-4">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-xl font-bold text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-yellow-500 dark:to-yellow-400 bg-clip-text text-xl font-bold text-transparent">
               &#60;evan.rosa/&#62;
             </span>
           </Link>
@@ -93,11 +93,11 @@ export function SiteHeader() {
                   href={item.isSection ? `/#${item.href}` : item.href}
                   onClick={(e) => handleNavClick(e, item)}
                   className={cn(
-                    "text-sm font-medium transition-colors hover:text-blue-600",
+                    "text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400",
                     (item.isSection && (pathname === `/#${item.href}` || (!isHomePage && pathname === `/${item.href}`))) ||
                       (!item.isSection && pathname === item.href)
-                      ? "text-blue-600"
-                      : "text-muted-foreground"
+                      ? "text-blue-600 dark:text-blue-400"
+                      : "text-muted-foreground dark:text-slate-300"
                   )}
                 >
                   {item.name}
@@ -110,12 +110,12 @@ export function SiteHeader() {
                 <SignedOut>
                   <div className="flex items-center space-x-2">
                     <SignInButton mode="modal">
-                      <button className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                      <button className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 dark:text-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:hover:bg-slate-700">
                         Sign In
                       </button>
                     </SignInButton>
                     <SignUpButton mode="modal">
-                      <button className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
+                      <button className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
                         Sign Up
                       </button>
                     </SignUpButton>
@@ -136,13 +136,13 @@ export function SiteHeader() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-blue-900/20"
+                  className="hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-slate-800 dark:hover:text-blue-400"
                 >
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Toggle menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px] p-0">
+              <SheetContent side="right" className="w-[300px] sm:w-[400px] p-0 dark:bg-slate-900 dark:border-slate-800">
                 <nav className="flex flex-col gap-4 p-6">
                   {navItems.map((item) => (
                     <motion.div
@@ -155,11 +155,11 @@ export function SiteHeader() {
                         href={item.isSection ? `/#${item.href}` : item.href}
                         onClick={(e) => handleMobileNavClick(e, item)}
                         className={cn(
-                          "flex items-center py-2 text-base font-medium transition-colors hover:text-blue-600",
+                          "flex items-center py-2 text-base font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400",
                           (item.isSection && (pathname === `/#${item.href}` || (!isHomePage && pathname === `/${item.href}`))) ||
                             (!item.isSection && pathname === item.href)
-                            ? "text-blue-600"
-                            : "text-muted-foreground"
+                            ? "text-blue-600 dark:text-blue-400"
+                            : "text-muted-foreground dark:text-slate-300"
                         )}
                       >
                         {item.name}
@@ -171,12 +171,12 @@ export function SiteHeader() {
                       <SignedOut>
                         <div className="flex flex-col space-y-2 pt-4">
                           <SignInButton mode="modal">
-                            <button className="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                            <button className="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 dark:text-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:hover:bg-slate-700">
                               Sign In
                             </button>
                           </SignInButton>
                           <SignUpButton mode="modal">
-                            <button className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
+                            <button className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
                               Sign Up
                             </button>
                           </SignUpButton>

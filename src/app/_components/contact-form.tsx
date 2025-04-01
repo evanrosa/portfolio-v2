@@ -71,7 +71,7 @@ export function ContactForm() {
     }
 
     return (
-        <Card className="w-full">
+        <Card className="w-full dark:bg-slate-900 dark:border-slate-800">
             <CardContent className="p-6">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -81,11 +81,15 @@ export function ContactForm() {
                                 name="name"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Name</FormLabel>
+                                        <FormLabel className="dark:text-slate-100">Name</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Your name" {...field} />
+                                            <Input
+                                                placeholder="Your name"
+                                                className="dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400"
+                                                {...field}
+                                            />
                                         </FormControl>
-                                        <FormMessage />
+                                        <FormMessage className="dark:text-red-400" />
                                     </FormItem>
                                 )}
                             />
@@ -95,11 +99,15 @@ export function ContactForm() {
                                 name="email"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Email</FormLabel>
+                                        <FormLabel className="dark:text-slate-100">Email</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="your.email@example.com" {...field} />
+                                            <Input
+                                                placeholder="your.email@example.com"
+                                                className="dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400"
+                                                {...field}
+                                            />
                                         </FormControl>
-                                        <FormMessage />
+                                        <FormMessage className="dark:text-red-400" />
                                     </FormItem>
                                 )}
                             />
@@ -110,7 +118,7 @@ export function ContactForm() {
                             name="inquiryType"
                             render={({ field }) => (
                                 <FormItem className="space-y-3">
-                                    <FormLabel>What's this about?</FormLabel>
+                                    <FormLabel className="dark:text-slate-100">What's this about?</FormLabel>
                                     <FormControl>
                                         <RadioGroup
                                             onValueChange={field.onChange}
@@ -119,31 +127,31 @@ export function ContactForm() {
                                         >
                                             <FormItem className="flex items-center space-x-2 space-y-0">
                                                 <FormControl>
-                                                    <RadioGroupItem value="job" />
+                                                    <RadioGroupItem value="job" className="dark:border-slate-700" />
                                                 </FormControl>
-                                                <FormLabel className="font-normal cursor-pointer">Job Opportunity</FormLabel>
+                                                <FormLabel className="font-normal cursor-pointer dark:text-slate-300">Job Opportunity</FormLabel>
                                             </FormItem>
                                             <FormItem className="flex items-center space-x-2 space-y-0">
                                                 <FormControl>
-                                                    <RadioGroupItem value="project" />
+                                                    <RadioGroupItem value="project" className="dark:border-slate-700" />
                                                 </FormControl>
-                                                <FormLabel className="font-normal cursor-pointer">Project Inquiry</FormLabel>
+                                                <FormLabel className="font-normal cursor-pointer dark:text-slate-300">Project Inquiry</FormLabel>
                                             </FormItem>
                                             <FormItem className="flex items-center space-x-2 space-y-0">
                                                 <FormControl>
-                                                    <RadioGroupItem value="collaboration" />
+                                                    <RadioGroupItem value="collaboration" className="dark:border-slate-700" />
                                                 </FormControl>
-                                                <FormLabel className="font-normal cursor-pointer">Collaboration</FormLabel>
+                                                <FormLabel className="font-normal cursor-pointer dark:text-slate-300">Collaboration</FormLabel>
                                             </FormItem>
                                             <FormItem className="flex items-center space-x-2 space-y-0">
                                                 <FormControl>
-                                                    <RadioGroupItem value="other" />
+                                                    <RadioGroupItem value="other" className="dark:border-slate-700" />
                                                 </FormControl>
-                                                <FormLabel className="font-normal cursor-pointer">Other</FormLabel>
+                                                <FormLabel className="font-normal cursor-pointer dark:text-slate-300">Other</FormLabel>
                                             </FormItem>
                                         </RadioGroup>
                                     </FormControl>
-                                    <FormMessage />
+                                    <FormMessage className="dark:text-red-400" />
                                 </FormItem>
                             )}
                         />
@@ -153,20 +161,24 @@ export function ContactForm() {
                             name="message"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Message</FormLabel>
+                                    <FormLabel className="dark:text-slate-100">Message</FormLabel>
                                     <FormControl>
                                         <Textarea
                                             placeholder="Tell me about your project, job opportunity, or just say hi..."
-                                            className="min-h-32 resize-none"
+                                            className="min-h-32 resize-none dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400"
                                             {...field}
                                         />
                                     </FormControl>
-                                    <FormMessage />
+                                    <FormMessage className="dark:text-red-400" />
                                 </FormItem>
                             )}
                         />
 
-                        <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700" disabled={isSubmitting}>
+                        <Button
+                            type="submit"
+                            className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 text-white"
+                            disabled={isSubmitting}
+                        >
                             {isSubmitting ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />

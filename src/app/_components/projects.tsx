@@ -361,20 +361,20 @@ export default function ProjectsSection() {
                     transition={{ duration: 0.5 }}
                 >
                     <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-white md:text-4xl">
-                        Featured <span className="text-blue-600">Projects</span>
+                        Featured <span className="text-blue-600 dark:text-yellow-500">Projects</span>
                     </h2>
-                    <div className="mb-4 mx-auto h-1 w-20 bg-gradient-to-r from-blue-600 to-cyan-500"></div>
+                    <div className="mb-4 mx-auto h-1 w-20 bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-yellow-500 dark:to-yellow-400"></div>
                     <p className="text-lg text-muted-foreground">Explore my data engineering projects and technical solutions</p>
                 </motion.div>
 
                 <Tabs defaultValue="all" className="w-full">
                     <div className="mb-8 flex justify-center">
                         <TabsList className="bg-blue-50 dark:bg-gray-800/50">
-                            <TabsTrigger value="all">All Projects</TabsTrigger>
-                            <TabsTrigger value="data-pipeline">Data Pipelines</TabsTrigger>
-                            <TabsTrigger value="data-warehouse">Data Warehousing</TabsTrigger>
-                            <TabsTrigger value="data-analytics">Analytics</TabsTrigger>
-                            <TabsTrigger value="machine-learning">ML Engineering</TabsTrigger>
+                            <TabsTrigger value="all" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">All Projects</TabsTrigger>
+                            <TabsTrigger value="data-pipeline" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">Data Pipelines</TabsTrigger>
+                            <TabsTrigger value="data-warehouse" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">Data Warehousing</TabsTrigger>
+                            <TabsTrigger value="data-analytics" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">Analytics</TabsTrigger>
+                            <TabsTrigger value="machine-learning" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">ML Engineering</TabsTrigger>
                         </TabsList>
                     </div>
 
@@ -459,7 +459,7 @@ function ProjectCard({
 }: ProjectCardProps) {
     return (
         <motion.div variants={variants}>
-            <Card className="group h-full overflow-hidden border-blue-100 transition-all hover:shadow-md dark:border-blue-900/30 dark:bg-gray-900">
+            <Card className="group h-full overflow-hidden border-blue-100 transition-all hover:shadow-md dark:border-yellow-500/20 dark:bg-gray-900">
                 <div className="relative aspect-video overflow-hidden">
                     <Image
                         src={project.image || "/placeholder.svg"}
@@ -472,7 +472,7 @@ function ProjectCard({
                             <Button
                                 size="sm"
                                 variant="secondary"
-                                className="bg-white/90 hover:bg-white dark:bg-gray-900/90 dark:hover:bg-gray-900"
+                                className="bg-white/90 hover:bg-white dark:bg-gray-900/90 dark:hover:bg-gray-900 dark:text-yellow-500"
                                 onClick={(e) => {
                                     e.preventDefault()
                                     onViewDetails()
@@ -483,7 +483,7 @@ function ProjectCard({
                             </Button>
                         </div>
                     </div>
-                    <div className="absolute right-3 top-3 rounded-full bg-white/90 p-1.5 text-blue-600 dark:bg-gray-900/90">
+                    <div className="absolute right-3 top-3 rounded-full bg-white/90 p-1.5 text-blue-600 dark:bg-gray-900/90 dark:text-yellow-500">
                         {getCategoryIcon(project.category)}
                     </div>
                 </div>
@@ -514,7 +514,7 @@ function ProjectCard({
                                 <Link
                                     href={project.links.github}
                                     target="_blank"
-                                    className="rounded-full p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-blue-600 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-blue-500"
+                                    className="rounded-full p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-blue-600 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-yellow-500"
                                     aria-label="GitHub Repository"
                                 >
                                     <Github className="h-4 w-4" />
@@ -524,7 +524,7 @@ function ProjectCard({
                                 <Link
                                     href={project.links.live}
                                     target="_blank"
-                                    className="rounded-full p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-blue-600 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-blue-500"
+                                    className="rounded-full p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-blue-600 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-yellow-500"
                                     aria-label="Live Project"
                                 >
                                     <ExternalLink className="h-4 w-4" />
@@ -636,7 +636,7 @@ function ProjectDetailsModal({ project, onClose, getTechBadgeClass, getTechIcon 
                             </Button>
                         )}
                         {project.links.live && (
-                            <Button asChild className="bg-blue-600 hover:bg-blue-700">
+                            <Button asChild className="bg-blue-600 hover:bg-blue-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:text-gray-900">
                                 <Link href={project.links.live} target="_blank">
                                     <ExternalLink className="mr-2 h-4 w-4" />
                                     Live Project
@@ -647,7 +647,7 @@ function ProjectDetailsModal({ project, onClose, getTechBadgeClass, getTechIcon 
                             <Button
                                 asChild
                                 variant="outline"
-                                className="border-blue-200 hover:bg-blue-50 dark:border-blue-900/30 dark:hover:bg-blue-900/20"
+                                className="border-blue-200 hover:bg-blue-50 dark:border-yellow-500/20 dark:text-yellow-500 dark:hover:bg-yellow-500/10 dark:hover:text-yellow-400"
                             >
                                 <Link href={project.links.documentation} target="_blank">
                                     <FileCode className="mr-2 h-4 w-4" />

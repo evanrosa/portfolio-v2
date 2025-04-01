@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Avatar from "@/app/_components/avatar"
 import CoverImage from "@/app/_components/cover-image"
 import type { Author } from "@/interfaces/author"
 import Link from "next/link"
@@ -33,7 +32,7 @@ export function HeroPost({ title, coverImage, date, excerpt, author, slug }: Pro
           <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">
             <div>
               <h3 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-white md:text-4xl">
-                <Link href={`/posts/${slug}`} className="hover:text-blue-600 transition-colors">
+                <Link href={`/posts/${slug}`} className="hover:text-blue-600 dark:hover:text-yellow-500 transition-colors">
                   {title}
                 </Link>
               </h3>
@@ -41,8 +40,7 @@ export function HeroPost({ title, coverImage, date, excerpt, author, slug }: Pro
             <div>
               <p className="mb-6 text-muted-foreground">{excerpt}</p>
               <div className="flex items-center justify-between">
-                <Avatar name={author.name} picture={author.picture} />
-                <Button asChild className="rounded-full bg-blue-600 px-6 hover:bg-blue-700">
+                <Button asChild className="rounded-full bg-blue-600 px-6 hover:bg-blue-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:text-gray-900">
                   <Link href={`/posts/${slug}`}>
                     Read More
                     <ArrowUpRight className="ml-2 h-4 w-4" />

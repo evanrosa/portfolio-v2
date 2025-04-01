@@ -128,9 +128,9 @@ export default function AboutMeSection() {
                     transition={{ duration: 0.5 }}
                 >
                     <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-white md:text-4xl">
-                        About <span className="text-blue-600">Me</span>
+                        About <span className="text-blue-600 dark:text-yellow-500">Me</span>
                     </h2>
-                    <div className="mb-4 h-1 w-20 bg-gradient-to-r from-blue-600 to-cyan-500 mx-auto"></div>
+                    <div className="mb-4 h-1 w-20 bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-yellow-500 dark:to-yellow-400 mx-auto"></div>
                     <p className="text-lg text-muted-foreground">
                         Transforming complex data challenges into scalable, efficient solutions
                     </p>
@@ -145,10 +145,10 @@ export default function AboutMeSection() {
                     {/* Image and Personal Info - 5 columns */}
                     <motion.div variants={itemVariants} className="lg:col-span-5">
                         <div className="relative mx-auto max-w-md lg:max-w-full">
-                            <div className="relative overflow-hidden rounded-2xl border border-blue-100 bg-white p-3 shadow-lg dark:border-blue-900/30 dark:bg-gray-900">
+                            <div className="relative overflow-hidden rounded-2xl border border-blue-100 bg-white p-3 shadow-lg dark:border-yellow-500/20 dark:bg-gray-900">
                                 {/* Data-themed decorative elements */}
-                                <div className="absolute left-0 top-0 h-32 w-32 rounded-br-full bg-gradient-to-br from-blue-600/10 to-cyan-500/10"></div>
-                                <div className="absolute bottom-0 right-0 h-32 w-32 rounded-tl-full bg-gradient-to-tl from-blue-600/10 to-cyan-500/10"></div>
+                                <div className="absolute left-0 top-0 h-32 w-32 rounded-br-full bg-gradient-to-br from-blue-600/10 to-cyan-500/10 dark:from-yellow-500/10 dark:to-yellow-400/10"></div>
+                                <div className="absolute bottom-0 right-0 h-32 w-32 rounded-tl-full bg-gradient-to-tl from-blue-600/10 to-cyan-500/10 dark:from-yellow-500/10 dark:to-yellow-400/10"></div>
 
                                 {/* Image */}
                                 <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
@@ -183,7 +183,7 @@ export default function AboutMeSection() {
                                 </svg>
                             </div>
 
-                            <Card className="mx-auto mt-6 border-blue-100 bg-white shadow-md dark:border-blue-900/30 dark:bg-gray-900">
+                            <Card className="mx-auto mt-6 border-blue-100 bg-white shadow-md dark:border-yellow-500/20 dark:bg-gray-900">
                                 <CardContent className="p-6">
                                     <h3 className="mb-4 text-xl font-bold">My Journey</h3>
                                     <p className="mb-4 text-muted-foreground">
@@ -195,7 +195,7 @@ export default function AboutMeSection() {
 
                                     <div className="mt-6 flex gap-4">
                                         <Button
-                                            className="bg-blue-600 hover:bg-blue-700"
+                                            className="bg-blue-600 hover:bg-blue-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:text-gray-900"
                                             asChild
                                         >
                                             <Link
@@ -205,7 +205,7 @@ export default function AboutMeSection() {
                                         <Button
                                             size="lg"
                                             variant="outline"
-                                            className="border-blue-600/20 text-blue-600 hover:bg-blue-50/50 hover:text-blue-700 dark:border-blue-500/30 dark:hover:bg-blue-900/20"
+                                            className="border-blue-600/20 text-blue-600 hover:bg-blue-50/50 hover:text-blue-700 dark:border-yellow-500/20 dark:text-yellow-500 dark:hover:bg-yellow-500/10 dark:hover:text-yellow-400"
                                             aria-label="Email"
                                             asChild
                                         >
@@ -224,10 +224,10 @@ export default function AboutMeSection() {
                     {/* Professional Details - 7 columns */}
                     <motion.div variants={itemVariants} className="lg:col-span-7">
                         {/* Skills */}
-                        <Card className="mb-8 border-blue-100 bg-white shadow-md dark:border-blue-900/30 dark:bg-gray-900">
+                        <Card className="mb-8 border-blue-100 bg-white shadow-md dark:border-yellow-500/20 dark:bg-gray-900">
                             <CardContent className="p-6">
                                 <div className="mb-6 flex items-center">
-                                    <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/50">
+                                    <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-yellow-500/20 dark:text-yellow-500">
                                         <ChevronRight className="h-5 w-5" />
                                     </div>
                                     <h3 className="text-2xl font-bold">Technical Expertise</h3>
@@ -258,20 +258,20 @@ export default function AboutMeSection() {
                         </Card>
 
                         {/* Experience Timeline */}
-                        <Card className="mb-8 border-blue-100 bg-white shadow-md dark:border-blue-900/30 dark:bg-gray-900">
+                        <Card className="mb-8 border-blue-100 bg-white shadow-md dark:border-yellow-500/20 dark:bg-gray-900">
                             <CardContent className="p-6">
                                 <div className="mb-6 flex items-center">
-                                    <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/50">
+                                    <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-yellow-500/20 dark:text-yellow-500">
                                         <Briefcase className="h-5 w-5" />
                                     </div>
                                     <h3 className="text-2xl font-bold">Professional Experience</h3>
                                 </div>
 
-                                <div className="relative ml-2 border-l-2 border-blue-200 pl-6 dark:border-blue-900/70">
+                                <div className="relative ml-2 border-l-2 border-blue-200 pl-6 dark:border-yellow-500/30">
                                     {experienceData.map((experience, index) => (
                                         <div key={index} className="mb-8 relative">
-                                            <div className="absolute -left-9 top-0 flex h-6 w-6 items-center justify-center rounded-full border-2 border-blue-200 bg-white dark:border-blue-900/70 dark:bg-gray-900">
-                                                <div className="h-2 w-2 rounded-full bg-blue-600"></div>
+                                            <div className="absolute -left-9 top-0 flex h-6 w-6 items-center justify-center rounded-full border-2 border-blue-200 bg-white dark:border-yellow-500/30 dark:bg-gray-900">
+                                                <div className="h-2 w-2 rounded-full bg-blue-600 dark:bg-yellow-500"></div>
                                             </div>
                                             <div>
                                                 <h4 className="text-xl font-bold text-gray-900 dark:text-white">{experience.role}</h4>
@@ -289,10 +289,10 @@ export default function AboutMeSection() {
                         </Card>
 
                         {/* Education & Certifications */}
-                        <Card className="border-blue-100 bg-white shadow-md dark:border-blue-900/30 dark:bg-gray-900">
+                        <Card className="border-blue-100 bg-white shadow-md dark:border-yellow-500/20 dark:bg-gray-900">
                             <CardContent className="p-6">
                                 <div className="mb-6 flex items-center">
-                                    <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/50">
+                                    <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-yellow-500/20 dark:text-yellow-500">
                                         <GraduationCap className="h-5 w-5" />
                                     </div>
                                     <h3 className="text-2xl font-bold">Education & Certifications</h3>
@@ -305,13 +305,13 @@ export default function AboutMeSection() {
                                     </div>
 
                                     <div className="flex flex-wrap gap-2 pt-2">
-                                        <Badge className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white hover:from-blue-700 hover:to-cyan-600">
+                                        <Badge className="bg-gradient-to-r from-blue-600 to-cyan-500 dark:bg-yellow-500 text-white hover:from-blue-700 hover:to-cyan-600 dark:hover:bg-yellow-600">
                                             <Award className="mr-1 h-3 w-3" /> Google Professional Data Engineer (In Progress)
                                         </Badge>
-                                        <Badge className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white hover:from-blue-700 hover:to-cyan-600">
+                                        <Badge className="bg-gradient-to-r from-blue-600 to-cyan-500 dark:bg-yellow-500 text-white hover:from-blue-700 hover:to-cyan-600 dark:hover:bg-yellow-600">
                                             <Award className="mr-1 h-3 w-3" /> General Assembly Certified Data Science Graduate
                                         </Badge>
-                                        <Badge className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white hover:from-blue-700 hover:to-cyan-600">
+                                        <Badge className="bg-gradient-to-r from-blue-600 to-cyan-500 dark:bg-yellow-500 text-white hover:from-blue-700 hover:to-cyan-600 dark:hover:bg-yellow-600">
                                             <Award className="mr-1 h-3 w-3" /> General Assembly Certified Full Stack Developer Graduate
                                         </Badge>
                                     </div>

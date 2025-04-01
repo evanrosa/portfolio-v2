@@ -51,19 +51,19 @@ export default function DataEngineerIntro() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <div className="mb-6 inline-flex items-center rounded-full border border-border/40 bg-background/50 px-3 py-1 text-sm backdrop-blur-sm">
+                        <div className="mb-6 inline-flex items-center rounded-full border border-border/40 bg-background/50 px-3 py-1 text-sm backdrop-blur-sm dark:bg-slate-900/50 dark:border-slate-800">
                             <span className="mr-2 h-2 w-2 rounded-full bg-green-500"></span>
                             Open to new data engineering opportunities
                         </div>
 
-                        <h1 className="mb-6 text-5xl font-bold tracking-tight md:text-6xl lg:text-7xl">
+                        <h1 className="mb-6 text-5xl font-bold tracking-tight text-gray-900 dark:text-slate-100 md:text-6xl lg:text-7xl">
                             <span className="block">Evan Rosa</span>
-                            <span className="mt-1 block bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                            <span className="mt-1 block bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-yellow-500 dark:to-yellow-400 bg-clip-text text-transparent">
                                 Data Engineer
                             </span>
                         </h1>
 
-                        <p className="mb-8 max-w-xl text-lg text-muted-foreground">
+                        <p className="mb-8 max-w-xl text-lg text-muted-foreground dark:text-slate-300">
                             I build robust data pipelines and scalable data infrastructure that transform raw data into valuable
                             insights. With expertise in distributed systems, ETL processes, and cloud platforms, I help organizations
                             harness the full potential of their data.
@@ -72,7 +72,7 @@ export default function DataEngineerIntro() {
                         <div className="mb-8 flex flex-wrap gap-4">
                             <Button
                                 size="lg"
-                                className="rounded-full bg-blue-600 px-6 hover:bg-blue-700"
+                                className="rounded-full bg-blue-600 px-6 hover:bg-blue-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:text-gray-900"
                                 onClick={handleProjectsClick}
                             >
                                 View Projects
@@ -81,7 +81,7 @@ export default function DataEngineerIntro() {
                             <Button
                                 variant="outline"
                                 size="lg"
-                                className="rounded-full border-blue-600/20 px-6 text-blue-600 hover:bg-blue-50/50 hover:text-blue-700"
+                                className="rounded-full border-blue-600/20 px-6 text-blue-600 hover:bg-blue-50/50 hover:text-blue-700 dark:border-yellow-500/20 dark:text-yellow-500 dark:hover:bg-yellow-500/10 dark:hover:text-yellow-400"
                                 asChild
                             >
                                 <Link
@@ -93,7 +93,7 @@ export default function DataEngineerIntro() {
                             <Button
                                 variant="outline"
                                 size="lg"
-                                className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/50 transition-colors hover:border-blue-600 hover:text-blue-600"
+                                className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/50 transition-colors hover:border-blue-600 hover:text-blue-600 dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-yellow-500 dark:hover:text-yellow-500"
                                 aria-label="GitHub"
                                 asChild
                             >
@@ -107,7 +107,7 @@ export default function DataEngineerIntro() {
                             <Button
                                 variant="outline"
                                 size="lg"
-                                className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/50 transition-colors hover:border-blue-600 hover:text-blue-600"
+                                className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/50 transition-colors hover:border-blue-600 hover:text-blue-600 dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-yellow-500 dark:hover:text-yellow-500"
                                 aria-label="LinkedIn"
                                 asChild
                             >
@@ -121,7 +121,7 @@ export default function DataEngineerIntro() {
                             <Button
                                 variant="outline"
                                 size="lg"
-                                className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/50 transition-colors hover:border-blue-600 hover:text-blue-600"
+                                className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/50 transition-colors hover:border-blue-600 hover:text-blue-600 dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-yellow-500 dark:hover:text-yellow-500"
                                 aria-label="Email"
                                 asChild
                             >
@@ -143,52 +143,52 @@ export default function DataEngineerIntro() {
                     >
                         <div className="relative">
                             {/* Data-themed decorative elements */}
-                            <div className="absolute -left-6 -top-6 flex h-16 w-16 items-center justify-center rounded-lg border border-blue-600/20 bg-background/80">
-                                <Database className="h-8 w-8 text-blue-600/60" />
+                            <div className="absolute -left-6 -top-6 flex h-16 w-16 items-center justify-center rounded-lg border border-blue-600/20 bg-background/80 dark:border-yellow-500/20 dark:bg-slate-900/80">
+                                <Database className="h-8 w-8 text-blue-600/60 dark:text-yellow-500/60" />
                             </div>
-                            <div className="absolute -bottom-6 -right-6 flex h-16 w-16 items-center justify-center rounded-lg border border-cyan-500/20 bg-background/80">
-                                <Server className="h-8 w-8 text-cyan-500/60" />
+                            <div className="absolute -bottom-6 -right-6 flex h-16 w-16 items-center justify-center rounded-lg border border-cyan-500/20 bg-background/80 dark:border-yellow-500/20 dark:bg-slate-900/80">
+                                <Server className="h-8 w-8 text-cyan-500/60 dark:text-yellow-500/60" />
                             </div>
 
                             {/* Image container with data visualization overlay */}
-                            <div className="relative h-[400px] w-[400px] overflow-hidden rounded-2xl border border-border/40 bg-background/50 p-2 backdrop-blur-sm">
+                            <div className="relative h-[400px] w-[400px] overflow-hidden rounded-2xl border border-border/40 bg-background/50 p-2 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50">
                                 <DataEngineerVisual />
 
                                 {/* Data engineering skill badges */}
                                 <motion.div
-                                    className="absolute right-5 top-10 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm"
+                                    className="absolute right-5 top-10 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80"
                                     initial={{ x: 20, opacity: 0 }}
                                     animate={{ x: 0, opacity: 1 }}
                                     transition={{ delay: 0.6, duration: 0.5 }}
                                 >
-                                    <span className="text-sm font-medium">Python & SQL</span>
+                                    <span className="text-sm font-medium dark:text-slate-200">Python & SQL</span>
                                 </motion.div>
 
                                 <motion.div
-                                    className="absolute right-5 bottom-25 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm"
+                                    className="absolute right-5 bottom-25 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80"
                                     initial={{ x: 20, opacity: 0 }}
                                     animate={{ x: 0, opacity: 1 }}
                                     transition={{ delay: 0.6, duration: 0.5 }}
                                 >
-                                    <span className="text-sm font-medium">Apache Kafka & Flink</span>
+                                    <span className="text-sm font-medium dark:text-slate-200">Apache Kafka & Flink</span>
                                 </motion.div>
 
                                 <motion.div
-                                    className="absolute left-5 top-30 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm"
+                                    className="absolute left-5 top-30 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80"
                                     initial={{ x: -20, opacity: 0 }}
                                     animate={{ x: 0, opacity: 1 }}
                                     transition={{ delay: 0.8, duration: 0.5 }}
                                 >
-                                    <span className="text-sm font-medium">Apache Spark & Airflow</span>
+                                    <span className="text-sm font-medium dark:text-slate-200">Apache Spark & Airflow</span>
                                 </motion.div>
 
                                 <motion.div
-                                    className="absolute bottom-5 left-1/4 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm"
+                                    className="absolute bottom-5 left-1/4 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80"
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ delay: 1, duration: 0.5 }}
                                 >
-                                    <span className="text-sm font-medium">Big Query & GCS</span>
+                                    <span className="text-sm font-medium dark:text-slate-200">Big Query & GCS</span>
                                 </motion.div>
                             </div>
 
@@ -247,7 +247,7 @@ export default function DataEngineerIntro() {
                                 element.scrollIntoView({ behavior: "smooth" })
                             }
                         }}
-                        className="text-blue-600/70 hover:text-blue-600 transition-colors"
+                        className="text-blue-600/70 hover:text-blue-600 transition-colors dark:text-yellow-500/70 dark:hover:text-yellow-500"
                         aria-label="Scroll to About section"
                     >
                         <ArrowDownCircle className="h-10 w-10" />
