@@ -6,7 +6,7 @@ type Props = {
   preview?: boolean;
 };
 
-const Alert = ({ preview }: Props) => {
+export function Alert({ preview }: Props) {
   return (
     <div
       className={cn("border-b dark:bg-slate-800", {
@@ -43,6 +43,6 @@ const Alert = ({ preview }: Props) => {
       </Container>
     </div>
   );
-};
+}
 
 export default Alert;

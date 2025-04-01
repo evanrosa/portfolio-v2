@@ -1,4 +1,4 @@
-import Footer from "@/app/_components/footer";
+import { Footer } from "@/app/_components/footer";
 import { CMS_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -6,8 +6,8 @@ import cn from "classnames";
 import { Toaster } from "@/components/ui/sonner"
 
 import "./globals.css";
-import { SiteHeader } from "@/app/_components/header";
 import { Providers } from './providers'
+import { SiteHeader } from "./_components/header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
