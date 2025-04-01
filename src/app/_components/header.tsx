@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { Menu } from "lucide-react"
 import { motion } from "framer-motion"
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -16,16 +17,19 @@ import {
 } from "@/components/ui/sheet"
 
 const navItems = [
-  { name: "About", href: "about" },
-  { name: "Projects", href: "projects" },
-  { name: "Blog", href: "blog" },
-  { name: "Contact", href: "contact" },
+  { name: "About", href: "about", isSection: true },
+  { name: "Projects", href: "projects", isSection: true },
+  { name: "Blog", href: "/blog", isSection: false },
+  { name: "Contact", href: "contact", isSection: true },
 ]
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
   const [sheetOpen, setSheetOpen] = useState(false)
   const pathname = usePathname()
+  const router = useRouter()
+  const isAdminPage = pathname?.startsWith('/admin')
+  const isHomePage = pathname === '/'
 
   // Handle scroll effect for header
   useEffect(() => {
@@ -37,16 +41,24 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
     e.preventDefault()
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+    if (item.isSection) {
+      if (!isHomePage) {
+        router.push(`/#${item.href}`)
+      } else {
+        const element = document.getElementById(item.href)
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" })
+        }
+      }
+    } else {
+      router.push(item.href)
     }
   }
 
-  const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-    handleNavClick(e, sectionId)
+  const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
+    handleNavClick(e, item)
     setSheetOpen(false)
   }
 
@@ -78,11 +90,12 @@ export function SiteHeader() {
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 <Link
-                  href={`#${item.href}`}
-                  onClick={(e) => handleNavClick(e, item.href)}
+                  href={item.isSection ? `/#${item.href}` : item.href}
+                  onClick={(e) => handleNavClick(e, item)}
                   className={cn(
                     "text-sm font-medium transition-colors hover:text-blue-600",
-                    pathname === `/#${item.href}`
+                    (item.isSection && (pathname === `/#${item.href}` || (!isHomePage && pathname === `/${item.href}`))) ||
+                      (!item.isSection && pathname === item.href)
                       ? "text-blue-600"
                       : "text-muted-foreground"
                   )}
@@ -92,6 +105,27 @@ export function SiteHeader() {
               </motion.div>
             ))}
             <ThemeToggle />
+            {isAdminPage && (
+              <>
+                <SignedOut>
+                  <div className="flex items-center space-x-2">
+                    <SignInButton mode="modal">
+                      <button className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                        Sign In
+                      </button>
+                    </SignInButton>
+                    <SignUpButton mode="modal">
+                      <button className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
+                        Sign Up
+                      </button>
+                    </SignUpButton>
+                  </div>
+                </SignedOut>
+                <SignedIn>
+                  <UserButton afterSignOutUrl="/" />
+                </SignedIn>
+              </>
+            )}
           </nav>
 
           {/* Mobile Navigation */}
@@ -118,11 +152,12 @@ export function SiteHeader() {
                       transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
                       <Link
-                        href={`#${item.href}`}
-                        onClick={(e) => handleMobileNavClick(e, item.href)}
+                        href={item.isSection ? `/#${item.href}` : item.href}
+                        onClick={(e) => handleMobileNavClick(e, item)}
                         className={cn(
                           "flex items-center py-2 text-base font-medium transition-colors hover:text-blue-600",
-                          pathname === `/#${item.href}`
+                          (item.isSection && (pathname === `/#${item.href}` || (!isHomePage && pathname === `/${item.href}`))) ||
+                            (!item.isSection && pathname === item.href)
                             ? "text-blue-600"
                             : "text-muted-foreground"
                         )}
@@ -131,6 +166,29 @@ export function SiteHeader() {
                       </Link>
                     </motion.div>
                   ))}
+                  {isAdminPage && (
+                    <>
+                      <SignedOut>
+                        <div className="flex flex-col space-y-2 pt-4">
+                          <SignInButton mode="modal">
+                            <button className="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                              Sign In
+                            </button>
+                          </SignInButton>
+                          <SignUpButton mode="modal">
+                            <button className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
+                              Sign Up
+                            </button>
+                          </SignUpButton>
+                        </div>
+                      </SignedOut>
+                      <SignedIn>
+                        <div className="pt-4">
+                          <UserButton afterSignOutUrl="/" />
+                        </div>
+                      </SignedIn>
+                    </>
+                  )}
                 </nav>
               </SheetContent>
             </Sheet>

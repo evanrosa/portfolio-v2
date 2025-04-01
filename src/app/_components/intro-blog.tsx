@@ -3,8 +3,6 @@
 import { motion } from "framer-motion"
 import { useRef } from "react"
 import { useInView } from "framer-motion"
-import Link from "next/link"
-import { CMS_NAME } from "@/lib/constants"
 
 export function Intro() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -32,19 +30,16 @@ export function Intro() {
         >
           <div className="md:pr-8">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
-              <span className="text-gray-900 dark:text-white">My </span>
-              <span className="text-blue-600">Blog</span>
+              <span className="text-gray-900 dark:text-white">The Inner Join</span>
+              <br />
+              <span className="text-blue-600">Build Scalable Data Pipelines</span>
               <span className="text-gray-900 dark:text-white">.</span>
             </h1>
             <div className="h-1 w-20 bg-gradient-to-r from-blue-600 to-cyan-500 mt-4 md:mt-6"></div>
           </div>
 
-          <h4 className="text-center md:text-left text-lg mt-5 md:mt-0 md:pl-8 text-muted-foreground max-w-md">
-            A statically generated blog example using{" "}
-            <Link href="https://nextjs.org/" className="text-blue-600 hover:text-blue-700 transition-colors">
-              Next.js
-            </Link>{" "}
-            and {CMS_NAME}.
+          <h4 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+            Less NULLs. More value.
           </h4>
         </motion.div>
       </div>

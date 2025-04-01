@@ -7,12 +7,12 @@ import Intro from "./_components/intro";
 import AboutMeSection from "./_components/about";
 import ProjectsSection from "./_components/projects";
 import { PortfolioContactSection } from "./_components/contact-section";
+
 export default function Index() {
   const allPosts = getAllPosts();
-
-  const heroPost = allPosts[0];
-
-  const morePosts = allPosts.slice(1);
+  const recentPosts = allPosts.slice(0, 3);
+  const heroPost = recentPosts[0];
+  const morePosts = recentPosts.slice(1);
 
   return (
     <main>
@@ -22,14 +22,16 @@ export default function Index() {
         <ProjectsSection />
         <div id="blog">
           <IntroBlog />
-          <HeroPost
-            title={heroPost.title}
-            coverImage={heroPost.coverImage}
-            date={heroPost.date}
-            author={heroPost.author}
-            slug={heroPost.slug}
-            excerpt={heroPost.excerpt}
-          />
+          {heroPost && (
+            <HeroPost
+              title={heroPost.title}
+              coverImage={heroPost.coverImage}
+              date={heroPost.date}
+              author={heroPost.author}
+              slug={heroPost.slug}
+              excerpt={heroPost.excerpt}
+            />
+          )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </div>
         <PortfolioContactSection />

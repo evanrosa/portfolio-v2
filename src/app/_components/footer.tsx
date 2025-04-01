@@ -2,12 +2,52 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Github, Linkedin, Twitter, Mail } from "lucide-react"
+import { Github, Linkedin, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "./theme-toggler"
+import { useState } from "react"
+import { Input } from "@/components/ui/input"
+import { toast } from "sonner"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
+
+  const [email, setEmail] = useState("")
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+
+  const handleSubscribe = async () => {
+    setStatus("loading")
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      })
+
+      const data = await res.json()
+
+      if (res.ok) {
+        setStatus("success")
+        setEmail("")
+        toast.success("Successfully subscribed to newsletter!")
+      } else {
+        setStatus("error")
+        toast.error(data.message || "Failed to subscribe. Please try again.")
+      }
+    } catch (error) {
+      setStatus("error")
+      toast.error("An error occurred. Please try again.")
+    }
+  }
+
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault()
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
 
   // Animation variants for staggered animations
   const containerVariants = {
@@ -43,10 +83,7 @@ export function Footer() {
           {/* About Section */}
           <motion.div className="md:col-span-5 lg:col-span-4" variants={itemVariants}>
             <div className="flex items-center mb-4">
-              <div className="mr-2 h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center">
-                <span className="text-white font-bold">P</span>
-              </div>
-              <h3 className="text-xl font-bold">Portfolio</h3>
+              <h3 className="text-xl font-bold">&#60;evan.rosa/&#62;</h3>
             </div>
             <p className="text-muted-foreground mb-4">
               Showcasing my journey as a developer, designer, and creative problem solver. This portfolio represents my
@@ -97,27 +134,46 @@ export function Footer() {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-muted-foreground hover:text-blue-600 transition-colors">
+                <Link
+                  href="/"
+                  className="text-muted-foreground hover:text-blue-600 transition-colors"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-muted-foreground hover:text-blue-600 transition-colors">
+                <Link
+                  href="#about"
+                  onClick={(e) => handleNavClick(e, "about")}
+                  className="text-muted-foreground hover:text-blue-600 transition-colors"
+                >
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="text-muted-foreground hover:text-blue-600 transition-colors">
+                <Link
+                  href="#projects"
+                  onClick={(e) => handleNavClick(e, "projects")}
+                  className="text-muted-foreground hover:text-blue-600 transition-colors"
+                >
                   Projects
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-muted-foreground hover:text-blue-600 transition-colors">
+                <Link
+                  href="#blog"
+                  onClick={(e) => handleNavClick(e, "blog")}
+                  className="text-muted-foreground hover:text-blue-600 transition-colors"
+                >
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-muted-foreground hover:text-blue-600 transition-colors">
+                <Link
+                  href="#contact"
+                  onClick={(e) => handleNavClick(e, "contact")}
+                  className="text-muted-foreground hover:text-blue-600 transition-colors"
+                >
                   Contact
                 </Link>
               </li>
@@ -150,14 +206,16 @@ export function Footer() {
               Subscribe to my newsletter for the latest updates on projects, blog posts, and more.
             </p>
             <div className="flex">
-              <input
+              <Input
                 type="email"
                 placeholder="Your email"
                 className="flex h-10 w-full rounded-l-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 aria-label="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
-              <Button className="rounded-l-none bg-blue-600 hover:bg-blue-700" aria-label="Subscribe">
-                Subscribe
+              <Button onClick={handleSubscribe} disabled={status === "loading"} className="rounded-l-none bg-blue-600 hover:bg-blue-700" aria-label="Subscribe">
+                {status === "loading" ? "Subscribing..." : "Subscribe"}
               </Button>
             </div>
           </motion.div>
