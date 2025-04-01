@@ -1,21 +1,54 @@
-import { CMS_NAME } from "@/lib/constants";
+"use client"
+
+import { motion } from "framer-motion"
+import { useRef } from "react"
+import { useInView } from "framer-motion"
+import Link from "next/link"
+import { CMS_NAME } from "@/lib/constants"
 
 export function Intro() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
+
   return (
-    <section className="flex-col md:flex-row flex items-center md:justify-between mt-16 mb-16 md:mb-12">
-      <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
-        Blog.
-      </h1>
-      <h4 className="text-center md:text-left text-lg mt-5 md:pl-8">
-        A statically generated blog example using{" "}
-        <a
-          href="https://nextjs.org/"
-          className="underline hover:text-blue-600 duration-200 transition-colors"
+    <section ref={sectionRef} className="relative w-full overflow-hidden px-4 py-16 md:py-20">
+      {/* Background elements */}
+      <div className="absolute inset-0 -z-10">
+        <svg className="absolute left-0 top-0 h-64 w-64 rotate-180 text-blue-500/5" viewBox="0 0 200 200">
+          <path
+            fill="currentColor"
+            d="M30.5,-51.2C39.2,-46.9,45.7,-37.7,51.1,-27.9C56.6,-18.1,61.1,-7.5,58.6,1.4C56.1,10.4,46.6,17.7,39.6,26.2C32.5,34.7,27.9,44.3,20.7,49.8C13.5,55.3,3.8,56.8,-3.9,52.5C-11.7,48.2,-17.4,38.1,-22.5,30.7C-27.6,23.3,-32.1,18.5,-39.2,11.5C-46.3,4.4,-56,-4.8,-58.8,-16.1C-61.5,-27.4,-57.2,-40.7,-48.2,-45.8C-39.2,-50.8,-25.5,-47.5,-14.2,-46.1C-3,-44.7,5.9,-45.2,14.5,-46.1C23,-47,31.1,-48.4,30.5,-51.2Z"
+            transform="translate(100 100)"
+          />
+        </svg>
+      </div>
+
+      <div className="container mx-auto max-w-6xl">
+        <motion.div
+          className="flex flex-col md:flex-row items-center md:justify-between"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
         >
-          Next.js
-        </a>{" "}
-        and {CMS_NAME}.
-      </h4>
+          <div className="md:pr-8">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
+              <span className="text-gray-900 dark:text-white">My </span>
+              <span className="text-blue-600">Blog</span>
+              <span className="text-gray-900 dark:text-white">.</span>
+            </h1>
+            <div className="h-1 w-20 bg-gradient-to-r from-blue-600 to-cyan-500 mt-4 md:mt-6"></div>
+          </div>
+
+          <h4 className="text-center md:text-left text-lg mt-5 md:mt-0 md:pl-8 text-muted-foreground max-w-md">
+            A statically generated blog example using{" "}
+            <Link href="https://nextjs.org/" className="text-blue-600 hover:text-blue-700 transition-colors">
+              Next.js
+            </Link>{" "}
+            and {CMS_NAME}.
+          </h4>
+        </motion.div>
+      </div>
     </section>
-  );
+  )
 }
+

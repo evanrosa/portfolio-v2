@@ -1,47 +1,59 @@
-import Avatar from "@/app/_components/avatar";
-import CoverImage from "@/app/_components/cover-image";
-import { type Author } from "@/interfaces/author";
-import Link from "next/link";
-import DateFormatter from "./date-formatter";
+"use client"
+
+import { motion } from "framer-motion"
+import Avatar from "@/app/_components/avatar"
+import CoverImage from "@/app/_components/cover-image"
+import type { Author } from "@/interfaces/author"
+import Link from "next/link"
+import DateFormatter from "./date-formatter"
+import { ArrowUpRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 type Props = {
-  title: string;
-  coverImage: string;
-  date: string;
-  excerpt: string;
-  author: Author;
-  slug: string;
-};
+  title: string
+  coverImage: string
+  date: string
+  excerpt: string
+  author: Author
+  slug: string
+}
 
-export function HeroPost({
-  title,
-  coverImage,
-  date,
-  excerpt,
-  author,
-  slug,
-}: Props) {
+export function HeroPost({ title, coverImage, date, excerpt, author, slug }: Props) {
   return (
-    <section>
-      <div className="mb-8 md:mb-16">
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="relative mb-20 md:mb-28"
+    >
+      <div>
         <CoverImage title={title} src={coverImage} slug={slug} />
-      </div>
-      <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
-        <div>
-          <h3 className="mb-4 text-4xl lg:text-5xl leading-tight">
-            <Link href={`/posts/${slug}`} className="hover:underline">
-              {title}
-            </Link>
-          </h3>
-          <div className="mb-4 md:mb-0 text-lg">
-            <DateFormatter dateString={date} />
+
+        <div className="p-6 md:p-8">
+          <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">
+            <div>
+              <h3 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-white md:text-4xl">
+                <Link href={`/posts/${slug}`} className="hover:text-blue-600 transition-colors">
+                  {title}
+                </Link>
+              </h3>
+            </div>
+            <div>
+              <p className="mb-6 text-muted-foreground">{excerpt}</p>
+              <div className="flex items-center justify-between">
+                <Avatar name={author.name} picture={author.picture} />
+                <Button asChild className="rounded-full bg-blue-600 px-6 hover:bg-blue-700">
+                  <Link href={`/posts/${slug}`}>
+                    Read More
+                    <ArrowUpRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
-        <div>
-          <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
-          <Avatar name={author.name} picture={author.picture} />
-        </div>
       </div>
-    </section>
-  );
+    </motion.section>
+  )
 }
+

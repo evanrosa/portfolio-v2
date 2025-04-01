@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
 
 export default function AboutMeSection() {
     const containerRef = useRef<HTMLElement>(null)
@@ -44,54 +45,54 @@ export default function AboutMeSection() {
     // Data Engineering Skills grouped by category
     const skillsData = [
         {
-            category: "Data Processing",
+            category: "Data Processing & ETL",
             icon: <Settings className="h-5 w-5" />,
-            skills: ["Apache Spark", "Apache Hadoop", "Apache Kafka", "Stream Processing with Flink"],
+            skills: ["Apache Airflow", "Apache Spark", "Apache Kafka", "Apache Flink", "SQLMesh", "ETL Pipelines"],
         },
         {
-            category: "Data Storage",
+            category: "Cloud & Storage",
             icon: <Database className="h-5 w-5" />,
-            skills: ["Amazon Redshift", "Google BigQuery", "Postgres", "MongoDB", "Firebase"],
+            skills: ["Google BigQuery", "Google Cloud Storage", "Google Composer", "Google Dataflow", "Databricks", "Amazon Redshift", "Postgres", "MongoDB", "Firebase", "Kubernetes", "Terraform (Currently learning)", "Docker", "CI/CD"],
         },
         {
             category: "Languages & Frameworks",
             icon: <FileCode className="h-5 w-5" />,
-            skills: ["Python", "SQL", "PySpark", "dbt", "Pandas"],
+            skills: ["Python", "SQL", "REST APIs", "Jupyter Notebooks", "Pandas", "PySpark", "TypeScript"],
         },
         {
-            category: "Cloud & Infrastructure",
+            category: "Data Visualization & BI",
             icon: <Server className="h-5 w-5" />,
-            skills: ["AWS", "GCP", "Kubernetes", "Docker", "Terraform (Currently learning)", "CI/CD"],
+            skills: ["Apache Superset", "Looker", "Data Modeling", "Pandas", "Tableau", "PowerBI"],
         },
         {
-            category: "Orchestration & Monitoring",
+            category: "Analytics & Monitoring",
             icon: <Terminal className="h-5 w-5" />,
-            skills: ["Airflow", "Grafana", "DataDog"],
+            skills: ["Google Analytics", "Google Tag Manager", "SEO", "A/B Testing"],
         },
     ]
 
     // Experience timeline data
     const experienceData = [
         {
-            role: "Senior Data Engineer",
-            company: "Data Insights Inc.",
-            period: "2021 - Present",
+            role: "Lead Data Engineer",
+            company: "Digital Turbine",
+            period: "May 2020 - November 2024",
             description:
-                "Lead engineer for the company's data lake architecture. Designed and implemented cloud-native ETL pipelines processing 5TB+ daily data volumes with 99.9% reliability.",
+                "Refactored and optimized ETL pipelines across GCS, Composer, and BigQuery, reducing data costs by over $100K and improving scalability for 20+ products. Built and maintained batch data pipelines using Airflow, Spark, SQL, and Python to support 10M daily active users and 3B+ monthly ad impressions. Integrated Looker with BigQuery and other sources to deliver interactive dashboards, enhancing stakeholder access to insights. Additionally, experimented with Flink for real-time streaming and maintained Databricks workflows to ensure reliability of Spark-based operations.",
         },
         {
-            role: "Data Engineer",
-            company: "TechCorp Solutions",
-            period: "2018 - 2021",
+            role: "Associate Lead Analyst",
+            company: "Booz Allen Hamilton",
+            period: "March 2015 - May 2020",
             description:
-                "Developed and maintained real-time data processing systems using Apache Kafka and Spark Streaming. Reduced data processing latency by 70%.",
+                "Managed analytics for multiple HHS and NIH websites under the Digital Analytics Program, improving performance through SEO audits, A/B testing, and strategic goal funneling. Led marketing tag implementations using Google Analytics and Tag Manager to ensure accurate data tracking aligned with client objectives. Developed data warehousing solutions to uncover key trends and enable data-driven decisions. Delivered in-depth analytics reports that directly informed and enhanced client strategies.",
         },
         {
             role: "Data Analyst",
-            company: "Analytics First",
-            period: "2016 - 2018",
+            company: "The American Chemical Society",
+            period: "December 2010 - May 2015",
             description:
-                "Performed data analysis and created dashboards to drive business decisions. Transitioned to engineering by automating ETL processes that saved 20+ hours weekly.",
+                "Oversaw daily operations of the ACS Web Stats System, supporting marketing and sales analytics. Created monthly and annual reports to deliver strategic insights for editorial and marketing teams. Analyzed ad performance across Google Search, YouTube, Google Analytics, Business Object, and external platforms to optimize campaign effectiveness.",
         },
     ]
 
@@ -152,8 +153,8 @@ export default function AboutMeSection() {
                                 {/* Image */}
                                 <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
                                     <Image
-                                        src="/placeholder.svg?height=800&width=640"
-                                        alt="Alex Johnson - Data Engineer"
+                                        src="/assets/portfolio/pic.jpeg"
+                                        alt="Evan Rosa - Lead Data Engineer"
                                         fill
                                         className="object-cover"
                                         priority
@@ -186,22 +187,33 @@ export default function AboutMeSection() {
                                 <CardContent className="p-6">
                                     <h3 className="mb-4 text-xl font-bold">My Journey</h3>
                                     <p className="mb-4 text-muted-foreground">
-                                        With over 7 years in the data field, I've evolved from analyzing data to building robust data
-                                        infrastructure that powers business intelligence at scale. My passion lies in creating efficient
-                                        data pipelines that transform raw information into actionable insights.
+                                        With over 7 years of experience in the data space, I've transitioned from analyst roles into architecting scalable batch and real-time data infrastructure that supports millions of users and billions of events. I specialize in building modern data platforms powered by Airflow, Spark, Kafka, Flink, and cloud-native tools.
                                     </p>
                                     <p className="text-muted-foreground">
-                                        I thrive on solving complex data challenges and staying at the forefront of data engineering
-                                        technologies and best practices.
+                                        My work focuses on optimizing ETL workflows, enhancing data accessibility, and driving cost-efficiency for high-impact teams across marketing, product, and engineering. I'm passionate about designing systems that turn complex data into clean, reliable insights—and thrive on tackling infrastructure challenges that unlock business growth.
                                     </p>
 
                                     <div className="mt-6 flex gap-4">
-                                        <Button className="bg-blue-600 hover:bg-blue-700">Download CV</Button>
                                         <Button
+                                            className="bg-blue-600 hover:bg-blue-700"
+                                            asChild
+                                        >
+                                            <Link
+                                                href="https://drive.google.com/file/d/1eVJJDfaARY-l-4cmbPSjqzHHlEwo-pSb/view?usp=sharing" target="_blank">Download Resume</Link>
+                                        </Button>
+
+                                        <Button
+                                            size="lg"
                                             variant="outline"
                                             className="border-blue-600/20 text-blue-600 hover:bg-blue-50/50 hover:text-blue-700 dark:border-blue-500/30 dark:hover:bg-blue-900/20"
+                                            aria-label="Email"
+                                            asChild
                                         >
-                                            Contact Me
+                                            <Link
+                                                href="mailto:evandanrosa@gmail.com"
+                                                target="_blank">
+                                                Contact Me
+                                            </Link>
                                         </Button>
                                     </div>
                                 </CardContent>
@@ -258,7 +270,7 @@ export default function AboutMeSection() {
                                 <div className="relative ml-2 border-l-2 border-blue-200 pl-6 dark:border-blue-900/70">
                                     {experienceData.map((experience, index) => (
                                         <div key={index} className="mb-8 relative">
-                                            <div className="absolute -left-8 top-0 flex h-6 w-6 items-center justify-center rounded-full border-2 border-blue-200 bg-white dark:border-blue-900/70 dark:bg-gray-900">
+                                            <div className="absolute -left-9 top-0 flex h-6 w-6 items-center justify-center rounded-full border-2 border-blue-200 bg-white dark:border-blue-900/70 dark:bg-gray-900">
                                                 <div className="h-2 w-2 rounded-full bg-blue-600"></div>
                                             </div>
                                             <div>
@@ -288,19 +300,19 @@ export default function AboutMeSection() {
 
                                 <div className="space-y-4">
                                     <div>
-                                        <h4 className="text-lg font-bold">M.S. in Computer Science</h4>
-                                        <p className="text-muted-foreground">Stanford University, 2016</p>
+                                        <h4 className="text-lg font-bold">B.S.B.A. in Business Administration</h4>
+                                        <p className="text-muted-foreground">Western New England University</p>
                                     </div>
 
                                     <div className="flex flex-wrap gap-2 pt-2">
                                         <Badge className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white hover:from-blue-700 hover:to-cyan-600">
-                                            <Award className="mr-1 h-3 w-3" /> AWS Certified Data Analytics
+                                            <Award className="mr-1 h-3 w-3" /> Google Professional Data Engineer (In Progress)
                                         </Badge>
                                         <Badge className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white hover:from-blue-700 hover:to-cyan-600">
-                                            <Award className="mr-1 h-3 w-3" /> Google Professional Data Engineer
+                                            <Award className="mr-1 h-3 w-3" /> General Assembly Certified Data Science Graduate
                                         </Badge>
                                         <Badge className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white hover:from-blue-700 hover:to-cyan-600">
-                                            <Award className="mr-1 h-3 w-3" /> Databricks Certified Engineer
+                                            <Award className="mr-1 h-3 w-3" /> General Assembly Certified Full Stack Developer Graduate
                                         </Badge>
                                     </div>
                                 </div>

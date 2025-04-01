@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { ArrowDownCircle, Database, ExternalLink, Github, Linkedin, Mail, Server } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import DataEngineerVisual from "./svg/data-eng-viz"
 
 export default function DataEngineerIntro() {
     const [mounted, setMounted] = useState(false)
@@ -89,30 +90,47 @@ export default function DataEngineerIntro() {
                         </div>
 
                         <div className="flex items-center gap-6">
-                            <a
-                                href="https://github.com/evanrosa"
-                                target="_blank"
+                            <Button
+                                variant="outline"
+                                size="lg"
                                 className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/50 transition-colors hover:border-blue-600 hover:text-blue-600"
                                 aria-label="GitHub"
+                                asChild
                             >
-                                <Github className="h-5 w-5" />
-                            </a>
-                            <a
-                                href="https://www.linkedin.com/in/evan-rosa/"
-                                target="_blank"
+                                <Link
+                                    href="https://github.com/evanrosa"
+                                    target="_blank">
+                                    <Github className="h-5 w-5" />
+                                </Link>
+                            </Button>
+
+                            <Button
+                                variant="outline"
+                                size="lg"
                                 className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/50 transition-colors hover:border-blue-600 hover:text-blue-600"
                                 aria-label="LinkedIn"
+                                asChild
                             >
-                                <Linkedin className="h-5 w-5" />
-                            </a>
-                            <a
-                                href="mailto:evandanrosa@gmail.com"
-                                target="_blank"
+                                <Link
+                                    href="https://www.linkedin.com/in/evan-rosa/"
+                                    target="_blank">
+                                    <Linkedin className="h-5 w-5" />
+                                </Link>
+                            </Button>
+
+                            <Button
+                                variant="outline"
+                                size="lg"
                                 className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/50 transition-colors hover:border-blue-600 hover:text-blue-600"
                                 aria-label="Email"
+                                asChild
                             >
-                                <Mail className="h-5 w-5" />
-                            </a>
+                                <Link
+                                    href="mailto:evandanrosa@gmail.com"
+                                    target="_blank">
+                                    <Mail className="h-5 w-5" />
+                                </Link>
+                            </Button>
                         </div>
                     </motion.div>
 
@@ -134,17 +152,11 @@ export default function DataEngineerIntro() {
 
                             {/* Image container with data visualization overlay */}
                             <div className="relative h-[400px] w-[400px] overflow-hidden rounded-2xl border border-border/40 bg-background/50 p-2 backdrop-blur-sm">
-                                <Image
-                                    src="/placeholder.svg?height=800&width=800"
-                                    alt="Evan Rosa"
-                                    fill
-                                    className="rounded-xl object-cover"
-                                    priority
-                                />
+                                <DataEngineerVisual />
 
                                 {/* Data engineering skill badges */}
                                 <motion.div
-                                    className="absolute -right-5 top-10 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm"
+                                    className="absolute right-5 top-10 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm"
                                     initial={{ x: 20, opacity: 0 }}
                                     animate={{ x: 0, opacity: 1 }}
                                     transition={{ delay: 0.6, duration: 0.5 }}
@@ -153,21 +165,30 @@ export default function DataEngineerIntro() {
                                 </motion.div>
 
                                 <motion.div
-                                    className="absolute -left-5 bottom-20 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm"
+                                    className="absolute right-5 bottom-25 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm"
+                                    initial={{ x: 20, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    transition={{ delay: 0.6, duration: 0.5 }}
+                                >
+                                    <span className="text-sm font-medium">Apache Kafka & Flink</span>
+                                </motion.div>
+
+                                <motion.div
+                                    className="absolute left-5 top-30 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm"
                                     initial={{ x: -20, opacity: 0 }}
                                     animate={{ x: 0, opacity: 1 }}
                                     transition={{ delay: 0.8, duration: 0.5 }}
                                 >
-                                    <span className="text-sm font-medium">Apache Spark</span>
+                                    <span className="text-sm font-medium">Apache Spark & Airflow</span>
                                 </motion.div>
 
                                 <motion.div
-                                    className="absolute -bottom-5 left-1/4 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm"
+                                    className="absolute bottom-5 left-1/4 rounded-full border border-border/40 bg-background/80 px-4 py-2 backdrop-blur-sm"
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ delay: 1, duration: 0.5 }}
                                 >
-                                    <span className="text-sm font-medium">AWS & Snowflake</span>
+                                    <span className="text-sm font-medium">Big Query & GCS</span>
                                 </motion.div>
                             </div>
 

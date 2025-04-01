@@ -32,6 +32,7 @@ interface Project {
     description: string
     category: "data-pipeline" | "data-warehouse" | "data-analytics" | "machine-learning"
     image: string
+    architecture: string
     technologies: Technology[]
     role: string
     contributions: string[]
@@ -51,138 +52,196 @@ export default function ProjectsSection() {
     // Sample project data
     const projects: Project[] = [
         {
-            id: "real-time-analytics",
-            title: "Real-time Analytics Pipeline",
-            description:
-                "Designed and implemented a scalable real-time analytics pipeline processing 2TB+ of daily event data from multiple sources. The system provides near real-time insights with sub-second latency for critical business metrics.",
+            id: "stock-market-etl",
+            title: "Stock Market ETL Pipeline",
+            description: "Designed and implemented an automated ETL pipeline to ingest, transform, and store AAPL stock data using Apache Airflow, Apache Spark, and MinIO, ensuring efficient data integration and real-time processing.",
             category: "data-pipeline",
-            image: "/placeholder.svg?height=600&width=800",
+            image: "/assets/portfolio/stock-etl.png",
+            architecture: "/assets/portfolio/stock-etl-architecture.png",
             technologies: [
-                { name: "Apache Kafka", type: "tool" },
+                { name: "Apache Airflow", type: "tool" },
                 { name: "Apache Spark", type: "tool" },
+                { name: "MinIO", type: "database" },
                 { name: "Python", type: "language" },
-                { name: "AWS Kinesis", type: "cloud" },
-                { name: "Snowflake", type: "database" },
-                { name: "Airflow", type: "tool" },
-                { name: "Terraform", type: "tool" },
+                { name: "Parquet", type: "database" },
             ],
             role: "Lead Data Engineer",
             contributions: [
-                "Architected and built end-to-end data pipeline with 99.99% uptime",
-                "Implemented data quality monitoring reducing error rates by 75%",
-                "Optimized Spark jobs resulting in 40% cost reduction",
+                "Orchestrated ETL workflows using Apache Airflow",
+                "Developed high-performance data transformations with Apache Spark",
+                "Integrated MinIO for scalable object storage",
+                "Optimized data processing efficiency",
+                "Implemented comprehensive logging and monitoring",
             ],
             links: {
-                github: "https://github.com",
-                documentation: "https://docs.example.com",
+                github: "https://github.com/evanrosa/airflow-demo",
             },
             featured: true,
         },
         {
-            id: "data-warehouse",
-            title: "Enterprise Data Warehouse Migration",
-            description:
-                "Led the migration of a legacy on-premise data warehouse to a modern cloud-based solution, enabling faster analytics and reducing operational costs by 60%. Implemented a robust data modeling approach with dbt.",
+            id: "digital-turbine-etl",
+            title: "BigQuery ETL Pipelines for Digital Turbine",
+            description: "Designed and optimized BigQuery ETL pipelines for scalable, high-performance data processing, supporting over 10M daily users and enabling analytics for 3B+ monthly ad impressions.",
             category: "data-warehouse",
-            image: "/placeholder.svg?height=600&width=800",
+            image: "/assets/portfolio/dt-etl.png",
+            architecture: "/assets/portfolio/dt-etl-architecture.png",
             technologies: [
-                { name: "Snowflake", type: "database" },
-                { name: "dbt", type: "tool" },
+                { name: "Google BigQuery", type: "database" },
+                { name: "Apache Airflow", type: "tool" },
+                { name: "Apache Flink", type: "tool" },
+                { name: "Apache Spark", type: "tool" },
                 { name: "Python", type: "language" },
                 { name: "SQL", type: "language" },
-                { name: "AWS Glue", type: "cloud" },
-                { name: "Airflow", type: "tool" },
+                { name: "Databricks", type: "tool" },
             ],
-            role: "Data Architect",
+            role: "Lead Data Engineer",
             contributions: [
-                "Designed dimensional data models for finance and marketing domains",
-                "Created automated testing framework with 95% coverage",
-                "Reduced query times from minutes to seconds",
+                "Optimized BigQuery ETL pipelines, reducing costs by $100K+ annually",
+                "Refactored legacy workflows for improved scalability",
+                "Built real-time & batch data pipelines",
+                "Led Databricks workflow optimizations",
+                "Integrated API-based data ingestion pipelines",
             ],
             links: {
-                github: "https://github.com",
-                live: "https://example.com",
+                live: "https://digitalturbine.com/",
             },
             featured: true,
         },
         {
-            id: "ml-data-platform",
-            title: "ML Feature Engineering Platform",
-            description:
-                "Built a centralized feature store and data platform to support machine learning initiatives across the organization. The platform standardized feature engineering and enabled rapid ML model development.",
+            id: "epl-prediction",
+            title: "English Premier League Match Outcome Prediction",
+            description: "Developed a comprehensive data pipeline to scrape, process, and analyze English Premier League match data, employing machine learning techniques to predict match outcomes.",
             category: "machine-learning",
-            image: "/placeholder.svg?height=600&width=800",
+            image: "/assets/portfolio/epl.png",
+            architecture: "/assets/portfolio/epl-architecture.png",
             technologies: [
                 { name: "Python", type: "language" },
-                { name: "Feast", type: "tool" },
-                { name: "Kubernetes", type: "cloud" },
-                { name: "PostgreSQL", type: "database" },
-                { name: "Redis", type: "database" },
-                { name: "Docker", type: "tool" },
+                { name: "Scikit-Learn", type: "tool" },
+                { name: "Pandas", type: "tool" },
+                { name: "Web Scraping", type: "tool" },
+                { name: "Machine Learning", type: "tool" },
             ],
-            role: "Data Platform Engineer",
+            role: "Lead Data Engineer",
             contributions: [
-                "Designed feature store architecture supporting 200+ ML features",
-                "Implemented CI/CD pipeline for feature deployment",
-                "Created documentation and training for data scientists",
+                "Implemented web scraping for EPL match data collection",
+                "Developed feature engineering for team and player statistics",
+                "Applied machine learning algorithms for outcome prediction",
+                "Evaluated model performance with key metrics",
+                "Optimized models through hyperparameter tuning",
             ],
             links: {
-                github: "https://github.com",
-                documentation: "https://docs.example.com",
-            },
-            featured: false,
-        },
-        {
-            id: "data-quality",
-            title: "Automated Data Quality Framework",
-            description:
-                "Developed a comprehensive data quality monitoring framework that automatically detects anomalies and data issues across the data ecosystem. The system reduced manual QA effort by 80% and improved data reliability.",
-            category: "data-pipeline",
-            image: "/placeholder.svg?height=600&width=800",
-            technologies: [
-                { name: "Great Expectations", type: "tool" },
-                { name: "Python", type: "language" },
-                { name: "Airflow", type: "tool" },
-                { name: "Prometheus", type: "tool" },
-                { name: "Grafana", type: "tool" },
-                { name: "AWS Lambda", type: "cloud" },
-            ],
-            role: "Data Quality Engineer",
-            contributions: [
-                "Built automated testing suite with 1000+ data quality checks",
-                "Created alerting system integrated with PagerDuty",
-                "Developed custom data quality dashboards for stakeholders",
-            ],
-            links: {
-                github: "https://github.com",
+                github: "https://github.com/evanrosa/EPL_Footie_ML",
             },
             featured: true,
         },
         {
-            id: "analytics-dashboard",
-            title: "Executive Analytics Dashboard",
-            description:
-                "Created an interactive analytics dashboard providing real-time business insights to executive leadership. The solution consolidated data from multiple sources and presented key metrics in an intuitive interface.",
+            id: "subscription-analytics",
+            title: "Real-Time Subscription and Revenue Analytics",
+            description: "Built an end-to-end real-time data pipeline for tracking subscription metrics, revenue trends, and customer churn using Kafka, BigQuery, SQLMesh, and Preset.",
             category: "data-analytics",
-            image: "/placeholder.svg?height=600&width=800",
+            image: "/assets/portfolio/realtime.png",
+            architecture: "/assets/portfolio/realtime-architecture.png",
             technologies: [
-                { name: "Tableau", type: "tool" },
-                { name: "SQL", type: "language" },
-                { name: "BigQuery", type: "database" },
-                { name: "dbt", type: "tool" },
+                { name: "Apache Kafka", type: "tool" },
+                { name: "Google BigQuery", type: "database" },
+                { name: "SQLMesh", type: "tool" },
+                { name: "Preset", type: "tool" },
                 { name: "Python", type: "language" },
             ],
-            role: "Analytics Engineer",
+            role: "Lead Data Engineer",
             contributions: [
-                "Designed data models optimized for dashboard performance",
-                "Implemented incremental data refresh reducing latency by 90%",
-                "Created custom visualizations for complex KPIs",
+                "Developed real-time event-driven architecture with Kafka",
+                "Integrated BigQuery for scalable data warehousing",
+                "Implemented SQLMesh for data transformation",
+                "Automated data ingestion workflows",
+                "Designed interactive dashboards in Preset",
             ],
             links: {
-                live: "https://example.com",
-                documentation: "https://docs.example.com",
+                github: "https://github.com/evanrosa/pipe_demo",
             },
-            featured: false,
+            featured: true,
+        },
+        {
+            id: "flight-analytics",
+            title: "Real-Time Flight Analytics",
+            description: "Developing an end-to-end streaming and batch pipeline to analyze flight trends, airline performance, and visitor influx in Puerto Rico using Kafka, Flink, Spark, and Airflow.",
+            category: "data-pipeline",
+            image: "/assets/portfolio/flight.png",
+            architecture: "/assets/portfolio/flight-architecture.png",
+            technologies: [
+                { name: "Apache Kafka", type: "tool" },
+                { name: "Apache Flink", type: "tool" },
+                { name: "Apache Spark", type: "tool" },
+                { name: "Apache Airflow", type: "tool" },
+                { name: "Apache Superset", type: "tool" },
+            ],
+            role: "Lead Data Engineer",
+            contributions: [
+                "Built real-time event-driven architecture with Kafka",
+                "Developed Flink-based streaming analytics",
+                "Designed scalable batch analytics with Spark",
+                "Orchestrated automated workflows with Airflow",
+                "Implemented interactive dashboards in Superset",
+            ],
+            links: {
+                github: "https://github.com/evanrosa/pr_tour",
+            },
+            featured: true,
+        },
+        {
+            id: "soccer-data-pipeline",
+            title: "Streaming and Batch Experiments",
+            description: "Designing real-time streaming and batch workflows for soccer match data using Kafka, Flink, Spark, and Airflow to enable high-velocity data ingestion, transformation, and analytics at scale.",
+            category: "data-pipeline",
+            image: "/assets/portfolio/stream-batch.png",
+            architecture: "/assets/portfolio/stream-batch-architecture.png",
+            technologies: [
+                { name: "Apache Kafka", type: "tool" },
+                { name: "Apache Flink", type: "tool" },
+                { name: "Apache Spark", type: "tool" },
+                { name: "Apache Airflow", type: "tool" },
+                { name: "Confluent", type: "tool" },
+                { name: "SportsRadar API", type: "tool" },
+            ],
+            role: "Lead Data Engineer",
+            contributions: [
+                "Engineered scalable real-time data ingestion with Kafka",
+                "Implemented Flink for stream processing",
+                "Optimized distributed computation with Spark",
+                "Integrated Confluent for streaming management",
+                "Developed APIs for data source integration",
+            ],
+            links: {
+                github: "https://github.com/evanrosa/football_etl",
+            },
+            featured: true,
+        },
+        {
+            id: "wine-prediction",
+            title: "Wine Review Rating Prediction",
+            description: "Developed a data pipeline to preprocess and analyze wine reviews, using machine learning models to predict ratings based on price, region, and variety, achieving an RMSE of 2.3.",
+            category: "machine-learning",
+            image: "/assets/portfolio/wine.png",
+            architecture: "/assets/portfolio/wine-arch.jpg",
+            technologies: [
+                { name: "Python", type: "language" },
+                { name: "Pandas", type: "tool" },
+                { name: "Scikit-Learn", type: "tool" },
+                { name: "Machine Learning", type: "tool" },
+                { name: "Data Preprocessing", type: "tool" },
+            ],
+            role: "Lead Data Engineer",
+            contributions: [
+                "Developed scalable ETL pipeline for wine review data",
+                "Applied advanced data preprocessing techniques",
+                "Implemented predictive models with Random Forest",
+                "Optimized model performance through hyperparameter tuning",
+                "Achieved RMSE of 2.3 in rating predictions",
+            ],
+            links: {
+                github: "https://github.com/evanrosa/wine-ML-capstone-2018",
+            },
+            featured: true,
         },
     ]
 
@@ -555,17 +614,17 @@ function ProjectDetailsModal({ project, onClose, getTechBadgeClass, getTechIcon 
                         </ul>
                     </div>
 
-                    <div className="mb-6">
+                    {/* <div className="mb-6">
                         <h3 className="mb-3 text-lg font-semibold">Project Architecture</h3>
                         <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-blue-100 dark:border-blue-900/30">
-                            {/* This would be a project architecture diagram */}
-                            <div className="flex h-full w-full items-center justify-center bg-blue-50 dark:bg-gray-800/50">
-                                <p className="text-center text-muted-foreground">
-                                    Project architecture diagram would be displayed here
-                                </p>
-                            </div>
+                            <Image
+                                src={project.architecture}
+                                alt={`${project.title} Architecture Diagram`}
+                                fill
+                                className="object-contain"
+                            />
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="flex flex-wrap gap-3">
                         {project.links.github && (

@@ -1,41 +1,51 @@
-import { type Author } from "@/interfaces/author";
-import Link from "next/link";
-import Avatar from "./avatar";
-import CoverImage from "./cover-image";
-import DateFormatter from "./date-formatter";
+"use client"
+import type { Author } from "@/interfaces/author"
+import Link from "next/link"
+import Avatar from "./avatar"
+import CoverImage from "./cover-image"
+import DateFormatter from "./date-formatter"
+import { ArrowUpRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 type Props = {
-  title: string;
-  coverImage: string;
-  date: string;
-  excerpt: string;
-  author: Author;
-  slug: string;
-};
+  title: string
+  coverImage: string
+  date: string
+  excerpt: string
+  author: Author
+  slug: string
+}
 
-export function PostPreview({
-  title,
-  coverImage,
-  date,
-  excerpt,
-  author,
-  slug,
-}: Props) {
+export function PostPreview({ title, coverImage, date, excerpt, author, slug }: Props) {
   return (
-    <div>
-      <div className="mb-5">
+    <div className="relative">
+      <div className="rounded-lg">
         <CoverImage slug={slug} title={title} src={coverImage} />
       </div>
-      <h3 className="text-3xl mb-3 leading-snug">
-        <Link href={`/posts/${slug}`} className="hover:underline">
-          {title}
-        </Link>
-      </h3>
-      <div className="text-lg mb-4">
-        <DateFormatter dateString={date} />
+
+      <div className="p-5">
+        <h3 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <Link href={`/posts/${slug}`} className="transition-colors hover:text-blue-600">
+            {title}
+          </Link>
+        </h3>
+        <p className="mb-4 text-sm text-muted-foreground line-clamp-2">{excerpt}</p>
+        <div className="flex items-center justify-between">
+          <Avatar name={author.name} picture={author.picture} />
+          <Button
+            asChild
+            variant="ghost"
+            size="sm"
+            className="rounded-full text-blue-600 hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-950"
+          >
+            <Link href={`/posts/${slug}`}>
+              Read
+              <ArrowUpRight className="ml-1 h-3 w-3" />
+            </Link>
+          </Button>
+        </div>
       </div>
-      <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
-      <Avatar name={author.name} picture={author.picture} />
     </div>
-  );
+  )
 }
+

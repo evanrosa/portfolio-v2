@@ -3,6 +3,7 @@ import { CMS_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import cn from "classnames";
+import { Toaster } from "@/components/ui/sonner"
 
 import "./globals.css";
 import { SiteHeader } from "@/app/_components/header";
@@ -59,11 +60,13 @@ export default function RootLayout({
       </head>
       <body
         className={cn(inter.className, "dark:bg-slate-900 dark:text-slate-400")}
+        suppressHydrationWarning
       >
         <Providers>
           <SiteHeader />
           <div className="min-h-screen">{children}</div>
           <Footer />
+          <Toaster />
         </Providers>
       </body>
     </html>
