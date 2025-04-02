@@ -1,12 +1,13 @@
 'use client'
 
-export default function DataEngineerBarChart() {
+export default function DataEngineerBarChart(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
+      {...props}
       viewBox="0 0 400 400"
-      className="w-full h-full rounded-xl object-cover transition-colors"
-      xmlns="http://www.w3.org/2000/svg"
+      className="w-full h-full object-contain"
       preserveAspectRatio="xMidYMid meet"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
         <linearGradient id="barGradientLight" x1="0" y1="0" x2="0" y2="1">

@@ -370,13 +370,47 @@ export default function ProjectsSection() {
 
                 <Tabs defaultValue="all" className="w-full">
                     <div className="mb-8 flex justify-center">
-                        <TabsList className="bg-blue-50 dark:bg-gray-800/50">
-                            <TabsTrigger onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'tab_all' })} value="all" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">All Projects</TabsTrigger>
-                            <TabsTrigger onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'tab_data_pipeline' })} value="data-pipeline" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">Data Pipelines</TabsTrigger>
-                            <TabsTrigger onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'tab_data_warehouse' })} value="data-warehouse" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">Data Warehousing</TabsTrigger>
-                            <TabsTrigger onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'tab_data_analytics' })} value="data-analytics" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">Analytics</TabsTrigger>
-                            <TabsTrigger onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'tab_machine_learning' })} value="machine-learning" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">ML Engineering</TabsTrigger>
-                        </TabsList>
+                        <div className="w-full max-w-[90vw] overflow-hidden rounded-lg bg-blue-50 dark:bg-gray-800/50">
+                            <div className="overflow-x-auto scrollbar-hide">
+                                <TabsList className="inline-flex min-w-full justify-center bg-blue-50 dark:bg-gray-800/50">
+                                    <TabsTrigger
+                                        onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'tab_all' })}
+                                        value="all"
+                                        className="whitespace-nowrap px-4 py-2 data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500"
+                                    >
+                                        All Projects
+                                    </TabsTrigger>
+                                    <TabsTrigger
+                                        onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'tab_data_pipeline' })}
+                                        value="data-pipeline"
+                                        className="whitespace-nowrap px-4 py-2 data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500"
+                                    >
+                                        Data Pipelines
+                                    </TabsTrigger>
+                                    <TabsTrigger
+                                        onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'tab_data_warehouse' })}
+                                        value="data-warehouse"
+                                        className="whitespace-nowrap px-4 py-2 data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500"
+                                    >
+                                        Data Warehousing
+                                    </TabsTrigger>
+                                    <TabsTrigger
+                                        onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'tab_data_analytics' })}
+                                        value="data-analytics"
+                                        className="whitespace-nowrap px-4 py-2 data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500"
+                                    >
+                                        Analytics
+                                    </TabsTrigger>
+                                    <TabsTrigger
+                                        onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'tab_machine_learning' })}
+                                        value="machine-learning"
+                                        className="whitespace-nowrap px-4 py-2 data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500"
+                                    >
+                                        ML Engineering
+                                    </TabsTrigger>
+                                </TabsList>
+                            </div>
+                        </div>
                     </div>
 
                     <TabsContent value="all" className="mt-0">
