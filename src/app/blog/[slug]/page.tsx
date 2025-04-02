@@ -8,6 +8,7 @@ import { PostHeader } from "@/app/_components/post-header";
 import { SiteHeader } from "@/app/_components/header";
 import { BlogPostStructuredData } from "@/app/_components/structured-data";
 import { Post as PostType } from "@/interfaces/post";
+import { getAllPosts } from "@/lib/api";
 
 export default async function Post(props: Params) {
   const params = await props.params;
@@ -91,19 +92,8 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'http://localhost:3000'
-
-  const res = await fetch(`${baseUrl}/api/posts`, {
-    next: { revalidate: 60 } // ISR, optional
-  })
-
-  if (!res.ok) throw new Error('Failed to fetch posts')
-
-  const posts = await res.json()
-
-  return posts.map((post: PostType) => ({
+  const posts = getAllPosts();
+  return posts.map((post) => ({
     slug: post.slug,
   }));
 }
