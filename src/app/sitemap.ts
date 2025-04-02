@@ -31,6 +31,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             lastModified: new Date().toISOString(),
             changeFrequency: 'daily' as const,
             priority: 0.8
+        },
+        {
+            url: 'https://www.evro.dev/consultant',
+            lastModified: new Date().toISOString(),
+            changeFrequency: 'weekly' as const,
+            priority: 0.9
         }
     ]
 

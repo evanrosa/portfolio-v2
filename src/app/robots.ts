@@ -9,6 +9,8 @@ export default function robots(): MetadataRoute.Robots {
                     '/',
                     '/blog',
                     '/blog/*',
+                    '/consultant',
+                    '/consultant/*',
                 ],
                 disallow: [
                     '/admin',
