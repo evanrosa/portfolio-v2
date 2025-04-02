@@ -237,7 +237,7 @@ export function Footer() {
           <p className="text-sm text-muted-foreground dark:text-slate-400 mb-4 md:mb-0">© {currentYear} evro.dev. All rights reserved.</p>
 
           <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground dark:text-slate-400">
-            <Link href="/sitemap" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <Link href="https://www.evro.dev/sitemap.xml" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               Sitemap
             </Link>
           </div>
