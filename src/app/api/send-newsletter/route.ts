@@ -1,3 +1,5 @@
+export const runtime = 'nodejs' // ⬅️ This is critical
+
 import fs from 'fs'
 import path from 'path'
 import { Resend } from 'resend'
