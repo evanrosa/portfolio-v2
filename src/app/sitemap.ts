@@ -1,10 +1,17 @@
 import { MetadataRoute } from 'next'
-import { getAllPosts } from '@/lib/api'
+import { Post } from '@/interfaces/post'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    // Get all blog posts
-    const posts = getAllPosts()
-    const blogPosts = posts.map((post) => ({
+    const baseUrl = process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : 'http://localhost:3000'
+
+    const res = await fetch(`${baseUrl}/api/posts`, {
+        cache: 'no-store', // or ISR with revalidate
+    })
+
+    const posts = await res.json()
+    const blogPosts = posts.map((post: Post) => ({
         url: `https://www.evro.dev/blog/${post.slug}`,
         lastModified: post.date,
         changeFrequency: 'monthly' as const,

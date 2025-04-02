@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllPosts, getPostBySlug } from "@/lib/api";
+import { getPostBySlug } from "@/lib/api";
 import { CMS_NAME } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
 import { Container } from "@/app/_components/container";
@@ -8,11 +8,22 @@ import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 import { SiteHeader } from "@/app/_components/header";
 import { BlogPostStructuredData } from "@/app/_components/structured-data";
+import { Post as PostType } from "@/interfaces/post";
 
 export default async function Post(props: Params) {
   const params = await props.params;
-  const post = getPostBySlug(params.slug);
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'http://localhost:3000'
 
+  const res = await fetch(`${baseUrl}/api/posts`, {
+    next: { revalidate: 60 } // ISR, optional
+  })
+
+  if (!res.ok) throw new Error('Failed to fetch posts')
+
+  const posts = await res.json()
+  const post = posts.find((p: PostType) => p.slug === params.slug)
   if (!post) {
     return notFound();
   }
@@ -52,7 +63,18 @@ type Params = {
 
 export async function generateMetadata(props: Params): Promise<Metadata> {
   const params = await props.params;
-  const post = getPostBySlug(params.slug);
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'http://localhost:3000'
+
+  const res = await fetch(`${baseUrl}/api/posts`, {
+    next: { revalidate: 60 } // ISR, optional
+  })
+
+  if (!res.ok) throw new Error('Failed to fetch posts')
+
+  const posts = await res.json()
+  const post = posts.find((p: PostType) => p.slug === params.slug)
 
   if (!post) {
     return notFound();
@@ -70,9 +92,19 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'http://localhost:3000'
 
-  return posts.map((post) => ({
+  const res = await fetch(`${baseUrl}/api/posts`, {
+    next: { revalidate: 60 } // ISR, optional
+  })
+
+  if (!res.ok) throw new Error('Failed to fetch posts')
+
+  const posts = await res.json()
+
+  return posts.map((post: PostType) => ({
     slug: post.slug,
   }));
 }
