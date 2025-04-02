@@ -74,8 +74,8 @@ export function Footer() {
   }
 
   return (
-    <footer className="border-t bg-background dark:bg-slate-900 dark:border-slate-800">
-      <div className="container px-4 py-12 md:py-16">
+    <footer className="w-full border-t bg-background dark:bg-slate-900 dark:border-slate-800">
+      <div className="container mx-auto px-4 py-12 md:py-16">
         <motion.div
           className="grid grid-cols-1 gap-8 md:grid-cols-12"
           variants={containerVariants}
