@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { Resend } from 'resend'
-import supabase from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase'
 import { NextResponse } from 'next/server'
 import { remark } from 'remark'
 import html from 'remark-html'
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
         const subject = data.subject || `🧠 The Inner Join #${issue}`
 
         // 4. Fetch subscribers
-        const { data: subscribers, error } = await supabase.from('subscribers').select('email')
+        const { data: subscribers, error } = await supabaseAdmin.from('subscribers').select('email')
         if (error) throw error
 
         // 5. Send to all subscribers

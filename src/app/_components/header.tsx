@@ -93,10 +93,10 @@ export function SiteHeader() {
                   href={item.isSection ? `/#${item.href}` : item.href}
                   onClick={(e) => handleNavClick(e, item)}
                   className={cn(
-                    "text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400",
+                    "text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-yellow-400",
                     (item.isSection && (pathname === `/#${item.href}` || (!isHomePage && pathname === `/${item.href}`))) ||
                       (!item.isSection && pathname === item.href)
-                      ? "text-blue-600 dark:text-blue-400"
+                      ? "text-blue-600 dark:text-yellow-400"
                       : "text-muted-foreground dark:text-slate-300"
                   )}
                 >
@@ -155,10 +155,10 @@ export function SiteHeader() {
                         href={item.isSection ? `/#${item.href}` : item.href}
                         onClick={(e) => handleMobileNavClick(e, item)}
                         className={cn(
-                          "flex items-center py-2 text-base font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400",
+                          "flex items-center py-2 text-base font-medium transition-colors hover:text-blue-600 dark:hover:text-yellow-400",
                           (item.isSection && (pathname === `/#${item.href}` || (!isHomePage && pathname === `/${item.href}`))) ||
                             (!item.isSection && pathname === item.href)
-                            ? "text-blue-600 dark:text-blue-400"
+                            ? "text-blue-600 dark:text-yellow-400"
                             : "text-muted-foreground dark:text-slate-300"
                         )}
                       >
