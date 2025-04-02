@@ -1,5 +1,5 @@
-import fs from 'fs'
-import path from 'path'
+import { promises as fs } from 'fs'
+import { join } from 'path'
 import { Resend } from 'resend'
 import { supabaseAdmin } from '@/lib/supabase'
 import { NextResponse } from 'next/server'
@@ -18,11 +18,11 @@ export async function POST(req: Request) {
     }
 
     const filename = `issue-${issue}.md`
-    const filePath = path.join(process.cwd(), 'newsletters', filename)
+    const filePath = join(process.cwd(), 'newsletters', filename)
 
     try {
         // 1. Read and parse frontmatter
-        const fileContent = fs.readFileSync(filePath, 'utf-8')
+        const fileContent = await fs.readFile(filePath, 'utf-8')
         const { content, data } = matter(fileContent)
 
         // 2. Convert Markdown to HTML
