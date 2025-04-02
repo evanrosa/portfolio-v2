@@ -1,7 +1,7 @@
 // app/api/posts/[slug]/route.ts
 export const runtime = 'nodejs'
 
-import { getPostBySlug } from '@/lib/server/post-utils'
+import { getPostBySlug } from '@/lib/api'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function GET(
