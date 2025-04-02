@@ -10,7 +10,7 @@ export default async function BlogPage() {
 
     return (
         <div className="min-h-screen bg-background dark:bg-slate-900 pt-25">
-            <Intro />
+            <Intro headingLevel="h1" />
 
             <div className="container mx-auto max-w-6xl px-4 dark:text-slate-100">
                 {heroPost && (
@@ -21,10 +21,11 @@ export default async function BlogPage() {
                         author={heroPost.author}
                         slug={heroPost.slug}
                         excerpt={heroPost.excerpt}
+                        headingLevel="h2"
                     />
                 )}
 
-                {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+                {morePosts.length > 0 && <MoreStories posts={morePosts} headingLevel="h2" />}
             </div>
         </div>
     )

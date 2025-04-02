@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import cn from "classnames";
 import { Toaster } from "@/components/ui/sonner"
 import { ClerkProvider } from '@clerk/nextjs';
+import { PersonStructuredData } from "./_components/structured-data";
 
 import "./globals.css";
 import { Providers } from './providers'
@@ -12,12 +13,52 @@ import { SiteHeader } from "./_components/header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: `Next.js Blog Example with ${CMS_NAME}`,
-  description: `A statically generated blog example using Next.js and ${CMS_NAME}.`,
-  openGraph: {
-    images: [HOME_OG_IMAGE_URL],
+  metadataBase: new URL('https://www.evro.dev'),
+  title: {
+    default: 'Evan Rosa | Data Enthusiast & Data Engineer Expert',
+    template: '%s | Evan Rosa - Data Engineer',
   },
+  description: 'Explore data engineering and data insights, tutorials, and guides. Learn Kafka, Spark, Flink, SQLMesh, Airflow, and more to advance your career.',
+  keywords: [
+    'data engineering',
+    'data science',
+    'ETL pipelines',
+    'Kafka',
+    'Apache Flink',
+    'Apache Spark',
+    'SQLMesh',
+    'Airflow',
+    'Python',
+    'data engineer portfolio',
+    'senior data engineer',
+    'big data'
+  ],
+  authors: [{ name: 'Evan Rosa', url: 'https://www.evro.dev' }],
+  openGraph: {
+    title: 'Evan Rosa | Data Enthusiast & Data Engineer Expert',
+    description: 'Insights, guides, and tutorials on data engineering, ETL pipelines, and analytics tools like Kafka, Flink, Spark, and SQLMesh.',
+    url: 'https://www.evro.dev',
+    siteName: 'evro.dev',
+    locale: 'en_US',
+    type: 'website',
+    images: [
+      {
+        url: HOME_OG_IMAGE_URL,
+        width: 1200,
+        height: 630,
+        alt: 'Evan Rosa Data Engineering Portfolio and Blog',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Evan Rosa | Data Engineering Insights',
+    description: 'Expert insights and tutorials on data engineering, ETL, Kafka, Flink, Spark, and more.',
+    creator: '@DataWithEvRo',
+    images: [HOME_OG_IMAGE_URL],
+  }
 };
+
 
 export default function RootLayout({
   children,
@@ -65,6 +106,7 @@ export default function RootLayout({
           suppressHydrationWarning
         >
           <Providers>
+            <PersonStructuredData />
             <SiteHeader />
             <div className="min-h-screen">{children}</div>
             <Footer />

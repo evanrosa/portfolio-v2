@@ -24,7 +24,7 @@ export function PostPreview({ title, coverImage, date, excerpt, author, slug }: 
 
       <div className="p-5">
         <h3 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-          <Link href={`/posts/${slug}`} className="transition-colors hover:text-blue-600 dark:hover:text-yellow-500">
+          <Link href={`/blog/${slug}`} className="transition-colors hover:text-blue-600 dark:hover:text-yellow-500">
             {title}
           </Link>
         </h3>
@@ -36,7 +36,7 @@ export function PostPreview({ title, coverImage, date, excerpt, author, slug }: 
             size="sm"
             className="rounded-full text-blue-600 hover:bg-blue-50 hover:text-blue-700 dark:text-yellow-500 dark:hover:bg-yellow-500/10 dark:hover:text-yellow-400"
           >
-            <Link href={`/posts/${slug}`}>
+            <Link href={`/blog/${slug}`}>
               Read
               <ArrowUpRight className="ml-1 h-3 w-3" />
             </Link>

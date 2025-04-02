@@ -4,9 +4,11 @@ import { motion } from "framer-motion"
 import { useRef } from "react"
 import { useInView } from "framer-motion"
 
-export function Intro() {
+export function Intro({ headingLevel = "h1" }: { headingLevel?: "h1" | "h2" }) {
   const sectionRef = useRef<HTMLElement>(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
+
+  const Heading = headingLevel
 
   return (
     <section ref={sectionRef} className="relative w-full overflow-hidden px-4 py-16 md:py-20">
@@ -29,18 +31,18 @@ export function Intro() {
           transition={{ duration: 0.5 }}
         >
           <div className="md:pr-8">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
+            <Heading className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
               <span className="text-gray-900 dark:text-white">The Inner Join</span>
               <br />
               <span className="text-blue-600 dark:text-yellow-500">Build Scalable Data Pipelines</span>
               <span className="text-gray-900 dark:text-white">.</span>
-            </h1>
+            </Heading>
             <div className="h-1 w-20 bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-yellow-500 dark:to-yellow-400 mt-4 md:mt-6"></div>
           </div>
 
-          <h4 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+          <p className="text-3xl font-semibold tracking-tight text-muted-foreground dark:text-slate-300 border-b border-border/40 pb-2">
             Less NULLs. More value.
-          </h4>
+          </p>
         </motion.div>
       </div>
     </section>

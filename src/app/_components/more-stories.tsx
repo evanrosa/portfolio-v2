@@ -6,14 +6,17 @@ import { PostPreview } from "./post-preview"
 
 type Props = {
   posts: Post[]
+  headingLevel?: "h2" | "h3"
 }
 
-export function MoreStories({ posts }: Props) {
+export function MoreStories({ posts, headingLevel = "h2" }: Props) {
+  const Heading = headingLevel
+
   return (
     <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} className="mb-32">
-      <h2 className="mb-12 text-4xl font-bold tracking-tight text-gray-900 dark:text-white md:text-5xl">
+      <Heading className="mb-12 text-4xl font-bold tracking-tight text-gray-900 dark:text-white md:text-5xl">
         More <span className="text-blue-600 dark:text-yellow-500">Stories</span>
-      </h2>
+      </Heading>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
         {posts.map((post, index) => (
           <motion.div

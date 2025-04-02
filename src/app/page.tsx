@@ -21,7 +21,7 @@ export default function Index() {
         <AboutMeSection />
         <ProjectsSection />
         <div id="blog">
-          <IntroBlog />
+          <IntroBlog headingLevel="h2" />
           {heroPost && (
             <HeroPost
               title={heroPost.title}
@@ -30,9 +30,10 @@ export default function Index() {
               author={heroPost.author}
               slug={heroPost.slug}
               excerpt={heroPost.excerpt}
+              headingLevel="h3"
             />
           )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          {morePosts.length > 0 && <MoreStories posts={morePosts} headingLevel="h3" />}
         </div>
         <PortfolioContactSection />
       </Container>

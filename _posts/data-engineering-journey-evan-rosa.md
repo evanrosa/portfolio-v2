@@ -1,6 +1,6 @@
 ---
 title: "From Pipelines to Purpose: Why I’m Sharing My Journey in Data Engineering"
-coverImage: "/assets/blog/pipelines-to-purpose/cover.png"
+coverImage: "/assets/blog/pipelines-to-purpose/cover.jpg"
 date: "2025-04-01"
 excerpt: "A senior data engineer's story of building real-time and batch pipelines—and why I'm sharing my journey to land my dream role."
 tags:
@@ -13,14 +13,14 @@ tags:
   ]
 author: "Evan Rosa"
 ogImage:
-  url: "/assets/blog/pipelines-to-purpose/cover.png"
+  url: "/assets/blog/pipelines-to-purpose/cover.jpg"
 ---
 
-> I’m a full-time parent, a full-time professional, and I still spend weekends writing code and building data pipelines—for fun. Why? Because I’m not just refining skills—I’m building the next chapter of my career, in public.
+> I’m a full-time professional and I still spend weekends writing code and building data pipelines—for fun. Why? Because I’m not just refining skills—I’m building the next chapter of my career, in public.
 
 ## 👋 Who I Am
 
-Hi, I’m **Evan Rosa**, a data engineer with nearly a decade of experience architecting scalable batch and real-time data pipelines. I’ve worked in the public, non-profit, and private sector for companies like **Digital Turbine**, **HHS/NIH via Booz Allen Hamilton**, and **The American Chemical Society**, where I designed cloud-native solutions powering over **3 billion monthly ad impressions** and supported **10 million+ daily users**.
+Hi, I’m **Evan Rosa**, a data engineer with nearly a decade of experience architecting scalable batch and real-time data pipelines. I’ve worked in the public, non-profit, and private sectors for companies like **Digital Turbine**, **HHS/NIH via Booz Allen Hamilton**, and **The American Chemical Society**, where I designed cloud-native solutions powering over **3 billion monthly ad impressions** and supported **10 million+ daily users**.
 
 My toolbox includes **Python, SQL, Apache Airflow, Spark, Kafka, and Flink**, and I’m diving deep into **Nessie** and **Apache Iceberg** to master versioned, modular data systems. I specialize in building dynamic, connector-driven ETL frameworks that are fast, flexible, and built to evolve.
 
@@ -39,10 +39,10 @@ I’m a big believer in **building in public**. The tech world moves fast, and s
 
 ## 🧱 What I’ve Built (So Far)
 
-- ✅ **End-to-end ETL frameworks** using Airflow, Spark, BigQuery, and Python to reduce processing times and cut cloud costs by over **$100K**.
-- ✅ **Streaming analytics systems** with Kafka, Flink, and Superset to power real-time insights for sports analytics and subscription platforms.
-- ✅ **Composable, connector-based data pipelines** that dynamically ingest and transform data from APIs, cloud storage, and live streams.
-- ✅ **Interactive dashboards** with Looker and Superset to help teams make sense of massive datasets.
+- **End-to-end ETL frameworks** using Airflow, Spark, BigQuery, and Python to reduce processing times and cut cloud costs by over **$100K**.
+- **Streaming analytics systems** with Kafka, Flink, and Superset to power real-time insights for sports analytics and subscription platforms.
+- **Composable, connector-based data pipelines** that dynamically ingest and transform data from APIs, cloud storage, and live streams.
+- **Interactive dashboards** with Looker and Superset to help teams make sense of massive datasets.
 
 ## 🔍 How I Think About Modern Data Workflows
 
@@ -66,6 +66,8 @@ Whether you’re another data builder, a hiring manager looking for senior talen
 Let’s learn, share, and grow together.
 
 **Follow along** if you want to level up your data stack—and see what it takes to build pipelines with purpose.
+
+---
 
 ---
 

@@ -15,9 +15,12 @@ type Props = {
   excerpt: string
   author: Author
   slug: string
+  headingLevel?: "h2" | "h3"
 }
 
-export function HeroPost({ title, coverImage, date, excerpt, author, slug }: Props) {
+export function HeroPost({ title, coverImage, date, excerpt, author, slug, headingLevel = "h2" }: Props) {
+  const Heading = headingLevel
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
@@ -31,17 +34,17 @@ export function HeroPost({ title, coverImage, date, excerpt, author, slug }: Pro
         <div className="p-6 md:p-8">
           <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">
             <div>
-              <h3 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-white md:text-4xl">
-                <Link href={`/posts/${slug}`} className="hover:text-blue-600 dark:hover:text-yellow-500 transition-colors">
+              <Heading className="mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-white md:text-4xl">
+                <Link href={`/blog/${slug}`} className="hover:text-blue-600 dark:hover:text-yellow-500 transition-colors">
                   {title}
                 </Link>
-              </h3>
+              </Heading>
             </div>
             <div>
               <p className="mb-6 text-muted-foreground">{excerpt}</p>
               <div className="flex items-center justify-between">
                 <Button asChild className="rounded-full bg-blue-600 px-6 hover:bg-blue-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:text-gray-900">
-                  <Link href={`/posts/${slug}`}>
+                  <Link href={`/blog/${slug}`}>
                     Read More
                     <ArrowUpRight className="ml-2 h-4 w-4" />
                   </Link>
