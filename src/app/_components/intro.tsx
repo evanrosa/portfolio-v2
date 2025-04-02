@@ -28,7 +28,7 @@ export default function DataEngineerIntro() {
     if (!mounted) return null
 
     return (
-        <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-20">
+        <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-2 sm:px-4 py-20">
             {/* Background elements - data-themed */}
             <div className="absolute inset-0 -z-10">
                 <div className="absolute left-1/3 top-1/4 h-[500px] w-[500px] rounded-full bg-blue-500/5 blur-[100px]" />
@@ -44,7 +44,7 @@ export default function DataEngineerIntro() {
                 </svg>
             </div>
 
-            <div className="container mx-auto max-w-6xl">
+            <div className="container mx-auto max-w-6xl px-2 sm:px-4">
                 <div className="grid gap-12 md:grid-cols-12 md:gap-8">
                     {/* Text content - takes 7 columns on desktop */}
                     <motion.div

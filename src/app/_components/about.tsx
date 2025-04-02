@@ -101,7 +101,7 @@ export default function AboutMeSection() {
         <section
             ref={containerRef}
             id="about"
-            className="relative w-full overflow-hidden bg-gradient-to-b from-white to-blue-50 px-4 py-24 dark:from-gray-950 dark:to-gray-900"
+            className="relative w-full overflow-hidden bg-gradient-to-b from-white to-blue-50 px-2 sm:px-4 py-24 dark:from-gray-950 dark:to-gray-900"
         >
             {/* Background elements */}
             <div className="absolute inset-0 -z-10">
@@ -121,7 +121,7 @@ export default function AboutMeSection() {
                 </svg>
             </div>
 
-            <div className="container mx-auto max-w-6xl">
+            <div className="container mx-auto max-w-6xl px-2 sm:px-4">
                 <motion.div
                     className="mx-auto mb-16 max-w-2xl text-center"
                     initial={{ opacity: 0, y: 20 }}
