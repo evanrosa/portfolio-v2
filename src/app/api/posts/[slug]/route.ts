@@ -5,9 +5,10 @@ import { NextResponse, type NextRequest } from 'next/server'
 
 export async function GET(
     request: NextRequest,
-    context: { params: { slug: string } }
+    { params }: { params: Promise<{ slug: string }> }
 ) {
-    const { slug } = context.params
+    const resolvedParams = await params
+    const { slug } = resolvedParams
     const post = getPostBySlug(slug)
 
     if (!post) {
