@@ -1,4 +1,3 @@
-// app/api/posts/[slug]/route.ts
 export const runtime = 'nodejs'
 
 import { getPostBySlug } from '@/lib/api'
