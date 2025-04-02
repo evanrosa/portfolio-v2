@@ -20,6 +20,7 @@ import {
 const navItems = [
   { name: "About", href: "about", isSection: true },
   { name: "Projects", href: "projects", isSection: true },
+  { name: "Consultant", href: "/consultant", isSection: false },
   { name: "Blog", href: "/blog", isSection: false },
   { name: "Contact", href: "contact", isSection: true },
 ]

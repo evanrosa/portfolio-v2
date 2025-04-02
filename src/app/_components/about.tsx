@@ -153,7 +153,7 @@ export default function AboutMeSection() {
 
                                 <h3 className="mb-4 text-xl font-bold">My Journey</h3>
                                 <p className="mb-4 text-muted-foreground">
-                                    With over 7 years of experience in the data space, I've transitioned from analyst roles into architecting scalable batch and real-time data infrastructure that supports millions of users and billions of events. I specialize in building modern data platforms powered by Airflow, Spark, Kafka, Flink, and cloud-native tools.
+                                    With almost 15 years of experience in the data space, I've transitioned from analyst roles into architecting scalable batch and real-time data infrastructure that supports millions of users and billions of events. I specialize in building modern data platforms powered by Airflow, Spark, Kafka, Flink, and cloud-native tools.
                                 </p>
                                 <p className="text-muted-foreground">
                                     My work focuses on optimizing ETL workflows, enhancing data accessibility, and driving cost-efficiency for high-impact teams across marketing, product, and engineering. I'm passionate about designing systems that turn complex data into clean, reliable insights—and thrive on tackling infrastructure challenges that unlock business growth.
