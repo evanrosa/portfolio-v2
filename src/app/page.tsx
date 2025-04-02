@@ -7,17 +7,10 @@ import Intro from "./_components/intro";
 import AboutMeSection from "./_components/about";
 import ProjectsSection from "./_components/projects";
 import { PortfolioContactSection } from "./_components/contact-section";
+import { getAllPosts } from "@/lib/api";
 
 export default async function Index() {
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'http://localhost:3000'
-
-  const res = await fetch(`${baseUrl}/api/posts`, {
-    next: { revalidate: 60 }, // ISR (optional)
-  })
-
-  const allPosts = await res.json()
+  const allPosts = getAllPosts()
   const recentPosts = allPosts.slice(0, 3)
   const heroPost = recentPosts[0]
   const morePosts = recentPosts.slice(1)
