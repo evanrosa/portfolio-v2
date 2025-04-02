@@ -3,9 +3,9 @@
 import { motion } from "framer-motion"
 import { ContactForm } from "@/app/_components/contact-form"
 import { Card, CardContent } from "@/components/ui/card"
-import { Mail, ExternalLink, Github, Linkedin, Twitter, Phone } from "lucide-react"
+import { Mail, Github, Linkedin, Phone } from "lucide-react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { sendGTMEvent } from "@next/third-parties/google"
 
 export function PortfolioContactSection() {
     return (
@@ -45,12 +45,12 @@ export function PortfolioContactSection() {
                                     <div className="mb-6">
                                         <div className="flex items-center mb-3">
                                             <Mail className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-3" />
-                                            <Link href="mailto:evandanrosa@gmail.com" className="text-muted-foreground hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">evandanrosa@gmail.com</Link>
+                                            <Link onClick={() => sendGTMEvent({ event: 'button_click_contact_section', value: 'email' })} href="mailto:evandanrosa@gmail.com" className="text-muted-foreground hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">evandanrosa@gmail.com</Link>
                                         </div>
 
                                         <div className="flex items-center">
                                             <Phone className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-3" />
-                                            <Link href="tel:301-300-7602" className="text-muted-foreground hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">301-300-7602</Link>
+                                            <Link onClick={() => sendGTMEvent({ event: 'button_click_contact_section', value: 'phone' })} href="tel:301-300-7602" className="text-muted-foreground hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">301-300-7602</Link>
                                         </div>
                                     </div>
 
@@ -58,6 +58,7 @@ export function PortfolioContactSection() {
                                         <h4 className="font-medium mb-3 dark:text-slate-100">Connect with me</h4>
                                         <div className="flex space-x-4">
                                             <Link
+                                                onClick={() => sendGTMEvent({ event: 'button_click_contact_section', value: 'github' })}
                                                 href="https://github.com/evanrosa"
                                                 target="_blank"
                                                 className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors"
@@ -67,6 +68,7 @@ export function PortfolioContactSection() {
                                             </Link>
 
                                             <Link
+                                                onClick={() => sendGTMEvent({ event: 'button_click_contact_section', value: 'linkedin' })}
                                                 href="https://www.linkedin.com/in/evan-rosa/"
                                                 target="_blank"
                                                 className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors"

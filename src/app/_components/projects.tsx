@@ -19,6 +19,7 @@ import {
     Maximize2,
     Server,
 } from "lucide-react"
+import { sendGTMEvent } from "@next/third-parties/google"
 
 // Project data structure
 interface Technology {
@@ -370,11 +371,11 @@ export default function ProjectsSection() {
                 <Tabs defaultValue="all" className="w-full">
                     <div className="mb-8 flex justify-center">
                         <TabsList className="bg-blue-50 dark:bg-gray-800/50">
-                            <TabsTrigger value="all" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">All Projects</TabsTrigger>
-                            <TabsTrigger value="data-pipeline" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">Data Pipelines</TabsTrigger>
-                            <TabsTrigger value="data-warehouse" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">Data Warehousing</TabsTrigger>
-                            <TabsTrigger value="data-analytics" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">Analytics</TabsTrigger>
-                            <TabsTrigger value="machine-learning" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">ML Engineering</TabsTrigger>
+                            <TabsTrigger onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'all' })} value="all" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">All Projects</TabsTrigger>
+                            <TabsTrigger onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'data_pipeline' })} value="data-pipeline" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">Data Pipelines</TabsTrigger>
+                            <TabsTrigger onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'data_warehouse' })} value="data-warehouse" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">Data Warehousing</TabsTrigger>
+                            <TabsTrigger onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'data_analytics' })} value="data-analytics" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">Analytics</TabsTrigger>
+                            <TabsTrigger onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: 'machine_learning' })} value="machine-learning" className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-yellow-500/20 dark:data-[state=active]:text-yellow-500">ML Engineering</TabsTrigger>
                         </TabsList>
                     </div>
 
@@ -476,6 +477,7 @@ function ProjectCard({
                                 onClick={(e) => {
                                     e.preventDefault()
                                     onViewDetails()
+                                    sendGTMEvent({ event: 'button_click_projects_section', value: `${project.category}_${project.id}_view_details` })
                                 }}
                             >
                                 <Maximize2 className="mr-1 h-4 w-4" />
@@ -516,6 +518,7 @@ function ProjectCard({
                                     target="_blank"
                                     className="rounded-full p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-blue-600 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-yellow-500"
                                     aria-label="GitHub Repository"
+                                    onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: `${project.category}_${project.id}_github` })}
                                 >
                                     <Github className="h-4 w-4" />
                                 </Link>
@@ -526,6 +529,7 @@ function ProjectCard({
                                     target="_blank"
                                     className="rounded-full p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-blue-600 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-yellow-500"
                                     aria-label="Live Project"
+                                    onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: `${project.category}_${project.id}_live` })}
                                 >
                                     <ExternalLink className="h-4 w-4" />
                                 </Link>
@@ -558,7 +562,10 @@ function ProjectDetailsModal({ project, onClose, getTechBadgeClass, getTechIcon 
                 <div className="relative aspect-video w-full overflow-hidden">
                     <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
                     <button
-                        onClick={onClose}
+                        onClick={() => {
+                            sendGTMEvent({ event: 'button_click_projects_section', value: `${project.category}_${project.id}_close_modal` })
+                            onClose()
+                        }}
                         className="absolute right-4 top-4 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
                         aria-label="Close modal"
                     >
@@ -629,7 +636,7 @@ function ProjectDetailsModal({ project, onClose, getTechBadgeClass, getTechIcon 
                     <div className="flex flex-wrap gap-3">
                         {project.links.github && (
                             <Button asChild className="bg-[#24292e] hover:bg-[#1b1f23] dark:bg-[#24292e]/90 dark:hover:bg-[#24292e]">
-                                <Link href={project.links.github} target="_blank">
+                                <Link href={project.links.github} target="_blank" onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: `${project.category}_${project.id}_github` })}>
                                     <Github className="mr-2 h-4 w-4" />
                                     View Repository
                                 </Link>
@@ -637,7 +644,7 @@ function ProjectDetailsModal({ project, onClose, getTechBadgeClass, getTechIcon 
                         )}
                         {project.links.live && (
                             <Button asChild className="bg-blue-600 hover:bg-blue-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:text-gray-900">
-                                <Link href={project.links.live} target="_blank">
+                                <Link href={project.links.live} target="_blank" onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: `${project.category}_${project.id}_live` })}>
                                     <ExternalLink className="mr-2 h-4 w-4" />
                                     Live Project
                                 </Link>
@@ -649,7 +656,7 @@ function ProjectDetailsModal({ project, onClose, getTechBadgeClass, getTechIcon 
                                 variant="outline"
                                 className="border-blue-200 hover:bg-blue-50 dark:border-yellow-500/20 dark:text-yellow-500 dark:hover:bg-yellow-500/10 dark:hover:text-yellow-400"
                             >
-                                <Link href={project.links.documentation} target="_blank">
+                                <Link href={project.links.documentation} target="_blank" onClick={() => sendGTMEvent({ event: 'button_click_projects_section', value: `${project.category}_${project.id}_documentation` })}>
                                     <FileCode className="mr-2 h-4 w-4" />
                                     Documentation
                                 </Link>

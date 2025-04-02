@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
+import { sendGTMEvent } from "@next/third-parties/google"
 
 export default function AboutMeSection() {
     const containerRef = useRef<HTMLElement>(null)
@@ -199,7 +200,7 @@ export default function AboutMeSection() {
                                             asChild
                                         >
                                             <Link
-                                                href="https://drive.google.com/file/d/1eVJJDfaARY-l-4cmbPSjqzHHlEwo-pSb/view?usp=sharing" target="_blank">Download Resume</Link>
+                                                href="https://drive.google.com/file/d/1eVJJDfaARY-l-4cmbPSjqzHHlEwo-pSb/view?usp=sharing" target="_blank" onClick={() => sendGTMEvent({ event: 'button_click_about_section', value: 'resume' })}>Download Resume</Link>
                                         </Button>
 
                                         <Button
@@ -211,7 +212,7 @@ export default function AboutMeSection() {
                                         >
                                             <Link
                                                 href="mailto:evandanrosa@gmail.com"
-                                                target="_blank">
+                                                target="_blank" onClick={() => sendGTMEvent({ event: 'button_click_about_section', value: 'contact' })}>
                                                 Contact Me
                                             </Link>
                                         </Button>

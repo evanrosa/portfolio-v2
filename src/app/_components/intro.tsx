@@ -7,6 +7,7 @@ import { ArrowDownCircle, Database, ExternalLink, Github, Linkedin, Mail, Server
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import DataEngineerVisual from "./svg/data-eng-viz"
+import { sendGTMEvent } from '@next/third-parties/google'
 
 export default function DataEngineerIntro() {
     const [mounted, setMounted] = useState(false)
@@ -21,6 +22,7 @@ export default function DataEngineerIntro() {
         if (element) {
             element.scrollIntoView({ behavior: "smooth" })
         }
+        sendGTMEvent({ event: 'button_click_intro_section', value: 'projects' })
     }
 
     if (!mounted) return null
@@ -85,7 +87,7 @@ export default function DataEngineerIntro() {
                                 asChild
                             >
                                 <Link
-                                    href="https://drive.google.com/file/d/1eVJJDfaARY-l-4cmbPSjqzHHlEwo-pSb/view?usp=sharing" target="_blank">Download Resume</Link>
+                                    href="https://drive.google.com/file/d/1eVJJDfaARY-l-4cmbPSjqzHHlEwo-pSb/view?usp=sharing" target="_blank" onClick={() => sendGTMEvent({ event: 'button_click_intro_section', value: 'resume' })}>Download Resume</Link>
                             </Button>
                         </div>
 
@@ -99,7 +101,7 @@ export default function DataEngineerIntro() {
                             >
                                 <Link
                                     href="https://github.com/evanrosa"
-                                    target="_blank">
+                                    target="_blank" onClick={() => sendGTMEvent({ event: 'button_click_intro_section', value: 'github' })}>
                                     <Github className="h-5 w-5" />
                                 </Link>
                             </Button>
@@ -113,7 +115,7 @@ export default function DataEngineerIntro() {
                             >
                                 <Link
                                     href="https://www.linkedin.com/in/evan-rosa/"
-                                    target="_blank">
+                                    target="_blank" onClick={() => sendGTMEvent({ event: 'button_click_intro_section', value: 'linkedin' })}>
                                     <Linkedin className="h-5 w-5" />
                                 </Link>
                             </Button>
@@ -127,7 +129,7 @@ export default function DataEngineerIntro() {
                             >
                                 <Link
                                     href="mailto:evandanrosa@gmail.com"
-                                    target="_blank">
+                                    target="_blank" onClick={() => sendGTMEvent({ event: 'button_click_intro_section', value: 'email' })}>
                                     <Mail className="h-5 w-5" />
                                 </Link>
                             </Button>

@@ -1,11 +1,12 @@
 import { Footer } from "@/app/_components/footer";
-import { CMS_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
+import { HOME_OG_IMAGE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import cn from "classnames";
 import { Toaster } from "@/components/ui/sonner"
 import { ClerkProvider } from '@clerk/nextjs';
 import { PersonStructuredData } from "./_components/structured-data";
+import { GoogleTagManager } from '@next/third-parties/google'
 
 import "./globals.css";
 import { Providers } from './providers'
@@ -68,6 +69,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
+        <GoogleTagManager gtmId="GTM-M8Z3L8M6" />
         <head>
           <link
             rel="apple-touch-icon"

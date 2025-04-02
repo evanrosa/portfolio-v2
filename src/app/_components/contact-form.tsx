@@ -12,7 +12,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Loader2 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { toast } from "sonner"
-
+import { sendGTMEvent } from "@next/third-parties/google"
 const contactFormSchema = z.object({
     name: z.string().min(2, { message: "Name must be at least 2 characters" }),
     email: z.string().email({ message: "Please enter a valid email address" }),
@@ -178,6 +178,7 @@ export function ContactForm() {
                             type="submit"
                             className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 text-white"
                             disabled={isSubmitting}
+                            onClick={() => sendGTMEvent({ event: 'button_click_contact_form', value: 'send_message' })}
                         >
                             {isSubmitting ? (
                                 <>

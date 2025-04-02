@@ -8,6 +8,7 @@ import { ThemeToggle } from "./theme-toggler"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { toast } from "sonner"
+import { sendGTMEvent } from "@next/third-parties/google"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -30,6 +31,7 @@ export function Footer() {
         setStatus("success")
         setEmail("")
         toast.success("Successfully subscribed to newsletter!")
+        sendGTMEvent({ event: 'button_click_footer', value: 'subscribe' })
       } else {
         setStatus("error")
         toast.error(data.message || "Failed to subscribe. Please try again.")
@@ -47,6 +49,7 @@ export function Footer() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
     }
+    sendGTMEvent({ event: 'button_click_footer', value: sectionId })
   }
 
   // Animation variants for staggered animations
@@ -96,6 +99,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub Profile"
+                  onClick={() => sendGTMEvent({ event: 'button_click_footer', value: 'github' })}
                 >
                   <Button size="icon" variant="outline" className="rounded-full h-9 w-9 dark:border-slate-700 dark:hover:bg-slate-800">
                     <Github className="h-4 w-4" />
@@ -109,6 +113,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn Profile"
+                  onClick={() => sendGTMEvent({ event: 'button_click_footer', value: 'linkedin' })}
                 >
                   <Button size="icon" variant="outline" className="rounded-full h-9 w-9 dark:border-slate-700 dark:hover:bg-slate-800">
                     <Linkedin className="h-4 w-4" />
@@ -117,7 +122,7 @@ export function Footer() {
               </motion.div>
 
               <motion.div whileHover={{ y: -3 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-                <Link href="mailto:evandanrosa@gmail.com" aria-label="Email Me">
+                <Link href="mailto:evandanrosa@gmail.com" aria-label="Email Me" onClick={() => sendGTMEvent({ event: 'button_click_footer', value: 'email' })}>
                   <Button size="icon" variant="outline" className="rounded-full h-9 w-9 dark:border-slate-700 dark:hover:bg-slate-800">
                     <Mail className="h-4 w-4" />
                   </Button>
@@ -135,6 +140,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
+                  onClick={() => sendGTMEvent({ event: 'button_click_footer', value: 'home' })}
                   href="/"
                   className="text-muted-foreground hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors"
                 >
