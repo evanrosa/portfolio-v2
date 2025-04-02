@@ -223,7 +223,7 @@ export function Footer() {
               <Button
                 onClick={handleSubscribe}
                 disabled={status === "loading"}
-                className="rounded-l-none bg-blue-600 hover:bg-blue-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 text-white"
+                className="rounded-l-none bg-blue-600 text-white hover:bg-blue-700 dark:bg-yellow-500 dark:text-gray-900 dark:hover:bg-yellow-600"
                 aria-label="Subscribe"
               >
                 {status === "loading" ? "Subscribing..." : "Subscribe"}

@@ -176,7 +176,7 @@ export function ContactForm() {
 
                         <Button
                             type="submit"
-                            className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 text-white"
+                            className="w-full bg-blue-600 text-white hover:bg-blue-700 dark:bg-yellow-500 dark:text-gray-900 dark:hover:bg-yellow-600"
                             disabled={isSubmitting}
                             onClick={() => sendGTMEvent({ event: 'button_click_contact_form', value: 'send_message' })}
                         >

@@ -7,6 +7,7 @@ import AboutMeSection from "./_components/about";
 import ProjectsSection from "./_components/projects";
 import { PortfolioContactSection } from "./_components/contact-section";
 import { getAllPosts } from "@/lib/api";
+import ConsultancySection from "./_components/consultant-section";
 
 export default async function Index() {
   const allPosts = getAllPosts()
@@ -20,6 +21,7 @@ export default async function Index() {
         <Intro />
         <AboutMeSection />
         <ProjectsSection />
+        <ConsultancySection />
         <div id="blog">
           <IntroBlog headingLevel="h2" />
           {heroPost && (

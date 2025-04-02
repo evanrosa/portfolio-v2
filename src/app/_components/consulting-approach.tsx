@@ -90,11 +90,6 @@ export default function ConsultingApproach() {
                         viewport={{ once: true, margin: "-50px" }}
                         className="mb-12 relative md:grid md:grid-cols-5 md:gap-8 md:items-start"
                     >
-                        {/* Timeline dot for mobile */}
-                        <div className="absolute -left-[25px] top-0 flex h-6 w-6 items-center justify-center rounded-full border-2 border-blue-200 bg-white dark:border-gray-800 dark:bg-gray-900 md:hidden">
-                            <div className="h-2 w-2 rounded-full bg-blue-600 dark:bg-gray-300"></div>
-                        </div>
-
                         {/* Step number and icon */}
                         <div className="hidden md:flex md:flex-col md:items-center md:col-span-1">
                             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600 mb-3 dark:bg-gray-800 dark:text-gray-300">
