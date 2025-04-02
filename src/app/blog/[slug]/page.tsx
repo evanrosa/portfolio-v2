@@ -12,18 +12,9 @@ import { getAllPosts } from "@/lib/api";
 
 export default async function Post(props: Params) {
   const params = await props.params;
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'http://localhost:3000'
-
-  const res = await fetch(`${baseUrl}/api/posts`, {
-    next: { revalidate: 60 } // ISR, optional
-  })
-
-  if (!res.ok) throw new Error('Failed to fetch posts')
-
-  const posts = await res.json()
+  const posts = getAllPosts();
   const post = posts.find((p: PostType) => p.slug === params.slug)
+
   if (!post) {
     return notFound();
   }
@@ -63,17 +54,7 @@ type Params = {
 
 export async function generateMetadata(props: Params): Promise<Metadata> {
   const params = await props.params;
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'http://localhost:3000'
-
-  const res = await fetch(`${baseUrl}/api/posts`, {
-    next: { revalidate: 60 } // ISR, optional
-  })
-
-  if (!res.ok) throw new Error('Failed to fetch posts')
-
-  const posts = await res.json()
+  const posts = getAllPosts();
   const post = posts.find((p: PostType) => p.slug === params.slug)
 
   if (!post) {

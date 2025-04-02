@@ -1,4 +1,3 @@
-// app/page.tsx (or app/index.tsx if that's your entrypoint)
 import Container from "@/app/_components/container";
 import { HeroPost } from "@/app/_components/hero-post";
 import { Intro as IntroBlog } from "@/app/_components/intro-blog";
