@@ -1,7 +1,7 @@
-import { promises as fs } from 'fs'
-import { join } from 'path'
+import fs from 'fs'
+import path from 'path'
 import { Resend } from 'resend'
-import { supabaseAdmin } from '@/lib/supabase'
+import supabase from '@/lib/supabase'
 import { NextResponse } from 'next/server'
 import { remark } from 'remark'
 import html from 'remark-html'
@@ -18,11 +18,11 @@ export async function POST(req: Request) {
     }
 
     const filename = `issue-${issue}.md`
-    const filePath = join(process.cwd(), 'newsletters', filename)
+    const filePath = path.join(process.cwd(), 'newsletters', filename)
 
     try {
         // 1. Read and parse frontmatter
-        const fileContent = await fs.readFile(filePath, 'utf-8')
+        const fileContent = fs.readFileSync(filePath, 'utf-8')
         const { content, data } = matter(fileContent)
 
         // 2. Convert Markdown to HTML
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
         const subject = data.subject || `🧠 The Inner Join #${issue}`
 
         // 4. Fetch subscribers
-        const { data: subscribers, error } = await supabaseAdmin.from('subscribers').select('email')
+        const { data: subscribers, error } = await supabase.from('subscribers').select('email')
         if (error) throw error
 
         // 5. Send to all subscribers
