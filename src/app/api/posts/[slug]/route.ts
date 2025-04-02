@@ -4,17 +4,11 @@ export const runtime = 'nodejs'
 import { getPostBySlug } from '@/lib/api'
 import { NextResponse, type NextRequest } from 'next/server'
 
-type Props = {
-    params: {
-        slug: string
-    }
-}
-
 export async function GET(
     request: NextRequest,
-    props: Props
+    { params }: { params: { slug: string } }
 ) {
-    const { slug } = props.params
+    const { slug } = params
     const post = getPostBySlug(slug)
 
     if (!post) {
