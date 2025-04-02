@@ -5,10 +5,10 @@ import { getPostBySlug } from '@/lib/api'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function GET(
-    _req: NextRequest,
-    context: { params: { slug: string } }
+    request: NextRequest,
+    { params }: { params: { slug: string } }
 ) {
-    const { slug } = context.params
+    const { slug } = params
     const post = getPostBySlug(slug)
 
     if (!post) {
