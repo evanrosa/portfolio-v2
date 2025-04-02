@@ -137,10 +137,9 @@ export default function AboutMeSection() {
                 <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"} className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
 
                     {/* Image and Personal Info - 5 columns */}
-                    {/* Image and Personal Info - 5 columns */}
                     <motion.div variants={itemVariants} className="lg:col-span-5">
-                        <Card className="h-full border-blue-100 bg-white shadow-md dark:border-yellow-500/20 dark:bg-gray-900">
-                            <CardContent className="p-4 sm:p-6 flex flex-col h-full">
+                        <Card className="border-blue-100 bg-white shadow-md dark:border-yellow-500/20 dark:bg-gray-900">
+                            <CardContent className="p-4 sm:p-6">
                                 <div className="relative w-full overflow-hidden rounded-xl aspect-[4/5] mb-4">
                                     <Image
                                         src="/assets/portfolio/pic.jpeg"
@@ -155,11 +154,11 @@ export default function AboutMeSection() {
                                 <p className="mb-4 text-muted-foreground">
                                     With almost 15 years of experience in the data space, I've transitioned from analyst roles into architecting scalable batch and real-time data infrastructure that supports millions of users and billions of events. I specialize in building modern data platforms powered by Airflow, Spark, Kafka, Flink, and cloud-native tools.
                                 </p>
-                                <p className="text-muted-foreground">
+                                <p className="mb-6 text-muted-foreground">
                                     My work focuses on optimizing ETL workflows, enhancing data accessibility, and driving cost-efficiency for high-impact teams across marketing, product, and engineering. I'm passionate about designing systems that turn complex data into clean, reliable insights—and thrive on tackling infrastructure challenges that unlock business growth.
                                 </p>
 
-                                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-start sm:gap-4">
+                                <div className="flex flex-col gap-3 sm:flex-row sm:justify-start sm:gap-4">
                                     <Button
                                         className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:text-gray-900"
                                         asChild
