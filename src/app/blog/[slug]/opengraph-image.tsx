@@ -1,5 +1,4 @@
 import { ImageResponse } from 'next/og'
-import { getPostBySlug } from '@/lib/api'
 
 export const runtime = 'edge'
 export const alt = 'Blog Post'
@@ -11,7 +10,21 @@ export const size = {
 export const contentType = 'image/png'
 
 export default async function Image({ params }: { params: { slug: string } }) {
-    const post = getPostBySlug(params.slug)
+    const baseUrl = process.env.VERCEL_URL ?? 'http://localhost:3000'
+    const res = await fetch(`${baseUrl}/api/posts/${params.slug}`)
+
+    if (!res.ok) {
+        return new ImageResponse(
+            (
+                <div>
+                    <h1>Post not found</h1>
+                </div>
+            )
+        )
+    }
+
+    const post = await res.json()
+
     if (!post) {
         return new ImageResponse(
             (

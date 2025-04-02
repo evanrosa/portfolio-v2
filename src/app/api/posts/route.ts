@@ -1,4 +1,3 @@
-// app/api/load-posts/route.ts
 export const runtime = 'nodejs'
 
 import { getAllPosts } from '@/lib/api'
