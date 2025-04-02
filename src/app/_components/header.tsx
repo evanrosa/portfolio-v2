@@ -76,7 +76,7 @@ export function SiteHeader() {
       <div className="container mx-auto max-w-6xl">
         <div className="flex h-16 items-center justify-between px-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2" onClick={() => sendGTMEvent({ event: 'nav_click', value: 'home' })}>
+          <Link href="/" className="flex items-center space-x-2" onClick={() => sendGTMEvent({ event: 'nav_click', value: 'Home' })}>
             <span className="bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-yellow-500 dark:to-yellow-400 bg-clip-text text-xl font-bold text-transparent">
               &#60;evan.rosa/&#62;
             </span>

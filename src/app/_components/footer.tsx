@@ -140,7 +140,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
-                  onClick={() => sendGTMEvent({ event: 'button_click_footer', value: 'home' })}
+                  onClick={() => sendGTMEvent({ event: 'button_click_footer', value: 'Home' })}
                   href="/"
                   className="text-muted-foreground hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors"
                 >
