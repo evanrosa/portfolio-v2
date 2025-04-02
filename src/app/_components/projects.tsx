@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import React, { useState, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
@@ -445,8 +445,8 @@ interface ProjectCardProps {
     variants: any
     onViewDetails: () => void
     getTechBadgeClass: (type: Technology["type"]) => string
-    getTechIcon: (type: Technology["type"]) => JSX.Element | null
-    getCategoryIcon: (category: Project["category"]) => JSX.Element | null
+    getTechIcon: (type: Technology["type"]) => React.ReactNode
+    getCategoryIcon: (category: Project["category"]) => React.ReactNode
 }
 
 function ProjectCard({
@@ -543,7 +543,7 @@ interface ProjectDetailsModalProps {
     project: Project
     onClose: () => void
     getTechBadgeClass: (type: Technology["type"]) => string
-    getTechIcon: (type: Technology["type"]) => JSX.Element | null
+    getTechIcon: (type: Technology["type"]) => React.ReactNode
 }
 
 function ProjectDetailsModal({ project, onClose, getTechBadgeClass, getTechIcon }: ProjectDetailsModalProps) {
