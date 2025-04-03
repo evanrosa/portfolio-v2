@@ -18,7 +18,7 @@ ogImage:
 
 > Data doesn’t wait. Neither should your pipelines. That’s why streaming ETL is becoming the default for modern, responsive data architectures.
 
-## ⏱️ Why Real-Time Data Matters
+## Why Real-Time Data Matters
 
 In a world of instant decisions—fraud detection, product recommendations, live dashboards—**batch processing just isn’t fast enough**.
 
@@ -30,7 +30,7 @@ Modern businesses demand:
 
 Enter **streaming ETL**—a shift from hourly or nightly jobs to systems that process data _as it happens_.
 
-## 🔁 What Is Streaming ETL?
+## What Is Streaming ETL?
 
 Streaming ETL refers to continuously:
 
@@ -42,7 +42,7 @@ This often happens **in milliseconds**, not minutes or hours.
 
 > Think: Kafka → Flink → Iceberg → BigQuery/Superset.
 
-## 🧠 When Do You Need Streaming?
+## When Do You Need Streaming?
 
 Streaming ETL is ideal when:
 
@@ -51,14 +51,14 @@ Streaming ETL is ideal when:
 - Your stakeholders want **real-time dashboards**
 - You’re building **event-driven architectures** (microservices, data mesh)
 
-✅ **Example Use Cases**:
+**Example Use Cases**:
 
 - Real-time churn alerts in SaaS platforms
 - Live tracking of user engagement across mobile apps
 - Financial transaction monitoring
 - Sports analytics dashboards (e.g. live match predictions)
 
-## ⚙️ Kafka + Flink: A Stream Dream Team
+## Kafka + Flink: A Stream Dream Team
 
 Here’s how they fit together:
 
@@ -84,7 +84,7 @@ Here’s how they fit together:
 
 > In one of my projects, this pipeline supported synthetic subscription events that mimicked user behavior—processed in real time with Flink and visualized via Superset.
 
-## ⚖️ Trade-offs: Streaming vs Batch
+## Trade-offs: Streaming vs Batch
 
 | Dimension      | Batch                          | Streaming                              |
 | -------------- | ------------------------------ | -------------------------------------- |
@@ -96,7 +96,7 @@ Here’s how they fit together:
 
 **My take?** Start streaming-first. Then add batch rollups for cost-effective aggregates.
 
-## 🧱 Getting Started: My Streaming Stack
+## Getting Started: My Streaming Stack
 
 Here’s the stack I use for most of my modern streaming projects:
 
@@ -111,7 +111,7 @@ All containerized with **Docker**, designed to scale locally or in the cloud.
 
 💡 Tip: Build a small prototype first. Kafka + Flink + Superset is a powerful learning stack.
 
-## 🔄 Batch + Streaming = Hybrid
+## Batch + Streaming = Hybrid
 
 Batch and streaming don’t have to compete.
 
@@ -127,5 +127,5 @@ This hybrid approach gives you **the best of both worlds**.
 
 ---
 
-**🔗 Connect with me:**  
+**Connect with me:**  
 [LinkedIn](https://www.linkedin.com/in/evan-rosa/) | [Portfolio](https://www.evro.dev/)
