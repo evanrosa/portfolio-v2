@@ -10,14 +10,8 @@ import { BlogPostStructuredData } from "@/app/_components/structured-data";
 import { Post as PostType } from "@/interfaces/post";
 import { getAllPosts } from "@/lib/api";
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-  searchParams: { [key: string]: string | string[] | undefined };
-}
-
-export default async function Post({ params }: PageProps) {
+export default async function Post(props: Params) {
+  const params = await props.params;
   const posts = getAllPosts();
   const post = posts.find((p: PostType) => p.slug === params.slug)
 
@@ -52,7 +46,14 @@ export default async function Post({ params }: PageProps) {
   );
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+type Params = {
+  params: Promise<{
+    slug: string;
+  }>;
+};
+
+export async function generateMetadata(props: Params): Promise<Metadata> {
+  const params = await props.params;
   const posts = getAllPosts();
   const post = posts.find((p: PostType) => p.slug === params.slug)
 
@@ -60,45 +61,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return notFound();
   }
 
-  const url = `https://www.evro.dev/blog/${post.slug}`;
+  const title = `${post.title} | The Inner Join Blog By Evan Rosa`;
 
   return {
-    title: `${post.title} | Evan Rosa's Data Engineering Blog`,
-    description: post.excerpt,
-    keywords: [
-      'data engineering',
-      'ETL pipelines',
-      'data infrastructure',
-      ...post.title.toLowerCase().split(' '), // Add post title words as keywords
-    ],
-    authors: [{ name: post.author.name, url: 'https://www.evro.dev' }],
+    title,
     openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      url,
-      siteName: 'Evan Rosa\'s Blog',
-      locale: 'en_US',
-      type: 'article',
-      publishedTime: post.date,
-      authors: [post.author.name],
-      images: [
-        {
-          url: post.coverImage,
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        }
-      ],
+      title,
+      images: [post.ogImage.url],
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: post.title,
-      description: post.excerpt,
-      images: [post.coverImage],
-    },
-    alternates: {
-      canonical: url
-    }
   };
 }
 

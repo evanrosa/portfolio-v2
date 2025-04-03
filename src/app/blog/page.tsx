@@ -5,9 +5,10 @@ import { getAllPosts } from "@/lib/api"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: 'Data Engineering Blog | Insights on ETL, Kafka, Spark & More',
+    title: 'The Inner Join Blog | Insights on ETL, Kafka, Spark & More',
     description: 'Explore in-depth articles about data engineering, ETL pipelines, real-time processing, and best practices using Kafka, Spark, Flink, SQLMesh, and more.',
     keywords: [
+        'The Inner Join Blog',
         'data engineering blog',
         'ETL tutorials',
         'Kafka guides',
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
         'data infrastructure'
     ],
     openGraph: {
-        title: 'Data Engineering Blog | Evan Rosa',
+        title: 'The Inner Join Blog | Evan Rosa',
         description: 'In-depth articles about data engineering, ETL pipelines, and real-time processing.',
         url: 'https://www.evro.dev/blog',
         siteName: 'Evan Rosa\'s Blog',
