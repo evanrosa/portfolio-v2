@@ -76,22 +76,90 @@ export default function AboutMeSection() {
             role: "Lead Data Engineer",
             company: "Digital Turbine",
             period: "May 2020 - November 2024",
-            description:
-                "Refactored and optimized ETL pipelines across GCS, Composer, and BigQuery, reducing data costs by over $100K and improving scalability for 20+ products. Built and maintained batch data pipelines using Airflow, Spark, SQL, and Python to support 10M daily active users and 3B+ monthly ad impressions. Integrated Looker with BigQuery and other sources to deliver interactive dashboards, enhancing stakeholder access to insights. Additionally, experimented with Flink for real-time streaming and maintained Databricks workflows to ensure reliability of Spark-based operations.",
+            description: (
+                <div className="space-y-2 text-muted-foreground">
+                    <ul className="space-y-2">
+                        <li className="flex">
+                            <span className="mr-4">•</span>
+                            <span>Optimized GCS, Composer, and BigQuery ETL pipelines by refactoring legacy workflows, reducing processing time, cutting data costs by over $100K, and enhancing scalability across 20+ content products.</span>
+                        </li>
+                        <li className="flex">
+                            <span className="mr-4">•</span>
+                            <span>Developed and optimized batch data pipelines using Apache Airflow, Spark, SQL, and Python, supporting 10M daily active users and over 3B monthly ad impressions. Experimented with Flink for enhanced real-time streaming performance.</span>
+                        </li>
+                        <li className="flex">
+                            <span className="mr-4">•</span>
+                            <span>Integrated Looker with BigQuery and other data sources to create interactive dashboards, improving data accessibility for stakeholders.</span>
+                        </li>
+                        <li className="flex">
+                            <span className="mr-4">•</span>
+                            <span>Developed API-based data ingestion pipelines, improving ETL efficiency, reducing processing time and data maintenance complexity.</span>
+                        </li>
+                        <li className="flex">
+                            <span className="mr-4">•</span>
+                            <span>Maintained Databricks workflows, working with notebooks to troubleshoot Spark-based pipeline issues and ensure 100% uptime for critical data operations.</span>
+                        </li>
+                    </ul>
+                </div>
+            ),
         },
         {
             role: "Associate Lead Analyst",
             company: "Booz Allen Hamilton",
             period: "March 2015 - May 2020",
-            description:
-                "Managed analytics for multiple HHS and NIH websites under the Digital Analytics Program, improving performance through SEO audits, A/B testing, and strategic goal funneling. Led marketing tag implementations using Google Analytics and Tag Manager to ensure accurate data tracking aligned with client objectives. Developed data warehousing solutions to uncover key trends and enable data-driven decisions. Delivered in-depth analytics reports that directly informed and enhanced client strategies.",
+            description: (
+                <div className="space-y-2 text-muted-foreground">
+                    <ul className="space-y-2">
+                        <li className="flex">
+                            <span className="mr-4">•</span>
+                            <span>Managed analytics for multiple HHS and NIH government websites under the Digital Analytics Program (DAP), driving performance and user engagement improvements through SEO audits, A/B testing, and goal funneling strategies.</span>
+                        </li>
+                        <li className="flex">
+                            <span className="mr-4">•</span>
+                            <span>Developed and managed marketing tag strategies using Google Analytics and Google Tag Manager, ensuring 100% data accuracy and alignment with client objectives.</span>
+                        </li>
+                        <li className="flex">
+                            <span className="mr-4">•</span>
+                            <span>Spearheaded the development of data warehousing solutions to understand key trends, enabling data-driven decision-making and actionable insights.</span>
+                        </li>
+                        <li className="flex">
+                            <span className="mr-4">•</span>
+                            <span>Regularly analyzed website metrics and delivered comprehensive analytics reports that shaped and enhanced client strategies, aligning with organizational goals.</span>
+                        </li>
+                    </ul>
+                </div>
+            ),
         },
         {
             role: "Data Analyst",
             company: "The American Chemical Society",
             period: "December 2010 - May 2015",
-            description:
-                "Oversaw daily operations of the ACS Web Stats System, supporting marketing and sales analytics. Created monthly and annual reports to deliver strategic insights for editorial and marketing teams. Analyzed ad performance across Google Search, YouTube, Google Analytics, Business Object, and external platforms to optimize campaign effectiveness.",
+            description: (
+                <div className="space-y-2 text-muted-foreground">
+                    <ul className="space-y-2">
+                        <li className="flex">
+                            <span className="mr-4">•</span>
+                            <span>Oversaw daily operations of the ACS Web Stats System, supporting marketing and sales analytics. Created monthly and annual reports to deliver strategic insights for editorial and marketing teams.</span>
+                        </li>
+                        <li className="flex">
+                            <span className="mr-4">•</span>
+                            <span>Analyzed ad performance across Google Search, YouTube, Google Analytics, Business Object, and external platforms to optimize campaign effectiveness.</span>
+                        </li>
+                        <li className="flex">
+                            <span className="mr-4">•</span>
+                            <span>Implemented metrics dashboards with Tableau and Google Data Studio for real-time web traffic monitoring.</span>
+                        </li>
+                        <li className="flex">
+                            <span className="mr-4">•</span>
+                            <span>Automated monthly and quarterly analytics reporting, reducing manual effort by 50%.</span>
+                        </li>
+                        <li className="flex">
+                            <span className="mr-4">•</span>
+                            <span>Migrated analytics infrastructure from legacy Google Analytics to Universal Analytics, ensuring seamless tracking and improved reporting.</span>
+                        </li>
+                    </ul>
+                </div>
+            ),
         },
     ]
     return (
@@ -176,13 +244,19 @@ export default function AboutMeSection() {
                                         size="lg"
                                         variant="outline"
                                         className="w-full sm:w-auto border-blue-600/20 text-blue-600 hover:bg-blue-50/50 hover:text-blue-700 dark:border-yellow-500/20 dark:text-yellow-500 dark:hover:bg-yellow-500/10 dark:hover:text-yellow-400"
-                                        aria-label="Email"
+                                        aria-label="Contact"
                                         asChild
                                     >
                                         <Link
-                                            href="mailto:evandanrosa@gmail.com"
-                                            target="_blank"
-                                            onClick={() => sendGTMEvent({ event: 'button_click_about_section', value: 'contact' })}
+                                            href="#contact"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                const element = document.getElementById('contact');
+                                                if (element) {
+                                                    element.scrollIntoView({ behavior: 'smooth' });
+                                                }
+                                                sendGTMEvent({ event: 'button_click_about_section', value: 'contact' });
+                                            }}
                                         >
                                             Contact Me
                                         </Link>
@@ -251,7 +325,7 @@ export default function AboutMeSection() {
                                                     <span className="mx-2">•</span>
                                                     <span className="text-sm">{experience.period}</span>
                                                 </div>
-                                                <p className="text-muted-foreground">{experience.description}</p>
+                                                {experience.description}
                                             </div>
                                         </div>
                                     ))}

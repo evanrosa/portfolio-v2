@@ -5,9 +5,27 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Mail, MessageSquare, Calendar } from "lucide-react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { usePathname, useRouter } from "next/navigation"
 import { sendGTMEvent } from "@next/third-parties/google"
 
 export default function ContactCTA() {
+    const pathname = usePathname()
+    const router = useRouter()
+    const isHomePage = pathname === '/'
+
+    const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        if (!isHomePage) {
+            router.push('/#contact')
+        } else {
+            const element = document.getElementById('contact')
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' })
+            }
+        }
+        sendGTMEvent({ event: 'button_click_consultation', value: 'send_email' })
+    }
+
     return (
         <section className="py-16">
             <motion.div
@@ -46,7 +64,10 @@ export default function ContactCTA() {
                                 size="sm"
                                 className="mt-auto bg-white text-blue-600 hover:bg-blue-50 dark:bg-yellow-500 dark:text-gray-900 dark:hover:bg-yellow-600"
                             >
-                                <Link onClick={() => sendGTMEvent({ event: 'button_click_consultation', value: 'send_email' })} href="mailto:evan@evandanrosa.com">
+                                <Link
+                                    href="/#contact"
+                                    onClick={handleContactClick}
+                                >
                                     Send Email
                                 </Link>
                             </Button>

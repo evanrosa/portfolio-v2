@@ -9,9 +9,13 @@ import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { toast } from "sonner"
 import { sendGTMEvent } from "@next/third-parties/google"
+import { usePathname, useRouter } from "next/navigation"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
+  const pathname = usePathname()
+  const router = useRouter()
+  const isHomePage = pathname === '/'
 
   const [email, setEmail] = useState("")
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
@@ -42,6 +46,18 @@ export function Footer() {
     }
   }
 
+  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    if (!isHomePage) {
+      router.push('/#contact')
+    } else {
+      const element = document.getElementById('contact')
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+    sendGTMEvent({ event: 'button_click_footer', value: 'email' })
+  }
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault()
@@ -122,7 +138,11 @@ export function Footer() {
               </motion.div>
 
               <motion.div whileHover={{ y: -3 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-                <Link href="mailto:evandanrosa@gmail.com" aria-label="Email Me" onClick={() => sendGTMEvent({ event: 'button_click_footer', value: 'email' })}>
+                <Link
+                  href="/#contact"
+                  onClick={handleContactClick}
+                  aria-label="Contact Me"
+                >
                   <Button size="icon" variant="outline" className="rounded-full h-9 w-9 dark:border-slate-700 dark:hover:bg-slate-800">
                     <Mail className="h-4 w-4" />
                   </Button>
