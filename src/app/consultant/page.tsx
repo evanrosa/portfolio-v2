@@ -8,8 +8,44 @@ import ContactCTA from "../_components/consulting-cta"
 import ExpertiseTabs from "../_components/expertise-tabs"
 
 export const metadata: Metadata = {
-    title: "Data Engineering Consulting Services",
-    description: "Expert consulting services in data pipelines, data architecture, and marketing technology solutions.",
+    title: "Data Engineering Consulting Services | ETL, Data Pipelines & Analytics",
+    description: "Expert data engineering consulting services specializing in ETL pipelines, real-time analytics, data warehouse optimization, and MarTech solutions. Transform your data infrastructure with scalable, efficient solutions.",
+    keywords: [
+        "data engineering consulting",
+        "ETL pipeline development",
+        "data warehouse optimization",
+        "real-time analytics",
+        "MarTech implementation",
+        "data governance",
+        "Apache Kafka consulting",
+        "Apache Spark consulting",
+        "data pipeline architecture",
+        "data integration solutions"
+    ],
+    authors: [{ name: "Evan Rosa", url: "https://www.evro.dev" }],
+    openGraph: {
+        title: "Data Engineering Consulting Services | Evan Rosa",
+        description: "Transform your data infrastructure with expert consulting in ETL pipelines, real-time analytics, and data warehouse optimization.",
+        url: "https://www.evro.dev/consultant",
+        siteName: "Evan Rosa's Data Engineering Services",
+        locale: "en_US",
+        type: "website",
+        images: [{
+            url: "https://www.evro.dev/og-consulting.png", // Make sure this image exists
+            width: 1200,
+            height: 630,
+            alt: "Data Engineering Consulting Services"
+        }]
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Data Engineering Consulting Services",
+        description: "Expert data engineering consulting in ETL, real-time analytics, and data infrastructure.",
+        images: ["https://www.evro.dev/og-consulting.png"], // Make sure this image exists
+    },
+    alternates: {
+        canonical: "https://www.evro.dev/consultant"
+    }
 }
 
 export default function ConsultingPage() {
