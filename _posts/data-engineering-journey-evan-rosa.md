@@ -16,56 +16,76 @@ ogImage:
   url: "/assets/blog/pipelines-to-purpose/cover.jpg"
 ---
 
-> I’m a full-time professional and I still spend weekends writing code and building data pipelines—for fun. Why? Because I’m not just refining skills—I’m building the next chapter of my career, in public.
+> Even after a full week of work and family life, I spend my weekends tinkering with data pipelines—not because I have to, but because this is how I level up. I'm not just refining skills—I’m writing the next chapter of my career, in public.
 
 ## Who I Am
 
-Hi, I’m **Evan Rosa**, a data engineer with nearly a 15 years of experience in the data space and architecting scalable batch and real-time data pipelines. I’ve worked in the public, non-profit, and private sectors for companies like **Digital Turbine**, **HHS/NIH via Booz Allen Hamilton**, and **The American Chemical Society**, where I designed cloud-native solutions powering over **3 billion monthly ad impressions** and supported **10 million+ daily users**.
+Hey there—I’m **Evan Rosa**, a data engineer with nearly 15 years of experience in the data space designing, building, and scaling data systems across the public, private, and nonprofit sectors.
 
-My toolbox includes **Python, SQL, Apache Airflow, Spark, Kafka, and Flink**, and I’m diving deep into **Nessie** and **Apache Iceberg** to master versioned, modular data systems. I specialize in building dynamic, connector-driven ETL frameworks that are fast, flexible, and built to evolve.
+I’ve architected cloud-native solutions for:
+
+- **Digital Turbine**, where I helped drive over **3 billion monthly ad impressions**
+- **HHS/NIH (via Booz Allen Hamilton)**, supporting data integrity in critical health research
+- **The American Chemical Society**, building systems to track engagement to their 80+ peer reviewed journals.
+
+My toolkit includes **Python, SQL, Airflow, Spark, Kafka, Flink**, and lately I’ve been getting my hands dirty with **Apache Iceberg** and **Project Nessie** to bring version control into the modern data stack. I focus on building flexible, connector-driven ETL frameworks that scale—because brittle pipelines simply don't work.
 
 ## Why I’m Writing This Blog
 
-I’m sharing my journey not just to showcase what I know—but to connect with others who care about building **cleaner, faster, more scalable data systems**.
+I’m not just sharing to show off what I’ve built—I’m sharing to **connect**.
 
-This blog is my open notebook. I’ll walk you through:
+This blog is my digital workbench: part journal, part lab notebook, part blueprint. I’ll walk you through:
 
-- Projects I’ve built (code, architecture diagrams, real-world problems)
-- Tools I use and why I choose them
-- Lessons learned—both technical and career-wise
-- How I’m navigating the path to a **senior data engineering role**
+- Projects I’ve built—with architecture diagrams, code, and real-world lessons
+- Tools I’ve adopted (and abandoned), and why
+- Thoughts on what makes great data engineering
+- My personal roadmap toward an **advanced data engineering role at a mission-driven company**
 
-I’m a big believer in **building in public**. The tech world moves fast, and sharing what I’m learning (and struggling with) makes me better—and maybe helps you, too.
+I believe in **building in public**—because the best ideas get sharper when shared. If something I’ve wrestled with helps you debug your own pipeline, that’s a win.
 
 ## What I’ve Built (So Far)
 
-- **End-to-end ETL frameworks** using Airflow, Spark, BigQuery, and Python to reduce processing times and cut cloud costs by over **$100K**.
-- **Streaming analytics systems** with Kafka, Flink, and Superset to power real-time insights for sports analytics and subscription platforms.
-- **Composable, connector-based data pipelines** that dynamically ingest and transform data from APIs, cloud storage, and live streams.
-- **Interactive dashboards** with Looker and Superset to help teams make sense of massive datasets.
+I’ve led and contributed to systems like:
+
+- **Cost-efficient ETL frameworks** with Airflow, Spark, and BigQuery, slashing cloud bills by over **$100K**
+- **Streaming analytics pipelines** using Kafka and Flink to support real-time dashboards in sports tech and subscription platforms
+- **Composable, connector-based ingestion frameworks** pulling data from APIs, GCS, S3, and live event streams
+- **Self-serve analytics layers** with Looker and Superset to help non-technical teams explore data confidently
+
+These aren’t portfolio projects—they’re solutions to business-critical challenges, delivered in production environments with real stakes.
 
 ## How I Think About Modern Data Workflows
 
-The best data pipelines today are:
+To me, the best pipelines aren’t fragile contraptions—they're **well-oiled machines** built for change. They should be:
 
-- **Modular:** Add or swap components easily.
-- **Version-controlled:** Git-like rollbacks with tools like Nessie + Iceberg.
-- **Self-serve:** Empower analysts, not just engineers.
-- **Hybrid:** Real-time and batch working together—not either/or.
-- **Built for trust:** Schema evolution, data testing, and observability baked in.
+- **Modular**: Swap in new tools without rewriting your stack
+- **Version-controlled**: Git-like rollbacks for data models using Nessie and Iceberg
+- **Hybrid**: Real-time and batch playing nicely together
+- **Self-serve**: So analysts aren’t left waiting on pull requests
+- **Observable and testable**: Because trust in data is earned, not assumed
 
-I believe **data engineers should own the user experience of data.** That means clean architecture, good docs, and fast feedback loops.
+In short: **Data engineers should be user experience designers**—not just of dashboards, but of the pipelines themselves.
 
-## What You Can Expect From This Blog
+## What You’ll Find Here
 
-This isn’t a tutorial site (though I’ll share code). It’s a **real-world take** on what it takes to design, debug, and deliver data systems that scale—and grow with the business.
+This isn’t another “hello world” blog.
+
+Instead, I’ll offer:
+
+- Hard-won insights from real-world projects
+- Architectural patterns that stand up to scale
+- Thoughts on building resilient, elegant data systems
+- Ideas on career growth, tooling, and staying sharp in a fast-moving field
+
+If you’re looking for practical, thoughtful takes on modern data engineering—you’re in the right place.
 
 ## Let’s Build Together
 
-Whether you’re another data builder, a hiring manager looking for senior talent, or someone just breaking into the field—welcome.  
-Let’s learn, share, and grow together.
+Whether you’re a fellow builder, a hiring manager looking for a senior engineer, or someone just starting out—welcome.
 
-**Follow along** if you want to level up your data stack—and see what it takes to build pipelines with purpose.
+Let’s share what we know, learn what we don’t, and build something better—together.
+
+**Follow along** if you’re curious about how great pipelines are built—and what it means to build them with purpose.
 
 ---
 

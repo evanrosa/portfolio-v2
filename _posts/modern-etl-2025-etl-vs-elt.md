@@ -17,95 +17,143 @@ ogImage:
   url: "/assets/blog/etl-to-elt/cover.png"
 ---
 
-> ETL isn't dead; it's evolving rapidly. Modern data pipelines in 2025 demand a deeper understanding of both ETL and ELT, each serving unique roles.
+> ETL isn’t dead—it just changed its wardrobe. In 2025, data pipelines are faster, smarter, and more flexible than ever. But to build them right, you need to understand the difference between ETL and ELT—and when to reach for each.
 
-## Traditional ETL: A Brief Overview
+## The Classic ETL Playbook
 
-Traditional ETL (**Extract, Transform, Load**) processes data in three defined stages:
+Let’s start at the beginning: **Extract, Transform, Load**. Once upon a time, this was the standard play in every data engineer’s book of spells:
 
-1. **Extract:** Pull data from various sources like APIs, databases, or files.
-2. **Transform:** Cleanse, aggregate, and reshape the data in a staging environment.
-3. **Load:** Move transformed data into a final destination like a data warehouse.
+1. **Extract** data from source systems—databases, APIs, logs, you name it.
+2. **Transform** the data in a staging area—cleaning, joining, shaping.
+3. **Load** the finished product into a warehouse for querying and dashboards.
 
-Originally, ETL processes were manually coded to gather data from relational databases. Modern ETL tools automate these processes, extracting from diverse sources, transforming data in a staging area, and loading into data warehouses.
+This approach worked well in the days of scheduled batch jobs and tightly controlled schemas. But the modern data stack doesn’t sit still long enough for that old-school rhythm.
 
-## Why the Shift to Modern Approaches?
+## ELT: Flipping the Flow
 
-Today's businesses demand:
+**ELT (Extract, Load, Transform)** turns the process inside-out. Now we load data _before_ transformation—letting your warehouse handle the heavy lifting. It’s faster, cheaper, and more scalable for today’s cloud-native environments.
 
-- **Immediate Insights:** Real-time data for instant decisions.
-- **Scalability:** Handling enormous volumes effortlessly.
-- **Flexibility & Agility:** Quickly adapting to changing business requirements.
-- **Observability & Reliability:** Robust monitoring and fault tolerance.
+| Category              | ETL                                 | ELT                                        |
+| --------------------- | ----------------------------------- | ------------------------------------------ |
+| **Transformation**    | Before loading                      | After loading (in-warehouse or lakehouse)  |
+| **Flexibility**       | Hard to change post-build           | Modular and analyst-friendly               |
+| **Real-Time Support** | Mostly batch                        | Streaming-friendly                         |
+| **Best Fit**          | Compliance-heavy or legacy systems  | Cloud-native, modern stacks                |
+| **Cost & Scale**      | Fixed compute costs                 | Elastic, pay-as-you-go compute             |
+| **Tool Examples**     | Informatica, Talend, Airflow, Spark | dbt, SQLMesh, BigQuery, Iceberg, Snowflake |
 
-This shift paved the way for modern approaches like **ELT (Extract, Load, Transform)** and **streaming-first architectures**.
+## Why the Shift?
 
-## ETL vs. ELT: Key Differences
+Modern businesses don’t want yesterday’s reports tomorrow—they want **insight in motion**:
 
-On a high-level, ETL transforms your data before loading, while ELT transforms data only after loading to your warehouse.
+- Real-time updates
+- Scalable pipelines
+- Change-tolerant schemas
+- Observability and lineage
+- Self-serve tooling for data consumers
 
-| Factor                   | ETL (Extract, Transform, Load)     | ELT (Extract, Load, Transform)              |
-| ------------------------ | ---------------------------------- | ------------------------------------------- |
-| **Transformation**       | Happens before data loading        | Happens inside the data warehouse/data lake |
-| **Flexibility**          | Limited once pipelines are built   | Highly adaptable and analyst-friendly       |
-| **Real-Time Capability** | Typically batch-oriented           | Easily integrates with streaming pipelines  |
-| **Ideal Environment**    | Legacy, compliance-heavy systems   | Cloud-native, large-scale environments      |
-| **Cost & Scalability**   | Moderate scalability, upfront cost | High scalability, compute-on-demand         |
-| **Tooling Examples**     | Informatica, Talend, Airflow       | dbt, SQLMesh, BigQuery, Snowflake, Iceberg  |
+Put simply, the old ETL model can’t keep up with today’s speed of business. Enter streaming-first, modular architectures designed to evolve—not break.
 
-### Advantages and Disadvantages of ETL
+## Batch vs Streaming: Know When to Use What
 
-- **Advantages:**
-  - Manages data storage efficiently.
-  - Easier compliance with data security protocols (GDPR, HIPAA).
-- **Disadvantages:**
-  - Lower flexibility with changing data formats.
-  - Higher initial setup cost.
-  - More continuous maintenance needed.
-  - Higher latency due to pre-loading transformations.
+| Pipeline Type | Best For                                          | Tooling Stack                                    |
+| ------------- | ------------------------------------------------- | ------------------------------------------------ |
+| **Batch**     | Nightly loads, BI reporting, warehousing          | Airflow, Spark, SQLMesh, dbt, Pandas             |
+| **Streaming** | Event tracking, fraud detection, real-time alerts | Kafka, Flink, Spark Structured Streaming, Pulsar |
+| **Hybrid**    | Historical + real-time context                    | Kafka + Flink, Iceberg + SQLMesh, Airflow + dbt  |
 
-### Advantages and Disadvantages of ELT
+Streaming gives you speed. Batch gives you depth. Smart data systems use both—and know when to lean on each.
 
-- **Advantages:**
-  - Faster loading times.
-  - High flexibility and scalability.
-  - Lower initial cost and reduced maintenance.
-  - Capable of handling structured and unstructured data.
-- **Disadvantages:**
-  - Potential security risks due to storing raw data.
-  - Additional security compliance steps required.
+## My Recommended 2025 Data Stack
 
-## Batch vs. Streaming: Aligning Pipelines to Needs
+When I build pipelines today, here’s what’s in my belt:
 
-| Type          | Ideal Use Cases                                                 | Recommended Tools                         |
-| ------------- | --------------------------------------------------------------- | ----------------------------------------- |
-| **Batch**     | Nightly reports, periodic BI insights, data warehousing         | Airflow, Spark, SQLMesh, dbt              |
-| **Streaming** | Event-driven analytics, real-time monitoring and alerts         | Kafka, Flink, Spark Streaming             |
-| **Hybrid**    | Use cases demanding both real-time data and historical roll-ups | Kafka + Flink, AirFlow + SQLMesh, Iceberg |
+### Data Ingestion
 
-## My Recommended Modern Data Stack
+- **Kafka** – battle-tested pub/sub for high-volume event streams
+- **Apache Pulsar** – flexible alternative with multi-tenancy and tiered storage
+- **Fivetran / Airbyte (open-core)** – connectors galore for quick batch loads
+- **Custom Python loaders** – when you need more control
 
-- **Kafka:** Robust real-time data ingestion.
-- **Flink:** Powerful, low-latency stream processing.
-- **Airflow:** Batch orchestration and workflow scheduling.
-- **SQLMesh:** Declarative, modular batch transformations with schema evolution.
-- **Iceberg:** Versioned, schema-evolving data lake tables.
-- **BigQuery:** Highly scalable, serverless cloud warehouse.
-- **Superset:** Interactive, real-time dashboards and visualizations.
+### Data Processing
 
-## Essential Modern ETL/ELT Best Practices
+- **Apache Flink** – real-time stream transformations at scale
+- **Apache Spark** – batch processing powerhouse with rich APIs
+- **SQLMesh** – modular, version-controlled SQL transformations with CI/CD baked in
+- **dbt** – excellent for transformation logic inside warehouses
 
-1. **Build for Resilience:** Prioritize idempotency, fault tolerance, and comprehensive observability.
-2. **Modular Design:** Ensure pipeline components are interchangeable and reusable.
-3. **Implement Version Control:** Utilize tools like Iceberg and Nessie for schema and data management.
-4. **Prioritize Data Quality:** Consistently test transformations to uphold data integrity.
-5. **Enable Self-Service:** Design systems accessible for analysts and data scientists.
+### Data Storage
 
-## Real-World Application & Impact
+- **Apache Iceberg** – versioned, schema-evolving tables for lakes and lakehouses
+- **BigQuery** – serverless warehousing with blazing performance
+- **Snowflake** – cloud-native warehouse with secure data sharing
+- **PostgreSQL** – trusty relational DB for operational storage
 
-At Digital Turbine, I significantly optimized batch ETLs, achieving substantial cost savings (> $100K/year) and supporting massive data loads (3+ billion monthly events). My side projects further demonstrate hybrid streaming-first architectures combining Kafka, Flink, Iceberg, and Airflow for robust performance.
+### Orchestration
+
+- **Apache Airflow** – robust DAG-based scheduling and orchestration
+- **Dagster** – opinionated, type-safe workflows with stronger developer ergonomics
+- **Prefect** – more dynamic orchestration with less boilerplate
+
+### Monitoring & Observability
+
+- **Great Expectations** – test and validate your data with assertions and alerts
+- **Datafold** – regression testing and column-level lineage for transformations
+- **DataHub** – open metadata platform for lineage, ownership, and discovery
+- **Prometheus + Grafana** – metrics and dashboards for pipeline health
+
+### Visualization
+
+- **Apache Superset** – open-source dashboards with SQL-friendly flexibility
+- **Metabase** – fast, self-service dashboards for cross-functional teams
+- **Looker** – semantic layer and governance with clean UX (if budget allows)
+
+### Choosing the Right Tool: It’s All About Fit
+
+Think of this stack like a well-stocked toolbox. You don’t use a sledgehammer to tighten a bolt—and you don’t need Flink to parse a daily CSV.
+
+Each tool listed here has its strengths, but I don’t believe in hammering every problem with the same wrench. Instead, I match tools to the problem space:
+
+- Need low-latency insights from a high-volume event stream? I’ll reach for **Kafka + Flink**.
+- Need quick batch transforms for a reporting layer? **Airflow + SQLMesh** does the trick.
+- Need stakeholder-friendly dashboards? Sometimes **Metabase** is the fastest win.
+
+The point is: great data engineering isn’t about committing to one stack—it’s about knowing your tools and selecting the right one for the job.
+
+Because in the end, a good data engineer doesn’t just build pipelines—they build **systems that solve problems efficiently**.
+
+## Best Practices for Modern ETL & ELT
+
+Whether you’re ETLing, ELTing, or somewhere in between—here’s what I recommend:
+
+1. **Design for failure**  
+   Pipelines break. Make sure yours can recover gracefully. Think retries, timeouts, and dead-letter queues.
+
+2. **Test early and often**  
+   Treat data like code. Use tools like Great Expectations or dbt tests to catch bad data before it spreads.
+
+3. **Make everything modular**  
+   Pipelines are living systems. Structure them in a way that’s easy to extend and refactor.
+
+4. **Track lineage and versions**  
+   Use Iceberg and Nessie to track changes to your data just like Git tracks your code. Debugging becomes a breeze.
+
+5. **Empower end users**  
+   Data should be self-serve. Build pipelines and dashboards that analysts love using—not just ones engineers can tolerate.
+
+## Real-World Impact: From Legacy to Lift-Off
+
+At **Digital Turbine**, I refactored legacy batch pipelines that were brittle, slow, and expensive—migrating them to Spark on Airflow. The result?
+
+- **Over $100K in annual cloud savings**
+- **Massive improvements in throughput**
+- **Faster feedback loops for data consumers**
+
+On the side, I’ve built hybrid streaming-first platforms combining **Kafka, Flink, Iceberg**, and **SQLMesh** to power systems with millions of daily events—and they’re still humming along.
 
 ---
 
-**Connect with me:**
+**Let’s Connect**  
+If you’re building modern data systems—or dreaming of pipelines that don’t fall apart when change happens—let’s talk.
+
 [LinkedIn](https://www.linkedin.com/in/evan-rosa/) | [Portfolio](https://www.evro.dev/)
