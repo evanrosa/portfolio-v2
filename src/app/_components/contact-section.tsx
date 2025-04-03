@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { ContactForm } from "@/app/_components/contact-form"
 import { Card, CardContent } from "@/components/ui/card"
-import { Mail, Github, Linkedin, Phone } from "lucide-react"
+import { Mail, Github, Linkedin, Phone, BookOpen } from "lucide-react"
 import Link from "next/link"
 import { sendGTMEvent } from "@next/third-parties/google"
 
@@ -75,6 +75,16 @@ export function PortfolioContactSection() {
                                                 aria-label="LinkedIn"
                                             >
                                                 <Linkedin className="h-5 w-5 dark:text-slate-300" />
+                                            </Link>
+
+                                            <Link
+                                                onClick={() => sendGTMEvent({ event: 'button_click_contact_section', value: 'medium' })}
+                                                href="https://medium.com/@evan-rosa"
+                                                target="_blank"
+                                                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors"
+                                                aria-label="Medium Blog"
+                                            >
+                                                <BookOpen className="h-5 w-5 dark:text-slate-300" />
                                             </Link>
                                         </div>
                                     </div>

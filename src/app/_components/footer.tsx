@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Github, Linkedin, Mail } from "lucide-react"
+import { Github, Linkedin, Mail, BookOpen } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "./theme-toggler"
 import { useState } from "react"
@@ -133,6 +133,20 @@ export function Footer() {
                 >
                   <Button size="icon" variant="outline" className="rounded-full h-9 w-9 dark:border-slate-700 dark:hover:bg-slate-800">
                     <Linkedin className="h-4 w-4" />
+                  </Button>
+                </Link>
+              </motion.div>
+
+              <motion.div whileHover={{ y: -3 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+                <Link
+                  href="https://medium.com/@evan-rosa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Medium Blog"
+                  onClick={() => sendGTMEvent({ event: 'button_click_footer', value: 'medium' })}
+                >
+                  <Button size="icon" variant="outline" className="rounded-full h-9 w-9 dark:border-slate-700 dark:hover:bg-slate-800">
+                    <BookOpen className="h-4 w-4" />
                   </Button>
                 </Link>
               </motion.div>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { ArrowDownCircle, Database, ExternalLink, Github, Linkedin, Mail, Server } from "lucide-react"
+import { ArrowDownCircle, Database, ExternalLink, Github, Linkedin, Mail, Server, BookOpen } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import DataEngineerVisual from "./svg/data-eng-viz"
@@ -100,7 +100,9 @@ export default function DataEngineerIntro() {
                         <div className="flex gap-4">
                             {[{ icon: Github, href: 'https://github.com/evanrosa', label: 'github' },
                             { icon: Linkedin, href: 'https://www.linkedin.com/in/evan-rosa/', label: 'linkedin' },
-                            { icon: Mail, href: 'mailto:evandanrosa@gmail.com', label: 'email' }].map(({ icon: Icon, href, label }) => (
+                            { icon: BookOpen, href: 'https://medium.com/@evan-rosa', label: 'medium' },
+                            { icon: Mail, href: 'mailto:evandanrosa@gmail.com', label: 'email' },
+                            ].map(({ icon: Icon, href, label }) => (
                                 <Button
                                     key={label}
                                     variant="outline"
