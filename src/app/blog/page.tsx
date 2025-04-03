@@ -2,6 +2,35 @@ import { HeroPost } from "@/app/_components/hero-post"
 import { MoreStories } from "@/app/_components/more-stories"
 import { Intro } from "@/app/_components/intro-blog"
 import { getAllPosts } from "@/lib/api"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: 'Data Engineering Blog | Insights on ETL, Kafka, Spark & More',
+    description: 'Explore in-depth articles about data engineering, ETL pipelines, real-time processing, and best practices using Kafka, Spark, Flink, SQLMesh, and more.',
+    keywords: [
+        'data engineering blog',
+        'ETL tutorials',
+        'Kafka guides',
+        'Apache Spark',
+        'Apache Flink',
+        'SQLMesh',
+        'data pipeline architecture',
+        'real-time processing',
+        'big data engineering',
+        'data infrastructure'
+    ],
+    openGraph: {
+        title: 'Data Engineering Blog | Evan Rosa',
+        description: 'In-depth articles about data engineering, ETL pipelines, and real-time processing.',
+        url: 'https://www.evro.dev/blog',
+        siteName: 'Evan Rosa\'s Blog',
+        locale: 'en_US',
+        type: 'website',
+    },
+    alternates: {
+        canonical: 'https://www.evro.dev/blog'
+    }
+}
 
 export default async function BlogPage() {
     const posts = getAllPosts()

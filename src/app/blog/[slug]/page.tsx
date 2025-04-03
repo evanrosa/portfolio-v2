@@ -52,8 +52,7 @@ type Params = {
   }>;
 };
 
-export async function generateMetadata(props: Params): Promise<Metadata> {
-  const params = await props.params;
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const posts = getAllPosts();
   const post = posts.find((p: PostType) => p.slug === params.slug)
 
@@ -61,14 +60,45 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     return notFound();
   }
 
-  const title = `${post.title} | Next.js Blog Example with ${CMS_NAME}`;
+  const url = `https://www.evro.dev/blog/${post.slug}`;
 
   return {
-    title,
+    title: `${post.title} | Evan Rosa's Data Engineering Blog`,
+    description: post.excerpt,
+    keywords: [
+      'data engineering',
+      'ETL pipelines',
+      'data infrastructure',
+      ...post.title.toLowerCase().split(' '), // Add post title words as keywords
+    ],
+    authors: [{ name: post.author.name, url: 'https://www.evro.dev' }],
     openGraph: {
-      title,
-      images: [post.ogImage.url],
+      title: post.title,
+      description: post.excerpt,
+      url,
+      siteName: 'Evan Rosa\'s Blog',
+      locale: 'en_US',
+      type: 'article',
+      publishedTime: post.date,
+      authors: [post.author.name],
+      images: [
+        {
+          url: post.coverImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        }
+      ],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [post.coverImage],
+    },
+    alternates: {
+      canonical: url
+    }
   };
 }
 
