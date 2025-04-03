@@ -66,8 +66,8 @@ export default function DataEngineerIntro() {
 
                         <p className="mb-6 max-w-2xl text-base sm:text-lg text-muted-foreground dark:text-slate-300">
                             I build robust data pipelines and scalable data infrastructure that transform raw data into valuable
-                            insights. With expertise in distributed systems, ETL processes, and cloud platforms, I help organizations
-                            harness the full potential of their data.
+                            insights that you care about. With expertise in distributed systems, ETL processes, and cloud platforms, I help organizations
+                            harness the full potential of their data to drive business growth.
                         </p>
 
                         <div className="mb-6 flex flex-row flex-wrap gap-2 sm:gap-4 justify-center sm:justify-start">

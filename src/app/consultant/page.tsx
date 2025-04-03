@@ -97,7 +97,7 @@ export default function ConsultingPage() {
                                     <p>
                                         I follow a collaborative approach to understand your business requirements, data sources, and
                                         analytics needs. Based on this understanding, I design a pipeline architecture that is optimized for
-                                        your specific use case, considering factors like data volume, velocity, variety, and veracity.
+                                        your specific use case, considering factors like scale, speed, data quality and types, cost, and more.
                                     </p>
                                 </div>
                             }
