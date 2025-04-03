@@ -10,11 +10,14 @@ import { BlogPostStructuredData } from "@/app/_components/structured-data";
 import { Post as PostType } from "@/interfaces/post";
 import { getAllPosts } from "@/lib/api";
 
-export default async function Post({
-  params,
-}: {
-  params: { slug: string }
-}) {
+interface PageProps {
+  params: {
+    slug: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+export default async function Post({ params }: PageProps) {
   const posts = getAllPosts();
   const post = posts.find((p: PostType) => p.slug === params.slug)
 
@@ -49,11 +52,7 @@ export default async function Post({
   );
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const posts = getAllPosts();
   const post = posts.find((p: PostType) => p.slug === params.slug)
 
