@@ -3,7 +3,7 @@ subject: "🧠 The Inner Join #1: Scaling ETL with Kafka + Flink"
 date: "2025-04-01"
 ---
 
-# Scaling ETL with Kafka and Flink
+# Scaling ETL with Kafka and Flink TEST
 
 Want to build real-time data pipelines that scale like Netflix and Uber?
 
