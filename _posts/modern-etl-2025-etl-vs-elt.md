@@ -19,7 +19,7 @@ ogImage:
 
 > ETL isn't dead; it's evolving rapidly. Modern data pipelines in 2025 demand a deeper understanding of both ETL and ELT, each serving unique roles.
 
-## 📦 Traditional ETL: A Brief Overview
+## Traditional ETL: A Brief Overview
 
 Traditional ETL (**Extract, Transform, Load**) processes data in three defined stages:
 
@@ -29,7 +29,7 @@ Traditional ETL (**Extract, Transform, Load**) processes data in three defined s
 
 Originally, ETL processes were manually coded to gather data from relational databases. Modern ETL tools automate these processes, extracting from diverse sources, transforming data in a staging area, and loading into data warehouses.
 
-## ⚡ Why the Shift to Modern Approaches?
+## Why the Shift to Modern Approaches?
 
 Today's businesses demand:
 
@@ -40,7 +40,7 @@ Today's businesses demand:
 
 This shift paved the way for modern approaches like **ELT (Extract, Load, Transform)** and **streaming-first architectures**.
 
-## 🔄 ETL vs. ELT: Key Differences
+## ETL vs. ELT: Key Differences
 
 On a high-level, ETL transforms your data before loading, while ELT transforms data only after loading to your warehouse.
 
@@ -75,7 +75,7 @@ On a high-level, ETL transforms your data before loading, while ELT transforms d
   - Potential security risks due to storing raw data.
   - Additional security compliance steps required.
 
-## 🌊 Batch vs. Streaming: Aligning Pipelines to Needs
+## Batch vs. Streaming: Aligning Pipelines to Needs
 
 | Type          | Ideal Use Cases                                                 | Recommended Tools                         |
 | ------------- | --------------------------------------------------------------- | ----------------------------------------- |
@@ -83,7 +83,7 @@ On a high-level, ETL transforms your data before loading, while ELT transforms d
 | **Streaming** | Event-driven analytics, real-time monitoring and alerts         | Kafka, Flink, Spark Streaming             |
 | **Hybrid**    | Use cases demanding both real-time data and historical roll-ups | Kafka + Flink, AirFlow + SQLMesh, Iceberg |
 
-## 🧰 My Recommended Modern Data Stack
+## My Recommended Modern Data Stack
 
 - **Kafka:** Robust real-time data ingestion.
 - **Flink:** Powerful, low-latency stream processing.
@@ -93,7 +93,7 @@ On a high-level, ETL transforms your data before loading, while ELT transforms d
 - **BigQuery:** Highly scalable, serverless cloud warehouse.
 - **Superset:** Interactive, real-time dashboards and visualizations.
 
-## 🌟 Essential Modern ETL/ELT Best Practices
+## Essential Modern ETL/ELT Best Practices
 
 1. **Build for Resilience:** Prioritize idempotency, fault tolerance, and comprehensive observability.
 2. **Modular Design:** Ensure pipeline components are interchangeable and reusable.
@@ -101,17 +101,11 @@ On a high-level, ETL transforms your data before loading, while ELT transforms d
 4. **Prioritize Data Quality:** Consistently test transformations to uphold data integrity.
 5. **Enable Self-Service:** Design systems accessible for analysts and data scientists.
 
-## 🚧 Real-World Application & Impact
+## Real-World Application & Impact
 
 At Digital Turbine, I significantly optimized batch ETLs, achieving substantial cost savings (> $100K/year) and supporting massive data loads (3+ billion monthly events). My side projects further demonstrate hybrid streaming-first architectures combining Kafka, Flink, Iceberg, and Airflow for robust performance.
 
-## 📢 What's Coming Next?
-
-Stay tuned as we dive deeper into **why streaming ETL is pivotal** for future-ready organizations.
-
-Want to follow along with real projects, actionable advice, and practical examples?
-
 ---
 
-**🔗 Connect with me:**
+**Connect with me:**
 [LinkedIn](https://www.linkedin.com/in/evan-rosa/) | [Portfolio](https://www.evro.dev/)

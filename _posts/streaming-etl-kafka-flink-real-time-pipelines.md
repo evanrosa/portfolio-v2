@@ -125,11 +125,6 @@ In my work, I often:
 
 This hybrid approach gives you **the best of both worlds**.
 
-## 📢 Up Next
-
-Next post: _“How I’d Build a Modern Data Stack From Scratch in 2025”_  
-Get my unfiltered take on tools, trade-offs, and how I’d architect a flexible, future-proof platform.
-
 ---
 
 **🔗 Connect with me:**  
