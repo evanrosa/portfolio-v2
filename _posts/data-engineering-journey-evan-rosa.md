@@ -20,7 +20,7 @@ ogImage:
 
 ## Who I Am
 
-Hi, I’m **Evan Rosa**, a data engineer with nearly a decade of experience architecting scalable batch and real-time data pipelines. I’ve worked in the public, non-profit, and private sectors for companies like **Digital Turbine**, **HHS/NIH via Booz Allen Hamilton**, and **The American Chemical Society**, where I designed cloud-native solutions powering over **3 billion monthly ad impressions** and supported **10 million+ daily users**.
+Hi, I’m **Evan Rosa**, a data engineer with nearly a 15 years of experience in the data space and architecting scalable batch and real-time data pipelines. I’ve worked in the public, non-profit, and private sectors for companies like **Digital Turbine**, **HHS/NIH via Booz Allen Hamilton**, and **The American Chemical Society**, where I designed cloud-native solutions powering over **3 billion monthly ad impressions** and supported **10 million+ daily users**.
 
 My toolbox includes **Python, SQL, Apache Airflow, Spark, Kafka, and Flink**, and I’m diving deep into **Nessie** and **Apache Iceberg** to master versioned, modular data systems. I specialize in building dynamic, connector-driven ETL frameworks that are fast, flexible, and built to evolve.
 
