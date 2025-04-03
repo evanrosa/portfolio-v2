@@ -10,8 +10,13 @@ import { BlogPostStructuredData } from "@/app/_components/structured-data";
 import { Post as PostType } from "@/interfaces/post";
 import { getAllPosts } from "@/lib/api";
 
-export default async function Post(props: Params) {
-  const params = await props.params;
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function Post({ params }: Props) {
   const posts = getAllPosts();
   const post = posts.find((p: PostType) => p.slug === params.slug)
 
@@ -46,13 +51,7 @@ export default async function Post(props: Params) {
   );
 }
 
-type Params = {
-  params: Promise<{
-    slug: string;
-  }>;
-};
-
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const posts = getAllPosts();
   const post = posts.find((p: PostType) => p.slug === params.slug)
 
