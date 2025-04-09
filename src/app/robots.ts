@@ -18,23 +18,23 @@ export default function robots(): MetadataRoute.Robots {
                     '/api/*',
                     '/sign-in',
                     '/sign-up',
+                    'https://clerk.evro.dev/*',
                 ]
             },
             {
-                // Special rules for Google
                 userAgent: 'Googlebot',
                 allow: '/',
-                // Add shorter crawl delay for Google
+                disallow: ['https://clerk.evro.dev/*'],
                 crawlDelay: 1
             },
             {
-                // Special rules for Bing
                 userAgent: 'Bingbot',
                 allow: '/',
+                disallow: ['https://clerk.evro.dev/*'],
                 crawlDelay: 2
             }
         ],
         sitemap: 'https://www.evro.dev/sitemap.xml',
         host: 'https://www.evro.dev'
     }
-} 
+}
