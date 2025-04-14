@@ -74,8 +74,20 @@ export async function generateMetadata(
       '@type': 'Person',
       name: post.author,
     },
+    publisher: {
+      '@type': 'Organization',
+      name: 'The Inner Join Blog - Evan Rosa',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.evro.dev/logo.png'
+      }
+    },
     description: post.excerpt,
     image: post.coverImage,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.evro.dev/blog/${post.slug}`
+    }
   };
 
   return {
