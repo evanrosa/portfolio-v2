@@ -162,5 +162,7 @@ The **Bronze Silver and Gold data layers** pattern is a proven way to build scal
 
 ---
 
-🔗 **Helpful Resource**: [Modern Data Stack Guide](https://moderndatastack.xyz/)  
-📞 **Need a Consultant?** [Let’s talk](https://www.evro.dev/consultant)
+**Connect with me:**  
+[LinkedIn](https://www.linkedin.com/in/evan-rosa/) | [Portfolio](https://www.evro.dev/)
+
+**Need a Consultant?** [Let’s talk](https://www.evro.dev/consultant)
