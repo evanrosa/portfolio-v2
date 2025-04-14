@@ -57,7 +57,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const posts = getAllPosts();
-  const post = posts.find((p: PostType) => p.slug === params.slug)
+  const post = posts.find(async (p: PostType) => p.slug === (await params).slug);
 
   if (!post) {
     return notFound();
