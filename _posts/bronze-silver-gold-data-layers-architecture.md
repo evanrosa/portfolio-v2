@@ -26,7 +26,7 @@ In fast-moving startups and enterprise settings alike, one of the biggest challe
 
 This is where the **Bronze Silver and Gold data layers** come into play. These layers form the backbone of a **modular, reliable, and scalable** data platform. They create clarity, enable governance, and prevent tech debt down the line.
 
-## 🧱 What Are the Bronze, Silver, and Gold Layers?
+## What Are the Bronze, Silver, and Gold Layers?
 
 | **Layer** | **Purpose**                     | **Data Type**          | **Primary Users**      |
 | --------- | ------------------------------- | ---------------------- | ---------------------- |
@@ -36,7 +36,7 @@ This is where the **Bronze Silver and Gold data layers** come into play. These l
 
 Each layer serves a distinct role and addresses a specific audience—from backend engineers to decision-makers.
 
-## 🥉 Bronze Layer: Raw and Untouched
+## Bronze Layer: Raw and Untouched
 
 ### Definition:
 
@@ -58,7 +58,7 @@ The Bronze layer holds **raw data straight from the source**, such as Kafka stre
 
 This layer gives your team a **replayable, auditable source of truth**, which is vital for debugging and compliance.
 
-## 🥈 Silver Layer: Clean and Curated
+## Silver Layer: Clean and Curated
 
 ### Definition:
 
@@ -81,7 +81,7 @@ The Silver layer is your **standardized, enriched dataset**, prepared for modeli
 
 Silver layers provide **queryable, trustworthy datasets** that analysts and ML teams can rely on.
 
-## 🥇 Gold Layer: Business-Ready Intelligence
+## Gold Layer: Business-Ready Intelligence
 
 ### Definition:
 
@@ -103,7 +103,7 @@ The Gold layer contains **aggregated, modeled, and optimized datasets** used by 
 
 Gold tables ensure **clarity, reliability, and speed**, essential for decision-making and operational dashboards.
 
-## 🔁 From Bronze to Gold: A Real-World Example
+## From Bronze to Gold: A Real-World Example
 
 Imagine you're capturing product clickstream data:
 
@@ -113,7 +113,7 @@ Imagine you're capturing product clickstream data:
 
 Every step is **versioned**, testable, and independently queryable.
 
-## 🏢 Why Large Enterprises Prefer This Architecture
+## Why Large Enterprises Prefer This Architecture
 
 Unlike startups, **enterprise organizations demand governance, scalability, and compliance**. Here’s how layered data architecture meets those needs:
 
@@ -124,7 +124,7 @@ Unlike startups, **enterprise organizations demand governance, scalability, and 
 
 The layered approach brings **reliability and traceability** to the forefront of analytics.
 
-## ❓ Frequently Asked Questions (FAQs)
+## Frequently Asked Questions (FAQs)
 
 ### 1. What is the purpose of Bronze Silver and Gold data layers?
 
@@ -154,7 +154,7 @@ Optimize transformations in the Silver layer and use materialized views or star 
 - Skipping data quality in Silver
 - Treating Bronze as “just logs” instead of a critical audit layer
 
-## ✅ Final Thoughts: Architecture First, Dashboards Later
+## Final Thoughts: Architecture First, Dashboards Later
 
 Scaling analytics isn’t about flashy dashboards. It’s about strong foundations.
 
