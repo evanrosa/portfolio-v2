@@ -1,7 +1,6 @@
 import fs from 'fs';
 import { Feed } from 'feed';
 import { getAllPosts } from '../src/lib/api'; // Adjust path if necessary
-import { Post } from '../src/interfaces/post'; // Adjust path if necessary
 
 // --- Configuration ---
 const SITE_URL = 'https://www.evro.dev'; // Your site's base URL
@@ -13,7 +12,7 @@ const AUTHOR_LINK = 'https://www.evro.dev';
 // --- End Configuration ---
 
 async function generateRssFeed() {
-  const posts: Post[] = getAllPosts(); // Fetch all posts
+  const posts = getAllPosts(); // Fetch all posts
 
   const feed = new Feed({
     title: SITE_TITLE,
@@ -24,7 +23,7 @@ async function generateRssFeed() {
     image: `${SITE_URL}/logo.png`, // Optional: URL to site logo
     favicon: `${SITE_URL}/favicon.ico`, // Optional: URL to site favicon
     copyright: `All rights reserved ${new Date().getFullYear()}, ${AUTHOR_NAME}`,
-    updated: new Date(posts[0]?.date || Date.now()), // Assume posts are sorted by date desc
+    updated: new Date(posts[0]?.date || Date.now()), // Use optional chaining just in case posts array is empty or date is missing
     generator: 'Next.js using feed package', // Optional: Just for info
     feedLinks: {
       rss2: `${SITE_URL}/feed.xml`, // Link to the feed itself
@@ -40,11 +39,18 @@ async function generateRssFeed() {
 
   // Add each post to the feed
   posts.forEach((post) => {
+    // Add checks for potentially missing properties if your data source isn't guaranteed
+    if (!post || !post.slug || !post.title || !post.date || !post.excerpt || !post.author) {
+       console.warn(`Skipping post due to missing data: ${post?.slug || 'Unknown'}`);
+       return;
+    }
+
     const postUrl = `${SITE_URL}/blog/${post.slug}`;
-    // Note: The 'feed' library expects full URLs for images
-    const imageUrl = post.coverImage.startsWith('/')
-      ? `${SITE_URL}${post.coverImage}`
-      : post.coverImage;
+    // Use optional chaining for coverImage and ensure it's treated as a string
+    const coverImageString = String(post.coverImage || '');
+    const imageUrl = coverImageString.startsWith('/')
+      ? `${SITE_URL}${coverImageString}`
+      : coverImageString;
 
     // You might need to generate a plain text or HTML version of the content
     // For simplicity, we'll use the excerpt here, but ideally, you'd render markdown
@@ -59,13 +65,13 @@ async function generateRssFeed() {
       // content: contentHtml, // Uncomment if you render full content
       author: [
         {
-          name: post.author, // Use post-specific author if needed
-          // email: AUTHOR_EMAIL, // Optional
-           link: post.authorUrl || AUTHOR_LINK, // Use specific author URL if available
+          name: post.author,
+           // Use optional chaining for authorUrl
+           link: post.authorUrl || AUTHOR_LINK,
         },
       ],
       date: new Date(post.date),
-      image: imageUrl, // Add the cover image
+      image: imageUrl || undefined, // Ensure image is either a string or undefined
       // category: post.tags?.map(tag => ({ name: tag })) // Add tags if available
     });
   });
