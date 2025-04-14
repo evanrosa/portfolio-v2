@@ -57,8 +57,8 @@ async function generateRssFeed() {
       description: post.excerpt,
       author: [
         {
-          name: post.author,
-          link: post.authorUrl || AUTHOR_LINK,
+          name: post.author.name,
+          link: (post as any).authorUrl || AUTHOR_LINK,
         },
       ],
       date: new Date(post.date),
