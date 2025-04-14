@@ -1,9 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "node ./scripts/generate-rss.mjs && next build",
-    "start": "next start"
+    "dev": "next dev",
+    "build": "pnpm tsx ./scripts/generate-rss.ts && next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.12.12",
@@ -59,6 +60,7 @@
     "autoprefixer": "^10.4.19",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.0.17",
+    "tsx": "^4.7.0",
     "typescript": "^5.5.2"
   },
   "packageManager": "pnpm@10.7.1+sha256.dc514890ea719003cb7a57d6b21af24fdafadd9f171e7567eca1665d7cfcef76"
