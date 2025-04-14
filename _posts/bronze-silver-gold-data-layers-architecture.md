@@ -1,6 +1,6 @@
 ---
 title: "Top-Tier Guide to Designing Enterprise-Grade Data Architecture with Bronze, Silver, and Gold Layers"
-coverImage: "/assets/blog/bronze-silver-gold/cover.jpg"
+coverImage: "/assets/blog/bronze-silver-gold/cover.png"
 date: "2025-04-11"
 excerpt: "Master enterprise data pipelines with the Bronze Silver and Gold data layers model. Learn how to build scalable, modular, and reliable data architecture for analytics success."
 tags:
@@ -13,7 +13,7 @@ tags:
   ]
 author: "Evan Rosa"
 ogImage:
-  url: "/assets/blog/bronze-silver-gold/cover.jpg"
+  url: "/assets/blog/bronze-silver-gold/cover.png"
 ---
 
 > _You wouldn’t build a skyscraper on sand. So why build analytics on raw data?_

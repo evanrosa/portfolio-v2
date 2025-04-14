@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { CMS_NAME } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
@@ -52,8 +52,10 @@ type Params = {
   }>;
 };
 
-export async function generateMetadata(props: Params): Promise<Metadata> {
-  const params = await props.params;
+export async function generateMetadata(
+  { params }: Params,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const posts = getAllPosts();
   const post = posts.find((p: PostType) => p.slug === params.slug)
 
@@ -63,11 +65,28 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 
   const title = `${post.title} | The Inner Join Blog By Evan Rosa`;
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    datePublished: post.date,
+    author: {
+      '@type': 'Person',
+      name: post.author,
+    },
+    description: post.excerpt,
+    image: post.coverImage,
+  };
+
   return {
     title,
+    description: post.excerpt,
     openGraph: {
       title,
       images: [post.ogImage.url],
+    },
+    other: {
+      'application/ld+json': JSON.stringify(jsonLd),
     },
   };
 }
