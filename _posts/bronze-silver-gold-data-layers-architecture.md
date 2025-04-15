@@ -18,8 +18,6 @@ ogImage:
   url: "/assets/blog/bronze-silver-gold/cover.png"
 ---
 
-> _You wouldn't build a skyscraper on sand. So why build analytics on raw data?_
-
 # Top-Tier Guide to Designing Enterprise-Grade Data Architecture with Bronze, Silver, and Gold Layers
 
 ## Why Bronze Silver and Gold Data Layers Matter in Modern Data Architecture
