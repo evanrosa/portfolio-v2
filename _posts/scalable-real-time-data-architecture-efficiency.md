@@ -21,9 +21,9 @@ ogImage:
   url: "/assets/blog/scalable-data-architecture/cover.png"
 ---
 
-> In the enterprise, “it works” isn’t enough. You need “it works at scale, fast, and without breaking.”
+> In enterprise, “it works” isn’t enough... You need “it works at scale, fast, and without breaking.”
 
-This guide picks up where Bronze/Silver/Gold left off—drilling into the **design patterns**, **infrastructure components**, and **operational best practices** that make a modern data platform **enterprise-grade**. We’ll cover:
+Today's article we discuss **design patterns**, **infrastructure components**, and **operational best practices** that make a modern data platform **enterprise-grade**. We will cover:
 
 1. Key challenges and patterns
 2. High-level architecture blueprint
@@ -137,7 +137,7 @@ This guide picks up where Bronze/Silver/Gold left off—drilling into the **desi
 
 ## Conclusion
 
-Building an enterprise-grade data platform means more than picking tools—it’s about **patterns** and **processes**:
+Building an enterprise-grade data platform means more than picking tools, it’s about **patterns** and **processes**:
 
 - **Append-only Bronze** for speed & audit
 - **Stateful streaming** for freshness & correctness
