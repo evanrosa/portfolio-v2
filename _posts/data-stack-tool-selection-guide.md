@@ -72,16 +72,10 @@ Transform data into useful, structured assets.
 
 **When to Use**:
 
-- **dbt** for straightforward analytics engineering and SQL-centric workflows.
-- **SQLMesh** for incremental pipelines, complex transformations, and sophisticated model management.
-- **Apache Spark** for heavy data transformations, analytics at scale, batch processing, and unified batch-streaming workloads.
-- **Apache Flink** for low-latency, stateful real-time stream processing and event-driven use cases.
-
-**When to Use**:
-
 - dbt for straightforward analytics engineering and SQL-centric workflows.
-- SQLMesh for incremental pipelines and more complex model management.
-- Spark/Flink for heavy data transformations at scale and stream processing.
+- SQLMesh for incremental pipelines, complex transformations, and sophisticated model management.
+- Apache Spark for heavy data transformations, analytics at scale, batch processing, and unified batch-streaming workloads.
+- Apache Flink for low-latency, stateful real-time stream processing and event-driven use cases.
 
 ## 5. Serving Layer & Analytics Tools
 
