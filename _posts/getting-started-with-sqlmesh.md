@@ -68,7 +68,7 @@ Think of it as **dbt meets Git**, with real CI/CD principles.
 
 ## Key Concepts
 
-### 1. **Models as Files**
+### 1. Models as Files
 
 Every model is a `.sql` file + optional Python metadata.
 
@@ -77,7 +77,7 @@ Every model is a `.sql` file + optional Python metadata.
 SELECT * FROM raw.orders WHERE order_date >= '2023-01-01'
 ```
 
-### 2. **Environment Support**
+### 2. Environment Support
 
 Develop locally without impacting production:
 
@@ -86,7 +86,7 @@ sqlmesh plan --environment dev
 sqlmesh apply
 ```
 
-### 3. **Incremental Execution**
+### 3. Incremental Execution
 
 SQLMesh knows what needs to be rebuilt:
 
@@ -94,7 +94,7 @@ SQLMesh knows what needs to be rebuilt:
 - It analyzes dependencies
 - It only runs what’s affected
 
-### 4. **Versioned Planning**
+### 4. Versioned Planning
 
 Before applying changes, SQLMesh shows you the full plan:
 
@@ -106,7 +106,7 @@ Before applying changes, SQLMesh shows you the full plan:
 sqlmesh plan --start '2024-01-01' --end '2024-01-15'
 ```
 
-### 5. **Time-Aware Backfills**
+### 5. Time-Aware Backfills
 
 You can backfill incrementally:
 
