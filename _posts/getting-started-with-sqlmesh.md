@@ -118,13 +118,13 @@ sqlmesh backfill --start '2024-04-01' --end '2024-04-30'
 
 ## Getting Started with SQLMesh
 
-### ✅ Step 1: Install
+### Step 1: Install
 
 ```bash
 pip install sqlmesh
 ```
 
-### ✅ Step 2: Scaffold a Project
+### Step 2: Scaffold a Project
 
 ```bash
 sqlmesh init
@@ -152,7 +152,7 @@ gateways:
       password: ${SNOWFLAKE_PASSWORD}
 ```
 
-### ✅ Step 3: Define a Model
+### Step 3: Define a Model
 
 Create a file in `models/`:
 
@@ -166,7 +166,7 @@ FROM raw.user_logins
 GROUP BY user_id, login_day
 ```
 
-### ✅ Step 4: Plan & Apply
+### Step 4: Plan & Apply
 
 ```bash
 sqlmesh plan --environment dev
@@ -175,7 +175,7 @@ sqlmesh apply
 
 This builds the model in your staging schema.
 
-### ✅ Step 5: Promote to Prod
+### Step 5: Promote to Prod
 
 Once validated, switch to prod:
 
@@ -201,14 +201,14 @@ This enables versioned, testable, and repeatable data deployments across teams.
 
 ## When to Use SQLMesh
 
-**✅ Use SQLMesh if you:**
+**Use SQLMesh if you:**
 
 - Want safer deploys with environments
 - Need dependency tracking across models
 - Prefer Git-based, testable pipelines
 - Are building production-grade data systems
 
-**🚫 Don’t use SQLMesh if you:**
+**Don’t use SQLMesh if you:**
 
 - Only run a few ad-hoc queries
 - Don’t use Git or CI/CD for data
