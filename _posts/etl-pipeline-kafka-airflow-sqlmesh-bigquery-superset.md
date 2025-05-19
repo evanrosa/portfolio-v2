@@ -232,19 +232,69 @@ pipe_demo/
 
 ## Setup & Commands for Building the Pipeline
 
+This section provides the essential commands and configuration steps needed to build the ETL pipeline. While some familiarity with Docker, Python, and cloud platforms is helpful, the instructions aim to support both experienced users and those setting everything up from scratch. If you're new to these tools, follow the earlier prerequisite section to get your local environment ready before diving into each service's setup.
+
+If you're starting from scratch, follow these steps first:
+
+#### Install Prerequisites
+
+- Install Docker Desktop for your operating system: https://www.docker.com/products/docker-desktop
+- Install Python (3.9+) from https://www.python.org/downloads/
+- Install pip if it's not included with your Python installation
+- It's recommended that you use a virtual environment (eg venv)
+
+Once these are ready, continue with the steps below to configure each component.
+
+This section includes the exact commands and configuration steps used to set up each part of the pipeline. Whether you're running locally or extending this for cloud production, these building blocks are reusable.
+
 ### Kafka Setup
+
+Kafka relies on Zookeeper to maintain configuration and leader election in the cluster, so both services must be started together. Kafka receives and buffers real-time data sent from producers—our simulated event script in this case.
+
+Here's an example docker-compose.yml snippet to spin up Kafka and Zookeeper locally using the Bitnami images:
+
+```bash
+version: '3'
+services:
+  zookeeper:
+    image: bitnami/zookeeper:latest
+    ports:
+      - "2181:2181"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+  kafka:
+    image: bitnami/kafka:latest
+    ports:
+      - "9092:9092"
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
+```
+
+1.  Install Docker Desktop (if not already installed).
+2.  Start Kafka and Zookeeper using Docker Compose:
 
 ```bash
 docker-compose up -d kafka zookeeper
+```
+
+3. Run producers to generate data. This can be the example of simulate_producer.py or actual data.
+
+```bash
 python simulate_producer.py
-kcat -b localhost:9092 -t events -C -o beginning
 ```
 
 ### SQLMesh Setup
 
 ```bash
 pip install sqlmesh[gcp]
-sqlmesh init
+sqlmesh init [SQL_DIALECT]
 sqlmesh plan --environment dev
 sqlmesh apply --environment dev
 sqlmesh backfill --start '2024-04-01' --end '2024-04-30'
@@ -252,12 +302,22 @@ sqlmesh backfill --start '2024-04-01' --end '2024-04-30'
 
 ### Airflow Setup
 
+1. Start Airflow via Docker Compose:
+
 ```bash
 docker-compose up -d airflow webserver scheduler
 # then visit http://localhost:8080 to trigger DAGs
 ```
 
+2. Access the UI at http://localhost:8080 and enable your DAG.
+3. Manually trigger a DAG run (or wait for the schedule to trigger it).
+
 ### BigQuery Setup
+
+1. Create a Google Cloud project, BigQuery dataset, and service account with editor permissions.
+2. Download the service account key JSON.
+3. Mount the key into the SQLMesh container: /secrets/bigquery.json
+4. Configure the gateway in sqlmesh.yaml:
 
 ```yaml
 gateways:
@@ -271,10 +331,25 @@ gateways:
 
 ### Superset Setup
 
+1. Start Superset:
+
 ```bash
 docker-compose up -d superset
 docker exec -it superset superset fab create-admin
 ```
+
+You'll be prompted to enter a username, password, and email for your Superset admin account.
+
+2. Login: Visit http://localhost:8088 in your browser and log in with the credentials you just set.
+3. Connect to BigQuery:
+   - Go to Settings > Database Connections
+   - Click + Database
+   - Choose BigQuery as the engine
+   - Enter your SQLAlchemy URI in the format
+   - Upload your service account JSON file or provide its path
+   - Test the connection and save
+
+Once connected, you can build charts from daily_active_users or any model published to BigQuery.
 
 ---
 
