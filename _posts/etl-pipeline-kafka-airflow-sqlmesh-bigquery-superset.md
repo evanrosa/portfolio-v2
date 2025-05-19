@@ -219,7 +219,7 @@ Superset authenticates using a Google service account and SQLAlchemy connector.
 ## Project Structure
 
 ```text
-pipe_demo/
+demo/
 ├── airflow/               # DAGs and config for Airflow
 ├── kafka/                 # Docker configs for Kafka
 ├── sqlmesh/               # SQL models, tests, audits
@@ -363,5 +363,5 @@ Once connected, you can build charts from daily_active_users or any model publis
 
 This stack is ideal for teams who want reproducible pipelines, visibility into data lineage, and reliable infrastructure—all while using open and cloud-native tools.
 
-Explore the repo → [pipe_demo GitHub](https://github.com/evanrosa/pipe_demo)  
+Explore the repo → [demo GitHub](https://github.com/evanrosa/pipe_demo)  
 Need help building your version? [Let’s talk](https://www.evro.dev/consultant)
