@@ -34,7 +34,7 @@ Each tool plays a role, and together they create a strong, flexible foundation f
 
 ---
 
-## 🔁 How the Tools Work Together: End-to-End Data Flow
+## How the Tools Work Together: End-to-End Data Flow
 
 This pipeline follows a clear and modular batch ETL flow. Here’s how the data travels:
 
