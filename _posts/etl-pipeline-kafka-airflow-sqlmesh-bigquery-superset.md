@@ -232,9 +232,7 @@ pipe_demo/
 
 ## Setup & Commands for Building the Pipeline
 
-This section provides the essential commands and configuration steps needed to build the ETL pipeline. While some familiarity with Docker, Python, and cloud platforms is helpful, the instructions aim to support both experienced users and those setting everything up from scratch. If you're new to these tools, follow the earlier prerequisite section to get your local environment ready before diving into each service's setup.
-
-If you're starting from scratch, follow these steps first:
+If you're starting from scratch, follow these steps:
 
 #### Install Prerequisites
 
@@ -244,8 +242,6 @@ If you're starting from scratch, follow these steps first:
 - It's recommended that you use a virtual environment (eg venv)
 
 Once these are ready, continue with the steps below to configure each component.
-
-This section includes the exact commands and configuration steps used to set up each part of the pipeline. Whether you're running locally or extending this for cloud production, these building blocks are reusable.
 
 ### Kafka Setup
 
