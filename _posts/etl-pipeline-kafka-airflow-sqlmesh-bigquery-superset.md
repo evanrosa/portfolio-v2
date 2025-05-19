@@ -39,8 +39,8 @@ Each tool plays a role, and together they create a strong, flexible foundation f
 This pipeline follows a clear and modular batch ETL flow. Here’s how the data travels:
 
 1. **Kafka** receives and buffers raw events from producers. In our case, the `simulate_producer.py` script generates synthetic `page_view` events and sends them to the `events` topic in Kafka.
-2. **SQLMesh** reads the latest data from Kafka or from an intermediate staging layer and applies transformation logic. It creates derived models such as `pageviews`, `sessions`, and `daily_active_users`. The logic is versioned, testable, and incrementally updated based on time partitions.
-3. **Airflow** orchestrates the SQLMesh workflow by scheduling the `plan` and `apply` steps at defined intervals. It ensures that transformations run in the correct order and retries jobs if needed.
+2. **Airflow** orchestrates the SQLMesh workflow by scheduling the `plan` and `apply` steps at defined intervals. It ensures that transformations run in the correct order and retries jobs if needed.
+3. **SQLMesh** reads the latest data from Kafka or from an intermediate staging layer and applies transformation logic. It creates derived models such as `pageviews`, `sessions`, and `daily_active_users`. The logic is versioned, testable, and incrementally updated based on time partitions.
 4. **BigQuery** acts as the persistent storage layer. SQLMesh writes output tables to the `analytics` dataset in BigQuery. These tables are partitioned and query-optimized.
 5. **Superset** connects to BigQuery and provides dashboards and visualizations. Users can explore the transformed data without touching the ETL logic.
 
@@ -72,7 +72,7 @@ Kafka is a **distributed message broker**—a system that collects data and make
 - Used Docker Compose to launch Bitnami Kafka and Zookeeper containers
 - Enabled topic auto-creation and internal networking for easy setup
 
-**Producer Details:**  
+**Producer Details:**
 The `simulate_producer.py` script sends a new event every second:
 
 ```json
@@ -230,13 +230,61 @@ pipe_demo/
 
 ---
 
+## Setup & Commands for Building the Pipeline
+
+### Kafka Setup
+
+```bash
+docker-compose up -d kafka zookeeper
+python simulate_producer.py
+kcat -b localhost:9092 -t events -C -o beginning
+```
+
+### SQLMesh Setup
+
+```bash
+pip install sqlmesh[gcp]
+sqlmesh init
+sqlmesh plan --environment dev
+sqlmesh apply --environment dev
+sqlmesh backfill --start '2024-04-01' --end '2024-04-30'
+```
+
+### Airflow Setup
+
+```bash
+docker-compose up -d airflow webserver scheduler
+# then visit http://localhost:8080 to trigger DAGs
+```
+
+### BigQuery Setup
+
+```yaml
+gateways:
+  prod:
+    connection:
+      type: bigquery
+      project: your-project-id
+      dataset: analytics
+      key_path: /secrets/bigquery.json
+```
+
+### Superset Setup
+
+```bash
+docker-compose up -d superset
+docker exec -it superset superset fab create-admin
+```
+
+---
+
 ## Why This Pipeline Works Well
 
-- **Kafka**: decouples ingestion and processing
-- **SQLMesh**: versioned, testable, backfillable transformations
-- **Airflow**: reliable orchestration
-- **BigQuery**: scalable cloud warehouse
-- **Superset**: self-serve analytics
+- **Kafka** decouples ingestion from transformation
+- **SQLMesh** enables versioned, testable, backfillable SQL logic
+- **Airflow** gives visibility and orchestration
+- **BigQuery** scales and serves cleanly
+- **Superset** makes insights accessible
 
 ---
 
