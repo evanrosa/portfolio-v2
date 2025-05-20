@@ -250,27 +250,60 @@ Kafka relies on Zookeeper (unless you're using Kafka V.4) to maintain configurat
 Here's an example docker-compose.yml snippet to spin up Kafka and Zookeeper locally using the Bitnami images:
 
 ```bash
-version: '3'
 services:
   zookeeper:
-    image: bitnami/zookeeper:latest
+    image: wurstmeister/zookeeper:latest
     ports:
       - "2181:2181"
-    environment:
-      - ALLOW_ANONYMOUS_LOGIN=yes
 
   kafka:
-    image: bitnami/kafka:latest
+    image: wurstmeister/kafka:latest
     ports:
       - "9092:9092"
+    expose:
+      - "9093"
     environment:
-      - KAFKA_BROKER_ID=1
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
-      - ALLOW_PLAINTEXT_LISTENER=yes
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9093
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9093
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  kafka_producer:
+    build:
+      context: .
+      dockerfile: docker/kafka/producer/Dockerfile
+    container_name: kafka_producer
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9093
+    volumes:
+      - ./kafka/scripts:/kafka/scripts
     depends_on:
-      - zookeeper
+      - kafka
+    env_file:
+      - .env
+    command: python /kafka/scripts/producer.py
+
+  kafka_consumer:
+    build:
+      context: .
+      dockerfile: docker/kafka/consumer/Dockerfile
+    container_name: kafka_consumer
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9093
+      - BIGQUERY_PROJECT=${BQ_ID}
+      - BIGQUERY_DATASET=${BIGQUERY_DATASET}
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/creds/pipe_demo_bq.json
+    volumes:
+      - ./kafka/scripts:/app/kafka/scripts
+      - ./creds/pipe_demo_bq.json:/app/creds/pipe_demo_bq.json
+    env_file:
+      - .env
+    command: python /app/kafka/scripts/consumer.py
+    depends_on:
+      - kafka
+      - postgres
 ```
 
 1.  Install Docker Desktop (if not already installed).
@@ -287,6 +320,25 @@ python simulate_producer.py
 ```
 
 ### SQLMesh Setup
+
+```bash
+  sqlmesh:
+    build:
+      context: .
+      dockerfile: docker/sql_mesh/Dockerfile
+    container_name: sqlmesh
+    volumes:
+      - ./sql_mesh:/app
+      - ./creds/pipe_demo_bq.json:/app/pipe_demo_bq.json
+    env_file:
+      - .env
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/pipe_demo_bq.json
+    depends_on:
+      - postgres
+    ports:
+      - "8000:8000"
+```
 
 ```bash
 pip install sqlmesh
@@ -315,6 +367,27 @@ docker-compose up -d airflow webserver scheduler
 3. Mount the key into the SQLMesh container: /secrets/bigquery.json
 4. Configure the gateway in sqlmesh.yaml:
 
+```bash
+  bigquery_init:
+    build:
+      context: .
+      dockerfile: docker/kafka/producer/Dockerfile
+    container_name: bigquery_init
+    env_file:
+      - .env
+    environment:
+      - BIGQUERY_PROJECT=${BQ_ID}
+      - BIGQUERY_DATASET=${BIGQUERY_DATASET}
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/creds/pipe_demo_bq.json
+    volumes:
+      - ./creds/pipe_demo_bq.json:/app/creds/pipe_demo_bq.json
+      - ./kafka/scripts/create_tables.py:/app/kafka/scripts/create_tables.py
+    command: python /app/kafka/scripts/create_tables.py
+    # This container will run once and then exit.
+    depends_on:
+      - kafka
+```
+
 ```yaml
 gateways:
   prod:
@@ -328,6 +401,33 @@ gateways:
 ### Superset Setup
 
 1. Start Superset:
+
+```bash
+  superset:
+    build:
+      context: .
+      dockerfile: docker/superset/Dockerfile
+    container_name: superset
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB_SUPERSET=${POSTGRES_DB}
+      - SUPERSET=${SUPERSET}
+      - SUPERSET_CONFIG_PATH=/etc/superset/superset_config.py
+    volumes:
+      - ./superset/superset_config.py:/etc/superset/superset_config.py
+    ports:
+      - "8088:8088"
+    command: >
+      /bin/sh -c "
+      superset db upgrade &&
+      superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@superset.com --password admin &&
+      superset init &&
+      superset run -p 8088 --host 0.0.0.0 --with-threads --reload --debugger"
+```
 
 ```bash
 docker-compose up -d superset
