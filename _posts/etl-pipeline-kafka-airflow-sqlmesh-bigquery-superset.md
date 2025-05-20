@@ -1,15 +1,14 @@
 ---
-title: "Building a Real ETL Pipeline with Kafka, Airflow, SQLMesh, BigQuery, and Superset — Step by Step"
+title: "Building a Real ETL Pipeline with Kafka, SQLMesh, BigQuery, and Superset — Step by Step"
 coverImage: "/assets/blog/batch-sqlMesh-kafka-bq-superset/cover.png"
 date: "2025-05-19"
 modifiedDate: "2025-05-19"
-excerpt: "This detailed tutorial shows you how to build a full batch ETL pipeline using Kafka, Airflow, SQLMesh, BigQuery, and Superset. Learn how to set it up, how the tools work, and why this stack gives you scalable, testable data workflows."
+excerpt: "This detailed tutorial shows you how to build a full batch ETL pipeline using Kafka, SQLMesh, BigQuery, and Superset. Learn how to set it up, how the tools work, and why this stack gives you scalable, testable data workflows."
 tags:
   [
     "data engineering",
     "ETL pipeline",
     "Kafka",
-    "Airflow",
     "SQLMesh",
     "BigQuery",
     "Superset",
@@ -25,7 +24,6 @@ ogImage:
 A production-ready ETL (Extract, Transform, Load) pipeline is more than just code that runs once. It’s a reliable system for collecting, processing, and sharing data. In this tutorial, you’ll learn how I built a working pipeline using tools that many real companies use today:
 
 - **Kafka** for collecting and buffering incoming events
-- **Airflow** to schedule and manage when and how things run
 - **SQLMesh** for writing SQL transformations that are easy to test, update, and track
 - **BigQuery** as the storage and query engine
 - **Superset** for building charts and dashboards on top of the cleaned data
@@ -39,16 +37,14 @@ Each tool plays a role, and together they create a strong, flexible foundation f
 This pipeline follows a clear and modular batch ETL flow. Here’s how the data travels:
 
 1. **Kafka** receives and buffers raw events from producers. In our case, the `simulate_producer.py` script generates synthetic `page_view` events and sends them to the `events` topic in Kafka.
-2. **Airflow** orchestrates the SQLMesh workflow by scheduling the `plan` and `apply` steps at defined intervals. It ensures that transformations run in the correct order and retries jobs if needed.
-3. **SQLMesh** reads the latest data from Kafka or from an intermediate staging layer and applies transformation logic. It creates derived models such as `pageviews`, `sessions`, and `daily_active_users`. The logic is versioned, testable, and incrementally updated based on time partitions.
-4. **BigQuery** acts as the persistent storage layer. SQLMesh writes output tables to the `analytics` dataset in BigQuery. These tables are partitioned and query-optimized.
-5. **Superset** connects to BigQuery and provides dashboards and visualizations. Users can explore the transformed data without touching the ETL logic.
+2. **SQLMesh** reads the latest data from Kafka or from an intermediate staging layer and applies transformation logic. It creates derived models such as `pageviews`, `sessions`, and `daily_active_users`. The logic is versioned, testable, and incrementally updated based on time partitions.
+3. **BigQuery** acts as the persistent storage layer. SQLMesh writes output tables to the `analytics` dataset in BigQuery. These tables are partitioned and query-optimized.
+4. **Superset** connects to BigQuery and provides dashboards and visualizations. Users can explore the transformed data without touching the ETL logic.
 
 Each part of this system is isolated, but together they create a seamless flow:
 
 - Kafka buffers
 - SQLMesh transforms
-- Airflow triggers
 - BigQuery stores
 - Superset serves
 
@@ -142,57 +138,6 @@ def test_non_negative_counts(df):
 
 ---
 
-## Airflow: Running SQLMesh Automatically
-
-Apache Airflow is the orchestration engine that runs and schedules your SQLMesh jobs. While the earlier example showed manual BashOperator usage, SQLMesh provides native Airflow integration that simplifies everything.
-
-### Built-in SQLMesh Airflow Integration
-
-SQLMesh can automatically generate DAGs and handle:
-
-- plan / apply cycles for each environment
-- Custom scheduling per model using cron or @daily/@hourly syntax
-- Email alerts
-- Downstream DAG triggering
-
-This is ideal for teams using SQLMesh in production.
-
-### Features Used:
-
-- **Model-aware scheduling:** Each model's schedule can be defined in the YAML or SQL config.
-- **Environment isolation:** DAGs are scoped to specific environments (dev, prod, etc.).
-- **Retries, email notifications, downstream triggers:** all supported via configuration.
-- **Backfill support:** Leverage time-based partitions directly.
-
-### DAG Overview:
-
-1. Add the sqlmesh_airflow package to your Airflow environment:
-
-```python
-pip install tobiko-cloud-scheduler-facade[airflow]
-```
-
-2. Next, connect Airflow to Tobiko Cloud by ensuring the tobiko_cloud connection ID is defined in your Airflow UI (under Admin > Connections) and points to your authenticated SQLMesh Cloud instance. [SQLMesh Airflow Integration](https://sqlmesh.readthedocs.io/en/stable/cloud/features/scheduler/airflow/#why-a-custom-approach)
-
-3. Use the sqlmesh airflow to create a DAG:
-
-```python
-# folder: dags/
-# file name: tobiko_cloud_airflow_integration.py
-
-# Import SQLMeshEnterpriseAirflow operator
-from tobikodata.scheduler_facades.airflow import SQLMeshEnterpriseAirflow
-
-# Create SQLMeshEnterpriseAirflow instance with connection ID
-tobiko_cloud = SQLMeshEnterpriseAirflow(conn_id="tobiko_cloud")
-
-# Create DAG for `prod` environment from SQLMeshEnterpriseAirflow instance
-first_task, last_task, dag = tobiko_cloud.create_cadence_dag(environment="prod")
-
-```
-
----
-
 ## BigQuery: Cloud-Scale Storage and Querying
 
 BigQuery is Google Cloud’s serverless data warehouse.
@@ -237,7 +182,6 @@ Superset authenticates using a Google service account and SQLAlchemy connector.
 
 ```text
 demo/
-├── airflow/               # DAGs and config for Airflow
 ├── kafka/                 # Docker configs for Kafka
 ├── sqlmesh/               # SQL models, tests, audits
 ├── secrets/               # Google service account JSON
@@ -458,7 +402,6 @@ Once connected, you can build charts from daily_active_users or any model publis
 
 - **Kafka** decouples ingestion from transformation
 - **SQLMesh** enables versioned, testable, backfillable SQL logic
-- **Airflow** gives visibility and orchestration
 - **BigQuery** scales and serves cleanly
 - **Superset** makes insights accessible
 
