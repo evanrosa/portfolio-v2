@@ -289,7 +289,7 @@ python simulate_producer.py
 ### SQLMesh Setup
 
 ```bash
-pip install sqlmesh[gcp]
+pip install sqlmesh
 sqlmesh init [SQL_DIALECT]
 sqlmesh plan --environment dev
 sqlmesh apply --environment dev
