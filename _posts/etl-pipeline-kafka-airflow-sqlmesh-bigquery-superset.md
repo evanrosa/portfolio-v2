@@ -172,7 +172,7 @@ This is ideal for teams using SQLMesh in production.
 pip install tobiko-cloud-scheduler-facade[airflow]
 ```
 
-2. Next you will need to connect Airflow to Tobiko Cloud [SQLMesh Airflow Integration](https://sqlmesh.readthedocs.io/en/stable/cloud/features/scheduler/airflow/#why-a-custom-approach)
+2. Next, connect Airflow to Tobiko Cloud by ensuring the tobiko_cloud connection ID is defined in your Airflow UI (under Admin > Connections) and points to your authenticated SQLMesh Cloud instance. [SQLMesh Airflow Integration](https://sqlmesh.readthedocs.io/en/stable/cloud/features/scheduler/airflow/#why-a-custom-approach)
 
 3. Use the sqlmesh airflow to create a DAG:
 
