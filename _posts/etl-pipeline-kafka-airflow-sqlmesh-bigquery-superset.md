@@ -169,27 +169,25 @@ This is ideal for teams using SQLMesh in production.
 1. Add the sqlmesh_airflow package to your Airflow environment:
 
 ```python
-pip install sqlmesh[airflow]
+pip install tobiko-cloud-scheduler-facade[airflow]
 ```
 
-2. Use the sqlmesh airflow render command to generate DAGs:
+2. Next you will need to connect Airflow to Tobiko Cloud [SQLMesh Airflow Integration](https://sqlmesh.readthedocs.io/en/stable/cloud/features/scheduler/airflow/#why-a-custom-approach)
+
+3. Use the sqlmesh airflow to create a DAG:
 
 ```python
-sqlmesh airflow render \
-  --project-path /path/to/project \
-  --output-path /path/to/airflow/dags \
-  --environment prod
+# folder: dags/
+# file name: tobiko_cloud_airflow_integration.py
 
-```
+# Import SQLMeshEnterpriseAirflow operator
+from tobikodata.scheduler_facades.airflow import SQLMeshEnterpriseAirflow
 
-You can configure SQLMesh to trigger a downstream Airflow DAG or send notifications once a run completes by customizing on_success or on_failure hooks within Airflow.
+# Create SQLMeshEnterpriseAirflow instance with connection ID
+tobiko_cloud = SQLMeshEnterpriseAirflow(conn_id="tobiko_cloud")
 
-```bash
-trigger_dag = TriggerDagRunOperator(
-    task_id="trigger_next_pipeline",
-    trigger_dag_id="my_next_dag",
-    dag=dag,
-)
+# Create DAG for `prod` environment from SQLMeshEnterpriseAirflow instance
+first_task, last_task, dag = tobiko_cloud.create_cadence_dag(environment="prod")
 
 ```
 
