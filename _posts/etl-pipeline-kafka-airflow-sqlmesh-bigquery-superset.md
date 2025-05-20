@@ -365,29 +365,6 @@ sqlmesh apply --environment dev
 sqlmesh backfill --start '2024-04-01' --end '2024-04-30'
 ```
 
-### Airflow Setup
-
-1. Start Airflow via Docker Compose:
-
-```bash
-  airflow:
-    image: apache/airflow:2.7.0
-    volumes:
-      - ./sqlmesh:/sqlmesh
-      - ./dags:/opt/airflow/dags
-    environment:
-      - SQLMESH__PATH=/sqlmesh
-      - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags
-
-```
-
-```bash
-docker-compose up -d airflow webserver scheduler
-```
-
-2. Access the UI at http://localhost:8080 and enable your DAG.
-3. Manually trigger a DAG run (or wait for the schedule to trigger it).
-
 ### BigQuery Setup
 
 1. Create a Google Cloud project, BigQuery dataset, and service account with editor permissions.
