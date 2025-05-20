@@ -142,36 +142,55 @@ def test_non_negative_counts(df):
 
 ---
 
-## Airflow: Running Tasks Automatically
+## Airflow: Running SQLMesh Automatically
 
-Airflow is a job scheduler and orchestration tool. It uses DAGs (Directed Acyclic Graphs) to define the order of operations.
+Apache Airflow is the orchestration engine that runs and schedules your SQLMesh jobs. While the earlier example showed manual BashOperator usage, SQLMesh provides native Airflow integration that simplifies everything.
+
+### Built-in SQLMesh Airflow Integration
+
+SQLMesh can automatically generate DAGs and handle:
+
+- plan / apply cycles for each environment
+- Custom scheduling per model using cron or @daily/@hourly syntax
+- Email alerts
+- Downstream DAG triggering
+
+This is ideal for teams using SQLMesh in production.
 
 ### Features Used:
 
-- **BashOperator** to run `sqlmesh plan` and `sqlmesh apply`
-- **Retry logic**
-- **Scheduling** (`@hourly`, `@daily`, etc.)
-- **Task Dependencies**
-- **UI for monitoring**
+- **Model-aware scheduling:** Each model's schedule can be defined in the YAML or SQL config.
+- **Environment isolation:** DAGs are scoped to specific environments (dev, prod, etc.).
+- **Retries, email notifications, downstream triggers:** all supported via configuration.
+- **Backfill support:** Leverage time-based partitions directly.
 
 ### DAG Overview:
 
+1. Add the sqlmesh_airflow package to your Airflow environment:
+
 ```python
-plan = BashOperator(
-  task_id='sqlmesh_plan',
-  bash_command='sqlmesh plan --environment prod',
-  retries=3,
-  dag=dag
+pip install sqlmesh[airflow]
+```
+
+2. Use the sqlmesh airflow render command to generate DAGs:
+
+```python
+sqlmesh airflow render \
+  --project-path /path/to/project \
+  --output-path /path/to/airflow/dags \
+  --environment prod
+
+```
+
+You can configure SQLMesh to trigger a downstream Airflow DAG or send notifications once a run completes by customizing on_success or on_failure hooks within Airflow.
+
+```bash
+trigger_dag = TriggerDagRunOperator(
+    task_id="trigger_next_pipeline",
+    trigger_dag_id="my_next_dag",
+    dag=dag,
 )
 
-apply = BashOperator(
-  task_id='sqlmesh_apply',
-  bash_command='sqlmesh apply --environment prod',
-  retries=3,
-  dag=dag
-)
-
-plan >> apply
 ```
 
 ---
@@ -353,8 +372,19 @@ sqlmesh backfill --start '2024-04-01' --end '2024-04-30'
 1. Start Airflow via Docker Compose:
 
 ```bash
+  airflow:
+    image: apache/airflow:2.7.0
+    volumes:
+      - ./sqlmesh:/sqlmesh
+      - ./dags:/opt/airflow/dags
+    environment:
+      - SQLMESH__PATH=/sqlmesh
+      - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags
+
+```
+
+```bash
 docker-compose up -d airflow webserver scheduler
-# then visit http://localhost:8080 to trigger DAGs
 ```
 
 2. Access the UI at http://localhost:8080 and enable your DAG.
