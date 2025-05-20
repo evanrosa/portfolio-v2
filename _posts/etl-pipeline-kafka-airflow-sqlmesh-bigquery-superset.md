@@ -58,7 +58,7 @@ This architecture is easy to extend, monitor, and debug.
 
 ## Kafka: Capturing Events in Real Time
 
-Kafka is a **distributed message broker**—a system that collects data and makes it available to other systems in a reliable way. In this pipeline, Kafka simulates incoming events that would typically come from a website, mobile app, or service.
+Kafka is a **distributed message broker**, a system that collects data and makes it available to other systems in a reliable way. In this pipeline, Kafka simulates incoming events that would typically come from a website, mobile app, or service.
 
 ### Key Kafka Features Used:
 
@@ -245,7 +245,7 @@ Once these are ready, continue with the steps below to configure each component.
 
 ### Kafka Setup
 
-Kafka relies on Zookeeper to maintain configuration and leader election in the cluster, so both services must be started together. Kafka receives and buffers real-time data sent from producers—our simulated event script in this case.
+Kafka relies on Zookeeper (unless you're using Kafka V.4) to maintain configuration and leader election in the cluster, so both services must be started together. Kafka receives and buffers real-time data sent from producers, our simulated event script in this case.
 
 Here's an example docker-compose.yml snippet to spin up Kafka and Zookeeper locally using the Bitnami images:
 
@@ -361,7 +361,7 @@ Once connected, you can build charts from daily_active_users or any model publis
 
 ## Final Thoughts
 
-This stack is ideal for teams who want reproducible pipelines, visibility into data lineage, and reliable infrastructure—all while using open and cloud-native tools.
+This stack is ideal for teams who want reproducible pipelines, visibility into data lineage, and reliable infrastructure, all while using open and cloud-native tools.
 
 Explore the repo → [demo GitHub](https://github.com/evanrosa/pipe_demo)  
 Need help building your version? [Let’s talk](https://www.evro.dev/consultant)
