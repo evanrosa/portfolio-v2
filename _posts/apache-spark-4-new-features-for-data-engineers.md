@@ -1,5 +1,5 @@
 ---
-title: "Apache Spark 4.0: A Modern Engine for Data Engineering in Motion"
+title: "Apache Spark 4.0: New Features for Data Engineers"
 coverImage: "/assets/blog/spark4/cover.png"
 date: "2025-06-08"
 modifiedDate: "2025-05-19"
