@@ -23,7 +23,7 @@ ogImage:
 
 > Apache Spark has long been the powerhouse behind batch processing, large-scale analytics, and streaming jobs. With Spark 4.0, it’s not just faster; it’s smarter, cleaner, and more developer-friendly.
 
-If you’ve ever built an ETL pipeline that chugs through terabytes of data, you know how crucial performance and flexibility are. Apache Spark 4.0 doubles down on both fronts, delivering new architecture paradigms, deeper SQL capabilities, and better tooling for developers. This isn’t just a version bump, it’s a foundational shift in how we think about distributed computing for data engineering.
+If you’ve ever built an ETL pipeline that runs through terabytes of data, you know how crucial performance and flexibility are. Apache Spark 4.0 doubles down on both fronts, delivering new architecture paradigms, deeper SQL capabilities, and better tooling for developers. This isn’t just a version bump, it’s a foundational shift in how we think about distributed computing for data engineering.
 
 Let’s explore what Spark 4.0 brings to the table and why it’s worth your attention.
 
@@ -44,9 +44,7 @@ The open-source engine combines speed (thanks to in-memory execution), scale (vi
 
 ---
 
-## What’s New in Spark 4.0
-
-Instead of rattling off features, let’s walk through what the new version feels like to use and how it reshapes the way we build data pipelines.
+## Spark 4.0 in Action
 
 ### Spark Connect: Decoupling the Client from the Cluster
 
