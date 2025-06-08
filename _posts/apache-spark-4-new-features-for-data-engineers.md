@@ -155,4 +155,4 @@ If you’re already using Spark 3.x, now’s the time to start experimenting wit
 
 Want help migrating your pipelines to Spark 4 or modernizing your batch architecture?
 
-[Let’s talk](https://www.evro.dev/consultant)
+[Let’s talk](https://www.evro.dev/consultant)!
