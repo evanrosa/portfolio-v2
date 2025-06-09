@@ -44,9 +44,7 @@ The open-source engine combines speed (thanks to in-memory execution), scale (vi
 
 ---
 
-## Spark 4.0 in Action
-
-### Spark Connect: Decoupling the Client from the Cluster
+## Spark Connect: Decoupling the Client from the Cluster
 
 One of the most revolutionary updates in Spark 4 is Spark Connect, a client-server protocol that allows Spark code to be executed remotely.
 
